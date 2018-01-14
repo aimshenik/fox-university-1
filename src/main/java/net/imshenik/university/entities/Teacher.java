@@ -1,14 +1,14 @@
-package biz.imshenik.university.entities;
+package net.imshenik.university.entities;
 
 import java.util.UUID;
 
 public class Teacher {
-    private final UUID uuid;
+    private final int uuid;
     private final String firstName;
     private final String lastName;
     private final String passport;
 
-    public Teacher(UUID uuid, String firstName, String lastName, String passport) {
+    public Teacher(int uuid, String firstName, String lastName, String passport) {
         this.uuid = uuid;
         this.firstName = firstName;
         this.lastName = lastName;

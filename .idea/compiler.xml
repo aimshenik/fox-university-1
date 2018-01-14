@@ -11,7 +11,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Task9DomainLayer" target="1.5" />
-      <module name="university" target="1.5" />
+      <module name="university" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

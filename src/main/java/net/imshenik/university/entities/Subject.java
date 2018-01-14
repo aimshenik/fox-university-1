@@ -1,12 +1,12 @@
-package biz.imshenik.university.entities;
+package net.imshenik.university.entities;
 
 import java.util.UUID;
 
 public class Subject {
-    private final UUID uuid;
+    private final int uuid;
     private final String name;
 
-    public Subject(UUID uuid, String name) {
+    public Subject(int uuid, String name) {
         this.uuid = uuid;
         this.name = name;
     }
