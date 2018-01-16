@@ -1,23 +1,39 @@
 package net.imshenik.university.entities;
 
 import java.util.List;
-import java.util.UUID;
 
 public class Group {
-    private final int uuid;
-    private final String name;
+    private int id;
+    private String name;
     private List<Student> students;
 
-    public Group(int uuid, String name, List<Student> students) {
-        this.uuid = uuid;
+    public Group(int id, String name, List<Student> students) {
+        this.id = id;
         this.name = name;
         this.students = students;
     }
 
-    public void addStudent(Student student){
-        students.add(student);
+    public int getId() {
+        return id;
     }
-    public void removeStudent(Student student){
-        students.remove(student);
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
     }
 }

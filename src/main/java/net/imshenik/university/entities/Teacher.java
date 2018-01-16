@@ -1,17 +1,47 @@
 package net.imshenik.university.entities;
 
-import java.util.UUID;
-
 public class Teacher {
-    private final int uuid;
-    private final String firstName;
-    private final String lastName;
-    private final String passport;
+    private int id;
+    private String firstName;
+    private String lastName;
+    private String passport;
 
-    public Teacher(int uuid, String firstName, String lastName, String passport) {
-        this.uuid = uuid;
+    public Teacher(int id, String firstName, String lastName, String passport) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.passport = passport;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getPassport() {
+        return passport;
+    }
+
+    public void setPassport(String passport) {
         this.passport = passport;
     }
 }
