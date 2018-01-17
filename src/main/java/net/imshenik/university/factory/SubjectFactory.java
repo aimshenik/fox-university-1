@@ -4,15 +4,15 @@ import net.imshenik.university.entities.Subject;
 
 
 public class SubjectFactory {
-    public Subject createSubjC() {
+    public static Subject createSubjC() {
         return new Subject(1, "C/C++");
     }
 
-    public Subject createSubjJava() {
+    public static Subject createSubjJava() {
         return new Subject(2, "Java");
     }
 
-    public Subject createSubjDB() {
+    public static Subject createSubjDB() {
         return new Subject(3, "Databases theory");
     }
 }

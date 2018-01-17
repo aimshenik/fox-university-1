@@ -1,12 +1,17 @@
 package net.imshenik.university;
 
 import net.imshenik.university.entities.*;
+import net.imshenik.university.factory.ScheduleFactory;
+import net.imshenik.university.factory.StudentFactory;
 import net.imshenik.university.service.ScheduleService;
 import org.junit.Test;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+
 import static junit.framework.TestCase.assertEquals;
 
 public class TestScheduleBeanService {
@@ -37,8 +42,19 @@ public class TestScheduleBeanService {
 
     @Test
     public void requestNull() {
-        Object expected  = null;
-        List<Schedule> actual = scheduleService.getListPerStudentBetweenPeriod(null,null,null);
+        Object expected = new ArrayList<Schedule>();
+        List<Schedule> actual = scheduleService.getListPerStudentBetweenPeriod(null, null, null);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void requestNotNull() {
+        Integer expected = 9;
+        Integer actual = scheduleService.getListPerStudentBetweenPeriod(
+                StudentFactory.createStudentBelov(),
+                LocalDateTime.of(2018, 1, 1, 9, 0),
+                LocalDateTime.of(2018, 1, 2, 0, 0)).size();
+
         assertEquals(expected, actual);
     }
 }

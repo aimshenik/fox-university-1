@@ -1,5 +1,7 @@
 package net.imshenik.university.entities;
 
+import java.util.logging.Logger;
+
 public class Classroom {
     private int id;
     private String number;
