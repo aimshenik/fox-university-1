@@ -1,8 +1,9 @@
 package net.imshenik.university.entities;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Schedule {
+public class Schedule implements Serializable {
     private int id;
     private Teacher teacher;
     private Group group;
@@ -10,6 +11,9 @@ public class Schedule {
     private Subject subject;
     private LocalDateTime start;
     private LocalDateTime end;
+
+    public Schedule() {
+    }
 
     public Schedule(int id, Teacher teacher, Group group, Classroom classroom, Subject subject, LocalDateTime start, LocalDateTime end) {
         this.id = id;
@@ -75,5 +79,46 @@ public class Schedule {
 
     public void setEnd(LocalDateTime end) {
         this.end = end;
+    }
+
+    @Override
+    public String toString() {
+        return "Schedule{" +
+                "id=" + id +
+                ", teacher=" + teacher +
+                ", group=" + group +
+                ", classroom=" + classroom +
+                ", subject=" + subject +
+                ", start=" + start +
+                ", end=" + end +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Schedule schedule = (Schedule) o;
+
+        if (id != schedule.id) return false;
+        if (teacher != null ? !teacher.equals(schedule.teacher) : schedule.teacher != null) return false;
+        if (group != null ? !group.equals(schedule.group) : schedule.group != null) return false;
+        if (classroom != null ? !classroom.equals(schedule.classroom) : schedule.classroom != null) return false;
+        if (subject != null ? !subject.equals(schedule.subject) : schedule.subject != null) return false;
+        if (start != null ? !start.equals(schedule.start) : schedule.start != null) return false;
+        return end != null ? end.equals(schedule.end) : schedule.end == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (teacher != null ? teacher.hashCode() : 0);
+        result = 31 * result + (group != null ? group.hashCode() : 0);
+        result = 31 * result + (classroom != null ? classroom.hashCode() : 0);
+        result = 31 * result + (subject != null ? subject.hashCode() : 0);
+        result = 31 * result + (start != null ? start.hashCode() : 0);
+        result = 31 * result + (end != null ? end.hashCode() : 0);
+        return result;
     }
 }

@@ -1,8 +1,13 @@
 package net.imshenik.university.entities;
 
-public class Subject {
+import java.io.Serializable;
+
+public class Subject implements Serializable {
     private int id;
     private String name;
+
+    public Subject() {
+    }
 
     public Subject(int id, String name) {
         this.id = id;
@@ -23,5 +28,31 @@ public class Subject {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Subject subject = (Subject) o;
+
+        if (id != subject.id) return false;
+        return name.equals(subject.name);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + name.hashCode();
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Subject{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
