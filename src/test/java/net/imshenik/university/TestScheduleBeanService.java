@@ -4,6 +4,7 @@ import net.imshenik.university.entities.*;
 import net.imshenik.university.factory.ScheduleFactory;
 import net.imshenik.university.factory.StudentFactory;
 import net.imshenik.university.service.ScheduleService;
+import org.apache.log4j.Logger;
 import org.junit.Test;
 
 import java.time.LocalDateTime;
@@ -14,6 +15,7 @@ import static junit.framework.TestCase.assertEquals;
 
 public class TestScheduleBeanService {
     ScheduleService scheduleService = new ScheduleService();
+    private static Logger logger = Logger.getLogger("TestScheduleBeanService");
 
     @Test
     public void requestNull() {

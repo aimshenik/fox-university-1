@@ -1,25 +1,20 @@
 package net.imshenik.university.entities;
 
 import java.io.Serializable;
-import java.util.logging.Logger;
 
 public class Classroom implements Serializable {
     private int id;
     private String number;
     private String building;
-    private int floor;
-    private String sector;
     private int capacity;
 
     public Classroom() {
     }
 
-    public Classroom(int id, String number, String building, int floor, String sector, int capacity) {
+    public Classroom(int id, String number, String building, int capacity) {
         this.id = id;
         this.number = number;
         this.building = building;
-        this.floor = floor;
-        this.sector = sector;
         this.capacity = capacity;
     }
 
@@ -47,22 +42,6 @@ public class Classroom implements Serializable {
         this.building = building;
     }
 
-    public int getFloor() {
-        return floor;
-    }
-
-    public void setFloor(int floor) {
-        this.floor = floor;
-    }
-
-    public String getSector() {
-        return sector;
-    }
-
-    public void setSector(String sector) {
-        this.sector = sector;
-    }
-
     public int getCapacity() {
         return capacity;
     }
@@ -73,17 +52,20 @@ public class Classroom implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        ;
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Classroom classroom = (Classroom) o;
 
-        if (id != classroom.id) return false;
-        if (floor != classroom.floor) return false;
-        if (capacity != classroom.capacity) return false;
-        if (!number.equals(classroom.number)) return false;
-        if (!building.equals(classroom.building)) return false;
-        return sector.equals(classroom.sector);
+        if (id != classroom.id) {
+            return false;
+        }
+        return true;
     }
 
     @Override
@@ -91,8 +73,6 @@ public class Classroom implements Serializable {
         int result = id;
         result = 31 * result + number.hashCode();
         result = 31 * result + building.hashCode();
-        result = 31 * result + floor;
-        result = 31 * result + sector.hashCode();
         result = 31 * result + capacity;
         return result;
     }
@@ -103,8 +83,6 @@ public class Classroom implements Serializable {
                 "id=" + id +
                 ", number='" + number + '\'' +
                 ", building='" + building + '\'' +
-                ", floor=" + floor +
-                ", sector='" + sector + '\'' +
                 ", capacity=" + capacity +
                 '}';
     }

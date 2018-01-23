@@ -42,14 +42,19 @@ public class Student implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Student student = (Student) o;
 
-        if (id != student.id) return false;
-        if (!firstName.equals(student.firstName)) return false;
-        return lastName.equals(student.lastName);
+        if (id != student.id) {
+            return false;
+        }
+        return true;
     }
 
     @Override

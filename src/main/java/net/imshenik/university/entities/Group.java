@@ -42,24 +42,20 @@ public class Group implements Serializable {
     }
 
     @Override
-    public String toString() {
-        return "Group{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", students=" + students +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Group group = (Group) o;
 
-        if (id != group.id) return false;
-        if (!name.equals(group.name)) return false;
-        return students.equals(group.students);
+        if (id != group.id) {
+            return false;
+        }
+        return true;
     }
 
     @Override
@@ -68,5 +64,14 @@ public class Group implements Serializable {
         result = 31 * result + name.hashCode();
         result = 31 * result + students.hashCode();
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Group{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", students= List of " + students.size() + " students" +
+                '}';
     }
 }
