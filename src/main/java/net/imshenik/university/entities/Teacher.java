@@ -58,9 +58,7 @@ public class Teacher implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-
         Teacher teacher = (Teacher) o;
-
         if (id != teacher.id) {
             return false;
         }

@@ -89,9 +89,7 @@ public class Schedule implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-
         Schedule schedule = (Schedule) o;
-
         if (id != schedule.id) {
             return false;
         }
@@ -122,4 +120,4 @@ public class Schedule implements Serializable {
                 ", end=" + end +
                 '}';
     }
-}
+        }

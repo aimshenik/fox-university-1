@@ -49,9 +49,7 @@ public class Group implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-
         Group group = (Group) o;
-
         if (id != group.id) {
             return false;
         }

@@ -55,14 +55,17 @@ public class Classroom implements Serializable {
         if (this == o) {
             return true;
         }
-        ;
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-
         Classroom classroom = (Classroom) o;
-
-        if (id != classroom.id) {
+        if (number != classroom.number) {
+            return false;
+        }
+        if (building != classroom.building) {
+            return false;
+        }
+        if (capacity != classroom.capacity) {
             return false;
         }
         return true;

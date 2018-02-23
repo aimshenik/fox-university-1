@@ -38,9 +38,7 @@ public class Subject implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-
         Subject subject = (Subject) o;
-
         if (id != subject.id) {
             return false;
         }
