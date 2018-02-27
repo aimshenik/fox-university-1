@@ -50,7 +50,7 @@ public class Group implements Serializable {
             return false;
         }
         Group group = (Group) o;
-        if (id != group.id) {
+        if (name != group.name) {
             return false;
         }
         return true;
@@ -58,9 +58,8 @@ public class Group implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = 1;
         result = 31 * result + name.hashCode();
-        result = 31 * result + students.hashCode();
         return result;
     }
 

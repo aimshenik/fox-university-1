@@ -8,10 +8,10 @@ public class ClassroomFactory {
     }
 
     public static Classroom createClassroom304(){
-        return new Classroom(1,"25A", "1", 40);
+        return new Classroom(4,"25A", "1", 40);
     }
 
     public static Classroom createClassroom525(){
-        return new Classroom(1,"25A", "1",  60);
+        return new Classroom(5,"25A", "1",  60);
     }
 }

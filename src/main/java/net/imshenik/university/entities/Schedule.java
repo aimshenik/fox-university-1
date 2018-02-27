@@ -83,17 +83,18 @@ public class Schedule implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
         Schedule schedule = (Schedule) o;
-        if (id != schedule.id) {
-            return false;
-        }
-        return true;
+
+        if (id != schedule.id) return false;
+        if (teacher != null ? !teacher.equals(schedule.teacher) : schedule.teacher != null) return false;
+        if (group != null ? !group.equals(schedule.group) : schedule.group != null) return false;
+        if (classroom != null ? !classroom.equals(schedule.classroom) : schedule.classroom != null) return false;
+        if (subject != null ? !subject.equals(schedule.subject) : schedule.subject != null) return false;
+        if (start != null ? !start.equals(schedule.start) : schedule.start != null) return false;
+        return end != null ? end.equals(schedule.end) : schedule.end == null;
     }
 
     @Override
@@ -116,8 +117,8 @@ public class Schedule implements Serializable {
                 ", group=" + group +
                 ", classroom=" + classroom +
                 ", subject=" + subject +
-                ", start=" + start +
-                ", end=" + end +
+                ", start='" + start + "'" +
+                ", end='" + end + "'" +
                 '}';
     }
-        }
+}

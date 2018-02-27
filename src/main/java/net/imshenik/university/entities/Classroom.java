@@ -59,13 +59,10 @@ public class Classroom implements Serializable {
             return false;
         }
         Classroom classroom = (Classroom) o;
-        if (number != classroom.number) {
-            return false;
-        }
         if (building != classroom.building) {
             return false;
         }
-        if (capacity != classroom.capacity) {
+        if (number != classroom.number) {
             return false;
         }
         return true;
@@ -73,10 +70,9 @@ public class Classroom implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = 1;
         result = 31 * result + number.hashCode();
         result = 31 * result + building.hashCode();
-        result = 31 * result + capacity;
         return result;
     }
 

@@ -48,7 +48,7 @@ public class Subject implements Serializable {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + name.hashCode();
+        result = 31 * result;
         return result;
     }
 

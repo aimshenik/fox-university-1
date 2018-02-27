@@ -52,6 +52,12 @@ public class Student implements Serializable {
         if (id != student.id) {
             return false;
         }
+        if (firstName != student.firstName) {
+            return false;
+        }
+        if (lastName != student.lastName) {
+            return false;
+        }
         return true;
     }
 

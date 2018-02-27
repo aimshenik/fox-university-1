@@ -62,6 +62,15 @@ public class Teacher implements Serializable {
         if (id != teacher.id) {
             return false;
         }
+        if (passport != teacher.passport) {
+            return false;
+        }
+        if (lastName != teacher.lastName) {
+            return false;
+        }
+        if (firstName != teacher.firstName) {
+            return false;
+        }
         return true;
     }
 
