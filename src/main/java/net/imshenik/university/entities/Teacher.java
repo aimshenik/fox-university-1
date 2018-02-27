@@ -62,25 +62,12 @@ public class Teacher implements Serializable {
         if (id != teacher.id) {
             return false;
         }
-        if (passport != teacher.passport) {
-            return false;
-        }
-        if (lastName != teacher.lastName) {
-            return false;
-        }
-        if (firstName != teacher.firstName) {
-            return false;
-        }
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + firstName.hashCode();
-        result = 31 * result + lastName.hashCode();
-        result = 31 * result + passport.hashCode();
-        return result;
+        return 31 * id;
     }
 
     @Override

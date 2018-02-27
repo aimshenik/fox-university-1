@@ -52,21 +52,12 @@ public class Student implements Serializable {
         if (id != student.id) {
             return false;
         }
-        if (firstName != student.firstName) {
-            return false;
-        }
-        if (lastName != student.lastName) {
-            return false;
-        }
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + firstName.hashCode();
-        result = 31 * result + lastName.hashCode();
-        return result;
+        return 31 * id;
     }
 
     @Override

@@ -53,17 +53,13 @@ public class Group implements Serializable {
         if (id != group.id) {
             return false;
         }
-        if (name != group.name) {
-            return false;
-        }
+
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + name.hashCode();
-        return result;
+        return id * 31;
     }
 
     @Override
