@@ -43,23 +43,17 @@ public class Group implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Group group = (Group) o;
-        if (id != group.id) {
-            return false;
-        }
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-        return true;
+        Group group = (Group) o;
+
+        return id == group.id;
     }
 
     @Override
     public int hashCode() {
-        return id * 31;
+        return id;
     }
 
     @Override

@@ -84,48 +84,32 @@ public class Schedule implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
         Schedule schedule = (Schedule) o;
-        if (id == schedule.id) {
-            return true;
-        }
-        if (teacher != null ? !teacher.equals(schedule.teacher) : true) {
-            return false;
-        }
-        if (group != null ? !group.equals(schedule.group) : true) {
-            return false;
-        }
-        if (classroom != null ? !classroom.equals(schedule.classroom) : true) {
-            return false;
-        }
-        if (subject != null ? !subject.equals(schedule.subject) : true) {
-            return false;
-        }
-        if (start != null ? !start.equals(schedule.start) : true) {
-            return false;
-        }
-        return true;
+
+        if (teacher != null ? !teacher.equals(schedule.teacher) : schedule.teacher != null) return false;
+        if (group != null ? !group.equals(schedule.group) : schedule.group != null) return false;
+        if (classroom != null ? !classroom.equals(schedule.classroom) : schedule.classroom != null) return false;
+        if (subject != null ? !subject.equals(schedule.subject) : schedule.subject != null) return false;
+        if (start != null ? !start.equals(schedule.start) : schedule.start != null) return false;
+        return end != null ? end.equals(schedule.end) : schedule.end == null;
     }
 
     @Override
     public int hashCode() {
-        int result = 1;
-        result = 31 * result + (teacher != null ? teacher.hashCode() : 0);
+        int result = teacher != null ? teacher.hashCode() : 0;
         result = 31 * result + (group != null ? group.hashCode() : 0);
         result = 31 * result + (classroom != null ? classroom.hashCode() : 0);
         result = 31 * result + (subject != null ? subject.hashCode() : 0);
         result = 31 * result + (start != null ? start.hashCode() : 0);
+        result = 31 * result + (end != null ? end.hashCode() : 0);
         return result;
     }
 
     @Override
     public String toString() {
-        HashMap
         return "Schedule{" +
                 "id=" + id +
                 ", teacher=" + teacher +

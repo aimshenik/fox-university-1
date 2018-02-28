@@ -32,22 +32,17 @@ public class Subject implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
         Subject subject = (Subject) o;
-        if (id != subject.id) {
-            return false;
-        }
-        return true;
+
+        return id == subject.id;
     }
 
     @Override
     public int hashCode() {
-        return 31 * id;
+        return id;
     }
 
     @Override

@@ -52,27 +52,19 @@ public class Classroom implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
         Classroom classroom = (Classroom) o;
-        if (building != classroom.building) {
-            return false;
-        }
-        if (number != classroom.number) {
-            return false;
-        }
-        return true;
+
+        if (number != null ? !number.equals(classroom.number) : classroom.number != null) return false;
+        return building != null ? building.equals(classroom.building) : classroom.building == null;
     }
 
     @Override
     public int hashCode() {
-        int result = 1;
-        result = 31 * result + number.hashCode();
-        result = 31 * result + building.hashCode();
+        int result = number != null ? number.hashCode() : 0;
+        result = 31 * result + (building != null ? building.hashCode() : 0);
         return result;
     }
 

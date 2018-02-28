@@ -52,22 +52,17 @@ public class Teacher implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
         Teacher teacher = (Teacher) o;
-        if (id != teacher.id) {
-            return false;
-        }
-        return true;
+
+        return id == teacher.id;
     }
 
     @Override
     public int hashCode() {
-        return 31 * id;
+        return id;
     }
 
     @Override
