@@ -53,7 +53,7 @@ public class Group implements Serializable {
 
     @Override
     public int hashCode() {
-        return id;
+        return id * 31;
     }
 
     @Override

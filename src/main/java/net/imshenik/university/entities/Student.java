@@ -52,7 +52,7 @@ public class Student implements Serializable {
 
     @Override
     public int hashCode() {
-        return id;
+        return id * 31;
     }
 
     @Override
