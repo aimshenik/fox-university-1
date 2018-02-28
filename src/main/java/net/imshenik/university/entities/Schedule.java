@@ -90,7 +90,22 @@ public class Schedule implements Serializable {
             return false;
         }
         Schedule schedule = (Schedule) o;
-        if (id != schedule.id) {
+        if (id == schedule.id) {
+            return true;
+        }
+        if (teacher != null ? !teacher.equals(schedule.teacher) : true) {
+            return false;
+        }
+        if (group != null ? !group.equals(schedule.group) : true) {
+            return false;
+        }
+        if (classroom != null ? !classroom.equals(schedule.classroom) : true) {
+            return false;
+        }
+        if (subject != null ? !subject.equals(schedule.subject) : true) {
+            return false;
+        }
+        if (start != null ? !start.equals(schedule.start) : true) {
             return false;
         }
         return true;
@@ -98,7 +113,13 @@ public class Schedule implements Serializable {
 
     @Override
     public int hashCode() {
-        return 31 * id;
+        int result = 1;
+        result = 31 * result + (teacher != null ? teacher.hashCode() : 0);
+        result = 31 * result + (group != null ? group.hashCode() : 0);
+        result = 31 * result + (classroom != null ? classroom.hashCode() : 0);
+        result = 31 * result + (subject != null ? subject.hashCode() : 0);
+        result = 31 * result + (start != null ? start.hashCode() : 0);
+        return result;
     }
 
     @Override
