@@ -2,6 +2,7 @@ package net.imshenik.university.entities;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 
 public class Schedule implements Serializable {
     private int id;
@@ -124,6 +125,7 @@ public class Schedule implements Serializable {
 
     @Override
     public String toString() {
+        HashMap
         return "Schedule{" +
                 "id=" + id +
                 ", teacher=" + teacher +
