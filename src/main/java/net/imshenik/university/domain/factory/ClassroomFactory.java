@@ -1,6 +1,6 @@
-package net.imshenik.university.factory;
+package net.imshenik.university.domain.factory;
 
-import net.imshenik.university.entities.Classroom;
+import net.imshenik.university.domain.entities.Classroom;
 
 public class ClassroomFactory {
     public static Classroom createClassroom115(){

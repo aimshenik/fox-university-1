@@ -1,9 +1,10 @@
 package net.imshenik.university;
 
-import net.imshenik.university.entities.*;
-import net.imshenik.university.factory.ScheduleFactory;
-import net.imshenik.university.factory.StudentFactory;
-import net.imshenik.university.service.ScheduleService;
+import net.imshenik.university.domain.entities.Schedule;
+import net.imshenik.university.domain.factory.ScheduleFactory;
+import net.imshenik.university.domain.factory.StudentFactory;
+import net.imshenik.university.domain.service.ScheduleService;
+
 import org.apache.log4j.Logger;
 import org.junit.Test;
 

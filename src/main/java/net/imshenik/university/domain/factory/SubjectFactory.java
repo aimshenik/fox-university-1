@@ -1,6 +1,6 @@
-package net.imshenik.university.factory;
+package net.imshenik.university.domain.factory;
 
-import net.imshenik.university.entities.Subject;
+import net.imshenik.university.domain.entities.Subject;
 
 
 public class SubjectFactory {

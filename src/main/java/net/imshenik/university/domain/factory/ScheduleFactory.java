@@ -1,10 +1,10 @@
-package net.imshenik.university.factory;
-
-import net.imshenik.university.entities.Schedule;
+package net.imshenik.university.domain.factory;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
+import net.imshenik.university.domain.entities.Schedule;
 
 public class ScheduleFactory {
     public static List<Schedule> createSchedule(){

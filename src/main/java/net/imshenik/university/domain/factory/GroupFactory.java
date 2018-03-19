@@ -1,9 +1,9 @@
-package net.imshenik.university.factory;
-
-import net.imshenik.university.entities.Group;
+package net.imshenik.university.domain.factory;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import net.imshenik.university.domain.entities.Group;
 
 public class GroupFactory {
     StudentFactory studentFactory = new StudentFactory();

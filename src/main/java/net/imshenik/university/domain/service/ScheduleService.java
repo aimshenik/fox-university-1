@@ -1,14 +1,14 @@
-package net.imshenik.university.service;
-
-import net.imshenik.university.entities.Schedule;
-import net.imshenik.university.entities.Student;
-import net.imshenik.university.entities.Teacher;
+package net.imshenik.university.domain.service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.imshenik.university.factory.ScheduleFactory;
+import net.imshenik.university.domain.entities.Schedule;
+import net.imshenik.university.domain.entities.Student;
+import net.imshenik.university.domain.entities.Teacher;
+import net.imshenik.university.domain.factory.ScheduleFactory;
+
 import org.apache.log4j.Logger;
 
 public class ScheduleService {

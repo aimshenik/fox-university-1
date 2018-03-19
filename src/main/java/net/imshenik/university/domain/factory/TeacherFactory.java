@@ -1,6 +1,6 @@
-package net.imshenik.university.factory;
+package net.imshenik.university.domain.factory;
 
-import net.imshenik.university.entities.Teacher;
+import net.imshenik.university.domain.entities.Teacher;
 
 public class TeacherFactory {
     public static Teacher createTeacherIvanov() {

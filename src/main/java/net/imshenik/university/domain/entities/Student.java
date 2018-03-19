@@ -1,21 +1,19 @@
-package net.imshenik.university.entities;
+package net.imshenik.university.domain.entities;
 
 import java.io.Serializable;
 
-public class Teacher implements Serializable {
+public class Student implements Serializable {
     private int id;
     private String firstName;
     private String lastName;
-    private String passport;
 
-    public Teacher() {
+    public Student() {
     }
 
-    public Teacher(int id, String firstName, String lastName, String passport) {
+    public Student(int id, String firstName, String lastName) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.passport = passport;
     }
 
     public int getId() {
@@ -42,22 +40,14 @@ public class Teacher implements Serializable {
         this.lastName = lastName;
     }
 
-    public String getPassport() {
-        return passport;
-    }
-
-    public void setPassport(String passport) {
-        this.passport = passport;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Teacher teacher = (Teacher) o;
+        Student student = (Student) o;
 
-        return id == teacher.id;
+        return id == student.id;
     }
 
     @Override
@@ -67,11 +57,10 @@ public class Teacher implements Serializable {
 
     @Override
     public String toString() {
-        return "Teacher{" +
+        return "Student{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", passport='" + passport + '\'' +
                 '}';
     }
 }

@@ -1,4 +1,4 @@
-package net.imshenik.university.entities;
+package net.imshenik.university.domain.entities;
 
 import java.io.Serializable;
 import java.util.List;
