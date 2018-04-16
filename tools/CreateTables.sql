@@ -1,59 +1,80 @@
 -- CREATE  Students
-
-CREATE TABLE public."Students"
+CREATE TABLE students
 (
-    id integer NOT NULL,
-    "firstName" "char"[] NOT NULL,
-    "lastName" "char"[] NOT NULL,
-    CONSTRAINT "Students_id_pkey" PRIMARY KEY (id)
-)
-WITH (
-    OIDS = FALSE
+    id SERIAL NOT NULL,
+    firstname varchar(50) NOT NULL,
+    lastname varchar(50) NOT NULL,
+    CONSTRAINT student_id_pkey PRIMARY KEY (id)
 )
 TABLESPACE pg_default;
-
-ALTER TABLE public."Students"
-    OWNER to andrey;
-    
--- CREATE  Groups    
-
-CREATE TABLE public."Groups"
+ALTER TABLE students OWNER to andrey;    
+-----------------------------------------------------------------
+-- CREATE  Groups
+CREATE TABLE groups
 (
-    id integer NOT NULL,
-    name "char"[] NOT NULL,
-    CONSTRAINT "Groups_id_pkey" PRIMARY KEY (id)
-)
-WITH (
-    OIDS = FALSE
+    id SERIAL NOT NULL,
+    name varchar(50) NOT NULL,    	
+    CONSTRAINT group_id_pkey PRIMARY KEY (id)
 )
 TABLESPACE pg_default;
-
-ALTER TABLE public."Groups"
-    OWNER to andrey;
-    
--- CREATE  GroupStudents
- 
-CREATE TABLE public."GroupStudents"
+ALTER TABLE groups OWNER to andrey;
+-----------------------------------------------------------------
+-- CREATE  Group_Student
+CREATE TABLE group_student
 (
-    id integer NOT NULL,
-    student_id integer NOT NULL,
     group_id integer NOT NULL,
-    CONSTRAINT "GroupStudent_id_pkey" PRIMARY KEY (id),
-    CONSTRAINT "Group_fkey" FOREIGN KEY (group_id)
-        REFERENCES public."Groups" (id) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION,
-    CONSTRAINT "Student_fkey" FOREIGN KEY (student_id)
-        REFERENCES public."Students" (id) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION
-)
-WITH (
-    OIDS = FALSE
+    student_id integer NOT NULL,    	
+    CONSTRAINT group_student_pkey PRIMARY KEY (group_id,student_id),
+    CONSTRAINT group_id_fkey FOREIGN KEY (group_id) REFERENCES groups (id),
+    CONSTRAINT student_id_fkey FOREIGN KEY (student_id) REFERENCES students (id)    
 )
 TABLESPACE pg_default;
-
-ALTER TABLE public."GroupStudents"
-    OWNER to andrey;
-    
-    
+ALTER TABLE group_student OWNER to andrey;
+-----------------------------------------------------------------
+-- CREATE  Teachers
+CREATE TABLE teachers
+(
+    id SERIAL NOT NULL,
+    firstname varchar(50) NOT NULL,
+    lastname varchar(50) NOT NULL,
+    passport varchar(50) NOT NULL,    	
+    CONSTRAINT teacher_id_pkey PRIMARY KEY (id)
+)
+TABLESPACE pg_default;
+ALTER TABLE teachers OWNER to andrey;    
+-----------------------------------------------------------------
+-- CREATE  Subjects
+CREATE TABLE subjects
+(
+    id SERIAL NOT NULL,
+    name varchar(100) NOT NULL,    	
+    CONSTRAINT subject_id_pkey PRIMARY KEY (id)
+)
+TABLESPACE pg_default;
+ALTER TABLE subjects OWNER to andrey;
+-----------------------------------------------------------------
+-- CREATE  Classrooms
+CREATE TABLE classrooms
+(
+    id SERIAL NOT NULL,
+    number varchar(5) NOT NULL,
+    building varchar(5),
+    capacity integer NOT NULL,
+    CONSTRAINT classroom_id_pkey PRIMARY KEY (id)
+)
+TABLESPACE pg_default;
+ALTER TABLE classrooms OWNER to andrey;
+-----------------------------------------------------------------
+-- CREATE  Schedules
+CREATE TABLE schedules
+(
+    id SERIAL NOT NULL,
+    teacher_id integer NOT NULL,
+    group_id integer NOT NULL,
+    classroom_id integer NOT NULL,
+    subject_id integer NOT NULL,
+    start_time timestamp NOT NULL,
+    end_time timestamp NOT NULL
+)
+TABLESPACE pg_default;
+ALTER TABLE schedules OWNER to andrey;

@@ -1,3 +1,4 @@
+--postgres=# \i path_to_sql_file
 CREATE USER andrey WITH password '1234321';
 --postgres=# \password 'andrey'; //смена пароля пользователю andrey
 
@@ -7,4 +8,4 @@ CREATE DATABASE university WITH OWNER andrey;
 
 -- postgres=# \connect 'user=andrey dbname=university'     //подкл. к другой базе под другим пользователем
 
-CREATE table Classrooms 
+--CREATE table Classrooms 
