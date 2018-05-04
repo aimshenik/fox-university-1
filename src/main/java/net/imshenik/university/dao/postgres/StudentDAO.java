@@ -10,8 +10,8 @@ import java.util.Set;
 import org.apache.log4j.Logger;
 import net.imshenik.university.domain.entities.Student;
 
-public class DAOStudent {
-    private static final Logger LOGGER     = Logger.getLogger(DAOStudent.class.getName());
+public class StudentDAO {
+    private static final Logger LOGGER     = Logger.getLogger(StudentDAO.class.getName());
     private static final String driverName = "org.postgresql.Driver";
     
     public Set<Student> findAll() throws DAOException {
@@ -80,15 +80,13 @@ public class DAOStudent {
     public Student create(String firstName, String lastName) throws DAOException {
         LOGGER.trace("Creating new student with First Name = " + firstName + " and Last Name = " + lastName);
         String sql = "insert into students (firstname,lastname) values (?,?);";
-        String fName = inspectFirstName(firstName);
-        String lName = inspectLastName(lastName);
         try {
             Class.forName(driverName);
             try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/university",
                     "andrey", "1234321");
                     PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
-                statement.setString(1, fName);
-                statement.setString(2, lName);
+                statement.setString(1, firstName);
+                statement.setString(2, lastName);
                 int rowsInserted = statement.executeUpdate();
                 LOGGER.trace("Inserted " + rowsInserted + " row(s)");
                 if (rowsInserted == 0) {
@@ -97,7 +95,7 @@ public class DAOStudent {
                 try (ResultSet generatedKey = statement.getGeneratedKeys()) {
                     generatedKey.next();
                     int id = generatedKey.getInt(1);
-                    Student student = new Student(id, fName, lName);
+                    Student student = new Student(id, firstName, lastName);
                     LOGGER.info("Inserted student : " + student.toString());
                     return student;
                 }
@@ -162,29 +160,5 @@ public class DAOStudent {
             LOGGER.fatal("Unable to load driver " + driverName, e);
             throw new DAOException("Unable to load driver " + driverName, e);
         }
-    }
-    
-    private String inspectFirstName(String firstName) throws DAOException {
-        if (firstName == null) {
-            LOGGER.error("Unable to insert 'null' as first name");
-            throw new DAOException("Unable to insert 'null' as first name");
-        } else if (firstName.trim().length() == 0) {
-            LOGGER.error("Unable to insert '' as first name");
-            throw new DAOException("Unable to insert '' as first name");
-        } else {
-            return firstName.trim();
-        }            
-    }
-    
-    private String inspectLastName(String lastName) throws DAOException {
-        if (lastName == null) {
-            LOGGER.error("Unable to insert 'null' as last name");
-            throw new DAOException("Unable to insert 'null' as last name");
-        } else if (lastName.trim().length() == 0) {
-            LOGGER.error("Unable to insert '' as last name");
-            throw new DAOException("Unable to insert '' as last name");
-        } else {
-            return lastName.trim();
-        }            
     }
 }
