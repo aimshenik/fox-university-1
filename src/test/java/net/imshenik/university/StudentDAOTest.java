@@ -33,6 +33,7 @@ public class StudentDAOTest {
         Student student = daoStudent.create("SERGEY", "IVANOV");
         assertNotNull(student);
     }
+    
     @Test
     public void updateTest() throws DAOException {
         daoStudent.update(45, "Igor", "Stepanov");
