@@ -12,14 +12,14 @@ import net.imshenik.university.domain.entities.Student;
 
 public class StudentDAO {
 	private static final Logger LOGGER = Logger.getLogger(StudentDAO.class.getName());
-	private static final String driverName = "org.postgresql.Driver";
+	private static final String driver = "org.postgresql.Driver";
 
 	public Set<Student> findAll() throws DAOException {
 		LOGGER.trace("Getting list of all students:");
 		Set<Student> students = new HashSet<Student>();
 		String sql = "select * from students;";
 		try {
-			Class.forName(driverName);
+			Class.forName(driver);
 			LOGGER.trace("Creating Connection, PreparedStatement and ResultSet...");
 			try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/university",
 					"andrey", "1234321");
@@ -35,12 +35,12 @@ public class StudentDAO {
 				}
 				LOGGER.info("All " + students.size() + " students found");
 			} catch (Exception e) {
-				LOGGER.error("Unable to read all users from database", e);
-				throw new DAOException("Unable to read all users from database", e);
+				LOGGER.error("Unable to read all students from database", e);
+				throw new DAOException("Unable to read all students from database", e);
 			}
 		} catch (ClassNotFoundException e) {
-			LOGGER.fatal("Unable to load driver " + driverName, e);
-			throw new DAOException("Unable to load driver " + driverName, e);
+			LOGGER.fatal("Unable to load driver " + driver, e);
+			throw new DAOException("Unable to load driver " + driver, e);
 		}
 		return students;
 	}
@@ -49,7 +49,7 @@ public class StudentDAO {
 		LOGGER.trace("Finding student with ID = " + id);
 		String sql = "select * from students where id=?;";
 		try {
-			Class.forName(driverName);
+			Class.forName(driver);
 			LOGGER.trace("Creating Connection and PreparedStatement...");
 			try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/university",
 					"andrey", "1234321"); PreparedStatement statement = connection.prepareStatement(sql);) {
@@ -72,8 +72,8 @@ public class StudentDAO {
 				throw new DAOException("Unable to create Connection", e);
 			}
 		} catch (ClassNotFoundException e) {
-			LOGGER.fatal("Unable to load driver " + driverName, e);
-			throw new DAOException("Unable to load driver " + driverName, e);
+			LOGGER.fatal("Unable to load driver " + driver, e);
+			throw new DAOException("Unable to load driver " + driver, e);
 		}
 	}
 
@@ -81,7 +81,7 @@ public class StudentDAO {
 		LOGGER.trace("Creating new student with First Name = " + firstName + " and Last Name = " + lastName);
 		String sql = "insert into students (firstname,lastname) values (?,?);";
 		try {
-			Class.forName(driverName);
+			Class.forName(driver);
 			try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/university",
 					"andrey", "1234321");
 					PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
@@ -104,8 +104,8 @@ public class StudentDAO {
 				throw new DAOException("Unable to open connection", e);
 			}
 		} catch (ClassNotFoundException e) {
-			LOGGER.fatal("Unable to load driver " + driverName, e);
-			throw new DAOException("Unable to load driver " + driverName, e);
+			LOGGER.fatal("Unable to load driver " + driver, e);
+			throw new DAOException("Unable to load driver " + driver, e);
 		}
 	}
 
@@ -113,7 +113,7 @@ public class StudentDAO {
 		LOGGER.trace("Updating Student:");
 		String sql = "update students set firstname=?,lastname=? where id=?;";
 		try {
-			Class.forName(driverName);
+			Class.forName(driver);
 			try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/university",
 					"andrey", "1234321"); PreparedStatement statement = connection.prepareStatement(sql);) {
 				statement.setString(1, firstName);
@@ -130,8 +130,8 @@ public class StudentDAO {
 				throw new DAOException("Unable to open connection", e);
 			}
 		} catch (ClassNotFoundException e) {
-			LOGGER.fatal("Unable to load driver " + driverName, e);
-			throw new DAOException("Unable to load driver " + driverName, e);
+			LOGGER.fatal("Unable to load driver " + driver, e);
+			throw new DAOException("Unable to load driver " + driver, e);
 		}
 	}
 
@@ -140,7 +140,7 @@ public class StudentDAO {
 		String sqlGroupStudent = "delete from group_student as gs where gs.student_id = ?;";
 		String sqlStudents = "delete from students as s where s.id = ?;";
 		try {
-			Class.forName(driverName);
+			Class.forName(driver);
 			LOGGER.trace("Creating Connection and PreparedStatement...");
 			try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/university",
 					"andrey", "1234321");
@@ -160,8 +160,8 @@ public class StudentDAO {
 				throw new DAOException("Unable to open connection", e);
 			}
 		} catch (ClassNotFoundException e) {
-			LOGGER.fatal("Unable to load driver " + driverName, e);
-			throw new DAOException("Unable to load driver " + driverName, e);
+			LOGGER.fatal("Unable to load driver " + driver, e);
+			throw new DAOException("Unable to load driver " + driver, e);
 		}
 	}
 }
