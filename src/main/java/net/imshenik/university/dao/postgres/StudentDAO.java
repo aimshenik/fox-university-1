@@ -29,8 +29,9 @@ public class StudentDAO {
 				while (resultSet.next()) {
 					Student student = new Student();
 					student.setId(resultSet.getInt("id"));
-					student.setFirstName((resultSet.getString("firstname")));
-					student.setLastName((resultSet.getString("lastname")));
+					student.setFirstName(resultSet.getString("firstname"));
+					student.setLastName(resultSet.getString("lastname"));
+					student.setGroupId(resultSet.getInt("group_id"));
 					students.add(student);
 				}
 				LOGGER.info("All " + students.size() + " students found");
@@ -59,8 +60,10 @@ public class StudentDAO {
 					while (resultSet.next()) {
 						Student student = new Student();
 						student.setId(resultSet.getInt("id"));
-						student.setFirstName((resultSet.getString("firstname")));
-						student.setLastName((resultSet.getString("lastname")));
+						student.setFirstName(resultSet.getString("firstname"));
+						student.setLastName(resultSet.getString("lastname"));
+						System.out.println("+++ " + resultSet.getInt("group_id") + " +++");
+						student.setGroupId(resultSet.getInt("group_id"));
 						LOGGER.info("Found student with ID = " + id + " : " + student.toString());
 						return student;
 					}
@@ -137,17 +140,12 @@ public class StudentDAO {
 
 	public void delete(int id) throws DAOException {
 		LOGGER.trace("Deleting student with ID = " + id);
-		String sqlGroupStudent = "delete from group_student as gs where gs.student_id = ?;";
 		String sqlStudents = "delete from students as s where s.id = ?;";
 		try {
 			Class.forName(driver);
 			LOGGER.trace("Creating Connection and PreparedStatement...");
 			try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/university",
-					"andrey", "1234321");
-					PreparedStatement statementGS = connection.prepareStatement(sqlGroupStudent);
-					PreparedStatement statementS = connection.prepareStatement(sqlStudents);) {
-				statementGS.setInt(1, id);
-				statementGS.execute();
+					"andrey", "1234321"); PreparedStatement statementS = connection.prepareStatement(sqlStudents);) {
 				statementS.setInt(1, id);
 				int rowsDeleted = statementS.executeUpdate();
 				if (rowsDeleted == 0) {

@@ -22,7 +22,7 @@ public class StudentDAOTest {
 	public void findOneTest() throws DAOException {
 		Student student1 = daoStudent.findOne(Integer.MAX_VALUE);
 		assertNull(student1);
-		Student student2 = daoStudent.findOne(1);
+		Student student2 = daoStudent.findOne(28);
 		assertNotNull(student2);
 		Student student3 = daoStudent.findOne(Integer.MIN_VALUE);
 		assertNull(student3);

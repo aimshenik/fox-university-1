@@ -93,7 +93,7 @@ public class GroupDAO {
                 try (ResultSet generatedKey = statement.getGeneratedKeys()) {
                     generatedKey.next();
                     int id = generatedKey.getInt(1);
-                    Group student = new Group(id, name,);
+                    Group student = new Group();
                     LOGGER.info("Inserted student : " + student.toString());
                     return student;
                 }

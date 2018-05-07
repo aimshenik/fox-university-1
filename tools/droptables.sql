@@ -1,6 +1,3 @@
--- DROP  Group_Student
-DROP TABLE group_student;
-
 -- DROP  Students
 DROP TABLE students; 
 

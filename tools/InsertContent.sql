@@ -1,65 +1,36 @@
 --------------------------------------------------------------------
---STUDENTS
-insert into students (firstname,lastname) values ('Andrey','Imshenik');
-insert into students (firstname,lastname) values ('Ivan','Stepanov');
-insert into students (firstname,lastname) values ('Georgy','Teplov');
-insert into students (firstname,lastname) values ('Mary','Le');
-insert into students (firstname,lastname) values ('Elena','Yakovleva');
-insert into students (firstname,lastname) values ('Viktor','Polkin');
-insert into students (firstname,lastname) values ('Paul','Bakery');
-insert into students (firstname,lastname) values ('Nick','Step');
-insert into students (firstname,lastname) values ('Leo','Lukin');
-insert into students (firstname,lastname) values ('Mike','Zyuzyukin');
-insert into students (firstname,lastname) values ('Gleb','Rubashkin');
-insert into students (firstname,lastname) values ('Dmitry','Bredov');
-insert into students (firstname,lastname) values ('Rodeon','Chetkov');
-insert into students (firstname,lastname) values ('Kirill','Bazarov');
-insert into students (firstname,lastname) values ('Ivan','Denisov');
-insert into students (firstname,lastname) values ('Max','Hoyaks');
-insert into students (firstname,lastname) values ('Jack','Pugovkin');
-insert into students (firstname,lastname) values ('Papa','Rimsky');
-insert into students (firstname,lastname) values ('Hren','Morjovii');
-insert into students (firstname,lastname) values ('Helen','Harper');
-insert into students (firstname,lastname) values ('Ekaterina','Maslova');
-insert into students (firstname,lastname) values ('Sergey','Luchkov');
-insert into students (firstname,lastname) values ('Alexander','Gocha');
-insert into students (firstname,lastname) values ('Nikolay','Sharikov');
---------------------------------------------------------------------
 --GROUPS
 insert into groups (name) values ('1-D-31');
 insert into groups (name) values ('1-L-32');
 insert into groups (name) values ('2-M-43');
 insert into groups (name) values ('3-F-64');
 --------------------------------------------------------------------
---GROUPSTUDENT
---1-L-32
-insert into group_student (group_id, student_id) values ((select id from groups where name='1-L-32'),(select id from students where lastname='Imshenik'));
-insert into group_student (group_id, student_id) values ((select id from groups where name='1-L-32'),(select id from students where lastname='Stepanov'));
-insert into group_student (group_id, student_id) values ((select id from groups where name='1-L-32'),(select id from students where lastname='Teplov'));
-insert into group_student (group_id, student_id) values ((select id from groups where name='1-L-32'),(select id from students where lastname='Le'));
-insert into group_student (group_id, student_id) values ((select id from groups where name='1-L-32'),(select id from students where lastname='Yakovleva'));
-insert into group_student (group_id, student_id) values ((select id from groups where name='1-L-32'),(select id from students where lastname='Polkin'));
---1-D-31
-insert into group_student (group_id, student_id) values ((select id from groups where name='1-D-31'),(select id from students where lastname='Bakery'));
-insert into group_student (group_id, student_id) values ((select id from groups where name='1-D-31'),(select id from students where lastname='Step'));
-insert into group_student (group_id, student_id) values ((select id from groups where name='1-D-31'),(select id from students where lastname='Lukin'));
-insert into group_student (group_id, student_id) values ((select id from groups where name='1-D-31'),(select id from students where lastname='Zyuzyukin'));
-insert into group_student (group_id, student_id) values ((select id from groups where name='1-D-31'),(select id from students where lastname='Rubashkin'));
-insert into group_student (group_id, student_id) values ((select id from groups where name='1-D-31'),(select id from students where lastname='Bredov'));
---2-M-43
-insert into group_student (group_id, student_id) values ((select id from groups where name='2-M-43'),(select id from students where lastname='Chetkov'));
-insert into group_student (group_id, student_id) values ((select id from groups where name='2-M-43'),(select id from students where lastname='Bazarov'));
-insert into group_student (group_id, student_id) values ((select id from groups where name='2-M-43'),(select id from students where lastname='Denisov'));
-insert into group_student (group_id, student_id) values ((select id from groups where name='2-M-43'),(select id from students where lastname='Hoyaks'));
-insert into group_student (group_id, student_id) values ((select id from groups where name='2-M-43'),(select id from students where lastname='Pugovkin'));
-insert into group_student (group_id, student_id) values ((select id from groups where name='2-M-43'),(select id from students where lastname='Rimsky'));
---3-F-64
-insert into group_student (group_id, student_id) values ((select id from groups where name='3-F-64'),(select id from students where lastname='Morjovii'));
-insert into group_student (group_id, student_id) values ((select id from groups where name='3-F-64'),(select id from students where lastname='Harper'));
-insert into group_student (group_id, student_id) values ((select id from groups where name='3-F-64'),(select id from students where lastname='Maslova'));
-insert into group_student (group_id, student_id) values ((select id from groups where name='3-F-64'),(select id from students where lastname='Luchkov'));
-insert into group_student (group_id, student_id) values ((select id from groups where name='3-F-64'),(select id from students where lastname='Gocha'));
-insert into group_student (group_id, student_id) values ((select id from groups where name='3-F-64'),(select id from students where lastname='Sharikov'));
+--STUDENTS
+insert into students (firstname,lastname,group_id) values ('Andrey','Imshenik',1);
+insert into students (firstname,lastname,group_id) values ('Ivan','Stepanov',1);
+insert into students (firstname,lastname,group_id) values ('Georgy','Teplov',1);
+insert into students (firstname,lastname,group_id) values ('Mary','Le',1);
+insert into students (firstname,lastname,group_id) values ('Elena','Yakovleva',1);
+insert into students (firstname,lastname,group_id) values ('Viktor','Polkin',1);
+insert into students (firstname,lastname,group_id) values ('Paul','Bakery',2);
+insert into students (firstname,lastname,group_id) values ('Nick','Step',2);
+insert into students (firstname,lastname,group_id) values ('Leo','Lukin',2);
+insert into students (firstname,lastname,group_id) values ('Mike','Zyuzyukin',2);
+insert into students (firstname,lastname,group_id) values ('Gleb','Rubashkin',2);
+insert into students (firstname,lastname,group_id) values ('Dmitry','Bredov',2);
+insert into students (firstname,lastname,group_id) values ('Rodeon','Chetkov',3);
+insert into students (firstname,lastname,group_id) values ('Kirill','Bazarov',3);
+insert into students (firstname,lastname,group_id) values ('Ivan','Denisov',3);
+insert into students (firstname,lastname,group_id) values ('Max','Hoyaks',3);
+insert into students (firstname,lastname,group_id) values ('Jack','Pugovkin',3);
+insert into students (firstname,lastname,group_id) values ('Papa','Rimsky',3);
+insert into students (firstname,lastname,group_id) values ('Hren','Morjovii',4);
+insert into students (firstname,lastname,group_id) values ('Helen','Harper',4);
+insert into students (firstname,lastname,group_id) values ('Ekaterina','Maslova',4);
+insert into students (firstname,lastname,group_id) values ('Sergey','Luchkov',4);
+insert into students (firstname,lastname,group_id) values ('Alexander','Gocha',4);
+insert into students (firstname,lastname,group_id) values ('Nikolay','Sharikov',4);
+--------------------------------------------------------------------
 --------------------------------------------------------------------
 --TEACHERS
 insert into teachers (firstname,lastname,passport) values ('Andrey Fedorovich','Smikov','AA-11111');

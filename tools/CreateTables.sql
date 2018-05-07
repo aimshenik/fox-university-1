@@ -1,13 +1,4 @@
--- CREATE  Students
-CREATE TABLE students
-(
-    id SERIAL NOT NULL,
-    firstname varchar(50) NOT NULL,
-    lastname varchar(50) NOT NULL,
-    CONSTRAINT student_id_pkey PRIMARY KEY (id)
-)
-TABLESPACE pg_default;
-ALTER TABLE students OWNER to andrey;    
+ALTER SEQUENCE groups_id_seq restart with 100;
 -----------------------------------------------------------------
 -- CREATE  Groups
 CREATE TABLE groups
@@ -19,17 +10,19 @@ CREATE TABLE groups
 TABLESPACE pg_default;
 ALTER TABLE groups OWNER to andrey;
 -----------------------------------------------------------------
--- CREATE  Group_Student
-CREATE TABLE group_student
+-- CREATE  Students
+CREATE TABLE students
 (
-    group_id integer NOT NULL,
-    student_id integer NOT NULL,    	
-    CONSTRAINT group_student_pkey PRIMARY KEY (group_id,student_id),
-    CONSTRAINT group_id_fkey FOREIGN KEY (group_id) REFERENCES groups (id),
-    CONSTRAINT student_id_fkey FOREIGN KEY (student_id) REFERENCES students (id)    
+    id SERIAL NOT NULL,
+    group_id INT DEFAULT NULL,
+    firstname varchar(50) NOT NULL,
+    lastname varchar(50) NOT NULL,
+    CONSTRAINT student_id_pkey PRIMARY KEY (id),
+    CONSTRAINT group_id_fkey FOREIGN KEY (group_id) REFERENCES groups (id) 
 )
 TABLESPACE pg_default;
-ALTER TABLE group_student OWNER to andrey;
+ALTER TABLE students OWNER to andrey;    
+
 -----------------------------------------------------------------
 -- CREATE  Teachers
 CREATE TABLE teachers
