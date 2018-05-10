@@ -1,7 +1,6 @@
 package net.imshenik.university.domain.entities;
 
 import java.io.Serializable;
-import java.util.List;
 
 @SuppressWarnings("serial")
 public class Group implements Serializable {

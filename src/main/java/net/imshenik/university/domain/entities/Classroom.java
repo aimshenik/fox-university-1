@@ -2,6 +2,7 @@ package net.imshenik.university.domain.entities;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class Classroom implements Serializable {
     private int id;
     private String number;

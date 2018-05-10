@@ -1,4 +1,4 @@
-ALTER SEQUENCE groups_id_seq restart with 100;
+
 -----------------------------------------------------------------
 -- CREATE  Groups
 CREATE TABLE groups
@@ -50,8 +50,8 @@ ALTER TABLE subjects OWNER to andrey;
 CREATE TABLE classrooms
 (
     id SERIAL NOT NULL,
-    number varchar(5) NOT NULL,
-    building varchar(5),
+    number varchar(10) NOT NULL,
+    building varchar(10),
     capacity integer NOT NULL,
     CONSTRAINT classroom_id_pkey PRIMARY KEY (id)
 )
@@ -71,3 +71,5 @@ CREATE TABLE schedules
 )
 TABLESPACE pg_default;
 ALTER TABLE schedules OWNER to andrey;
+-------------------------------------------------------------------
+ALTER SEQUENCE groups_id_seq restart with 100;
