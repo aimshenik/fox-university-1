@@ -30,10 +30,9 @@ public class GroupDAO {
                 LOGGER.trace("findAll() | Iterating by ResultSet...");
                 groups = new HashSet<Group>();
                 while (resultSet.next()) {
-                    Group group = new Group();
-                    group.setId(resultSet.getInt("id"));
-                    group.setName(resultSet.getString("name"));
-                    groups.add(group);
+                    int id = resultSet.getInt("id");
+                    String name = resultSet.getString("name");
+                    groups.add(new Group(id, name));
                 }
                 LOGGER.info("findAll() | All " + groups.size() + " groups found");
             } catch (Exception e) {
