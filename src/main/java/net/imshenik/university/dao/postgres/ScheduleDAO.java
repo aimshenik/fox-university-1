@@ -6,13 +6,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
-import java.util.Locale;
 import java.util.Set;
 import org.apache.log4j.Logger;
+import net.imshenik.university.domain.entities.Classroom;
+import net.imshenik.university.domain.entities.Group;
 import net.imshenik.university.domain.entities.Schedule;
 import net.imshenik.university.domain.entities.Student;
+import net.imshenik.university.domain.entities.Subject;
+import net.imshenik.university.domain.entities.Teacher;
 
 public class ScheduleDAO {
     private static final Logger LOGGER   = Logger.getLogger(ScheduleDAO.class.getName());
@@ -34,17 +36,14 @@ public class ScheduleDAO {
                 LOGGER.trace("findAll() | Iterating by ResultSet...");
                 students = new HashSet<Schedule>();
                 while (resultSet.next()) {
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd hh:mm:ss a");
-//                    DateTimeFormatter formatter = DateTimeFormatter.ISO_OFFSET_DATE_TIME;                    
-                    Schedule schedule = new Schedule();
-                    schedule.setId(resultSet.getInt("id"));
-                    schedule.setTeacher(new TeacherDAO().findOne(resultSet.getInt("teacher_id")));
-                    schedule.setGroup(new GroupDAO().findOne(resultSet.getInt("group_id")));
-                    schedule.setClassroom(new ClassroomDAO().findOne(resultSet.getInt("classroom_id")));
-                    schedule.setSubject(new SubjectDAO().findOne(resultSet.getInt("subject_id")));
-                    schedule.setStart(LocalDateTime.parse(resultSet.getString("start_time"),formatter));
-                    schedule.setEnd(LocalDateTime.parse(resultSet.getString("end_time"),formatter));
-                    students.add(schedule);
+                    int id = resultSet.getInt("id");
+                    Teacher teacher = new TeacherDAO().findOne(resultSet.getInt("teacher_id"));
+                    Group group = new GroupDAO().findOne(resultSet.getInt("group_id"));
+                    Classroom classroom = new ClassroomDAO().findOne(resultSet.getInt("classroom_id"));
+                    Subject subject = new SubjectDAO().findOne(resultSet.getInt("subject_id"));
+                    LocalDateTime start = LocalDateTime.parse(resultSet.getString("start_time").replace(' ', 'T'));
+                    LocalDateTime end = LocalDateTime.parse(resultSet.getString("end_time").replace(' ', 'T'));
+                    students.add(new Schedule(id, teacher, group, classroom, subject, start, end));
                 }
                 LOGGER.info("findAll() | All " + students.size() + " students found");
             } catch (Exception e) {

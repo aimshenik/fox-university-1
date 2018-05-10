@@ -30,12 +30,11 @@ public class StudentDAO {
                 LOGGER.trace("findAll() | Iterating by ResultSet...");
                 students = new HashSet<Student>();
                 while (resultSet.next()) {
-                    Student student = new Student();
-                    student.setId(resultSet.getInt("id"));
-                    student.setFirstName(resultSet.getString("firstname"));
-                    student.setLastName(resultSet.getString("lastname"));
-                    student.setGroupId(resultSet.getInt("group_id"));
-                    students.add(student);
+                    int id = resultSet.getInt("id");
+                    String firstName = resultSet.getString("firstname");
+                    String lastName = resultSet.getString("lastname");
+                    int group_id = resultSet.getInt("group_id");
+                    students.add(new Student(id, firstName, lastName, group_id));
                 }
                 LOGGER.info("findAll() | All " + students.size() + " students found");
             } catch (Exception e) {
