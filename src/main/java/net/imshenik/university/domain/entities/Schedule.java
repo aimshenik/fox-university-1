@@ -3,8 +3,8 @@ package net.imshenik.university.domain.entities;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-@SuppressWarnings("serial")
 public class Schedule implements Serializable {
+    private static final long serialVersionUID = 5503178363951950533L;
     private int id;
     private Teacher teacher;
     private Group group;

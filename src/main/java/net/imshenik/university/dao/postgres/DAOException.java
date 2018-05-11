@@ -1,18 +1,17 @@
 package net.imshenik.university.dao.postgres;
 
-@SuppressWarnings("serial")
-public class DAOException extends Exception{
-
+public class DAOException extends Exception {
+    private static final long serialVersionUID = 6703482227622346022L;
+    
     public DAOException() {
         super();
     }
-
+    
     public DAOException(String message, Throwable cause) {
         super(message, cause);
     }
-
+    
     public DAOException(String message) {
         super(message);
     }
-    
 }

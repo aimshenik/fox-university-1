@@ -3,6 +3,7 @@ package net.imshenik.university.domain.entities;
 import java.io.Serializable;
 
 public class Subject implements Serializable {
+    private static final long serialVersionUID = 6104285375374318255L;
     private int id;
     private String name;
 

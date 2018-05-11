@@ -2,8 +2,8 @@ package net.imshenik.university.domain.entities;
 
 import java.io.Serializable;
 
-@SuppressWarnings("serial")
 public class Student implements Serializable {
+    private static final long serialVersionUID = -2567228897875659085L;
     private int    id;
     private int    groupId;
     private String firstName;

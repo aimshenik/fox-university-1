@@ -2,8 +2,8 @@ package net.imshenik.university.domain.entities;
 
 import java.io.Serializable;
 
-@SuppressWarnings("serial")
 public class Group implements Serializable {
+    private static final long serialVersionUID = 7705236861944663099L;
     private int id;
     private String name;
 
