@@ -58,9 +58,8 @@ public class GroupDAO {
                 LOGGER.trace("findOne() | Creating ResultSet...");
                 try (ResultSet resultSet = statement.executeQuery()) {
                     while (resultSet.next()) {
-                        Group group = new Group();
-                        group.setId(resultSet.getInt("id"));
-                        group.setName(resultSet.getString("name"));
+                        String name = resultSet.getString("name");
+                        Group group = new Group(id, name);
                         LOGGER.info("findOne() | Found group with ID = " + id + " : " + group.toString());
                         return group;
                     }

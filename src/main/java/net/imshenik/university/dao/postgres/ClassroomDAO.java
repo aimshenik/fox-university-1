@@ -30,12 +30,11 @@ public class ClassroomDAO {
                 LOGGER.trace("findAll() | Iterating by ResultSet...");
                 classrooms = new HashSet<Classroom>();
                 while (resultSet.next()) {
-                    Classroom classroom = new Classroom();
-                    classroom.setId(resultSet.getInt("id"));
-                    classroom.setBuilding(resultSet.getString("building"));
-                    classroom.setNumber(resultSet.getString("number"));
-                    classroom.setCapacity(resultSet.getInt("capacity"));
-                    classrooms.add(classroom);
+                    int id = resultSet.getInt("id");
+                    String building = resultSet.getString("building");
+                    String number = resultSet.getString("number");
+                    int capacity = resultSet.getInt("capacity");
+                    classrooms.add(new Classroom(id, number, building, capacity));
                 }
                 LOGGER.info("findAll() | All " + classrooms.size() + " classrooms found");
             } catch (Exception e) {
@@ -62,11 +61,10 @@ public class ClassroomDAO {
                 try (ResultSet resultSet = statement.executeQuery()) {
                     LOGGER.trace("findOne() | Iterating by ResultSet...");
                     while (resultSet.next()) {
-                        Classroom classroom = new Classroom();
-                        classroom.setId(resultSet.getInt("id"));
-                        classroom.setBuilding(resultSet.getString("building"));
-                        classroom.setNumber(resultSet.getString("number"));
-                        classroom.setCapacity(resultSet.getInt("capacity"));
+                        String building = resultSet.getString("building");
+                        String number = resultSet.getString("number");
+                        int capacity = resultSet.getInt("capacity");
+                        Classroom classroom = new Classroom(id, number, building, capacity);
                         LOGGER.info("findOne() | Found classroom with ID = " + id + " : " + classroom.toString());
                         return classroom;
                     }

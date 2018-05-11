@@ -30,12 +30,11 @@ public class TeacherDAO {
                 LOGGER.trace("findAll() | Iterating by ResultSet...");
                 teachers = new HashSet<Teacher>();
                 while (resultSet.next()) {
-                    Teacher teacher = new Teacher();
-                    teacher.setId(resultSet.getInt("id"));
-                    teacher.setFirstName(resultSet.getString("firstname"));
-                    teacher.setLastName(resultSet.getString("lastname"));
-                    teacher.setPassport(resultSet.getString("passport"));
-                    teachers.add(teacher);
+                    int id = resultSet.getInt("id");
+                    String firstName = resultSet.getString("firstname");
+                    String lastName = resultSet.getString("lastname");
+                    String passport = resultSet.getString("passport");
+                    teachers.add(new Teacher(id, firstName, lastName, passport));
                 }
                 LOGGER.info("findAll() | All " + teachers.size() + " teachers found");
             } catch (Exception e) {
@@ -61,10 +60,10 @@ public class TeacherDAO {
                 LOGGER.trace("findOne() | Creating ResultSet...");
                 try (ResultSet resultSet = statement.executeQuery()) {
                     while (resultSet.next()) {
-                        Teacher teacher = new Teacher();
-                        teacher.setId(resultSet.getInt("id"));
-                        teacher.setFirstName(resultSet.getString("firstname"));
-                        teacher.setLastName(resultSet.getString("lastname"));
+                        String firstName = resultSet.getString("firstname");
+                        String lastName = resultSet.getString("lastname");
+                        String passport = resultSet.getString("passport");
+                        Teacher teacher = new Teacher(id, firstName, lastName, passport);
                         LOGGER.info("findOne() | Found teacher with ID = " + id + " : " + teacher.toString());
                         return teacher;
                     }

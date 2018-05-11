@@ -30,10 +30,9 @@ public class SubjectDAO {
                 LOGGER.trace("findAll() | Iterating by ResultSet...");
                 subjects = new HashSet<Subject>();
                 while (resultSet.next()) {
-                    Subject subject = new Subject();
-                    subject.setId(resultSet.getInt("id"));
-                    subject.setName(resultSet.getString("name"));
-                    subjects.add(subject);
+                    int id = resultSet.getInt("id");
+                    String name = resultSet.getString("name");
+                    subjects.add(new Subject(id, name));
                 }
                 LOGGER.info("findAll() | All " + subjects.size() + " subjects found");
             } catch (Exception e) {
@@ -60,9 +59,8 @@ public class SubjectDAO {
                 try (ResultSet resultSet = statement.executeQuery()) {
                     LOGGER.trace("findOne() | Iterating by ResultSet...");
                     while (resultSet.next()) {
-                        Subject subject = new Subject();
-                        subject.setId(resultSet.getInt("id"));
-                        subject.setName(resultSet.getString("name"));
+                        String name = resultSet.getString("name");
+                        Subject subject = new Subject(id,name);
                         LOGGER.info("findOne() | Found subject with ID = " + id + " : " + subject.toString());
                         return subject;
                     }

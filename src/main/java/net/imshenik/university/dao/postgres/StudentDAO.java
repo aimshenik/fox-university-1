@@ -60,10 +60,9 @@ public class StudentDAO {
                 LOGGER.trace("findOne() | Creating ResultSet...");
                 try (ResultSet resultSet = statement.executeQuery()) {
                     while (resultSet.next()) {
-                        Student student = new Student();
-                        student.setId(resultSet.getInt("id"));
-                        student.setFirstName(resultSet.getString("firstname"));
-                        student.setLastName(resultSet.getString("lastname"));
+                        String firstName = resultSet.getString("firstname");
+                        String lastName = resultSet.getString("lastname");
+                        Student student = new Student(id, firstName, lastName);
                         LOGGER.info("findOne() | Found student with ID = " + id + " : " + student.toString());
                         return student;
                     }
