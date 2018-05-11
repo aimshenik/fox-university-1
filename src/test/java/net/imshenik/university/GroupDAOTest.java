@@ -9,7 +9,11 @@ import net.imshenik.university.dao.postgres.GroupDAO;
 import net.imshenik.university.domain.entities.Group;
 
 public class GroupDAOTest {
-    GroupDAO groupDAO = new GroupDAO();
+    GroupDAO groupDAO = null;
+    
+    public GroupDAOTest() throws DAOException {
+        groupDAO = new GroupDAO();
+    }
     
     @Test
     public void findAllTest() throws DAOException {

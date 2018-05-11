@@ -9,7 +9,11 @@ import net.imshenik.university.dao.postgres.DAOException;
 import net.imshenik.university.domain.entities.Subject;
 
 public class SubjectDAOTest {
-    SubjectDAO subjectDAO = new SubjectDAO();
+    SubjectDAO subjectDAO = null;
+    
+    public SubjectDAOTest() throws DAOException {
+     subjectDAO =  new SubjectDAO();
+    }
     
     @Test
     public void findAllTest() throws DAOException {

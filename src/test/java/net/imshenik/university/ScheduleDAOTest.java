@@ -15,7 +15,11 @@ import net.imshenik.university.dao.postgres.TeacherDAO;
 import net.imshenik.university.domain.entities.Schedule;
 
 public class ScheduleDAOTest {
-    ScheduleDAO scheduleDAO = new ScheduleDAO();
+    ScheduleDAO scheduleDAO = null;
+    
+    public ScheduleDAOTest() throws DAOException {
+        scheduleDAO = new ScheduleDAO();
+    }
     
     @Test
     public void findAllTest() throws DAOException {

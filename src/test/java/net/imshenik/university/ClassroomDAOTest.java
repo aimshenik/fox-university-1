@@ -9,7 +9,11 @@ import net.imshenik.university.dao.postgres.DAOException;
 import net.imshenik.university.domain.entities.Classroom;
 
 public class ClassroomDAOTest {
-    ClassroomDAO classroomDAO = new ClassroomDAO();
+    ClassroomDAO classroomDAO = null;
+    
+    public ClassroomDAOTest() throws DAOException {
+        classroomDAO = new ClassroomDAO();
+    }
     
     @Test
     public void findAllTest() throws DAOException {

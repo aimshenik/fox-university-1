@@ -9,7 +9,11 @@ import net.imshenik.university.dao.postgres.StudentDAO;
 import net.imshenik.university.domain.entities.Student;
 
 public class StudentDAOTest {
-    StudentDAO studentDAO = new StudentDAO();
+    StudentDAO studentDAO = null;
+    
+    public StudentDAOTest() throws DAOException {
+        studentDAO = new StudentDAO();
+    }
     
     @Test
     public void findAllTest() throws DAOException {
