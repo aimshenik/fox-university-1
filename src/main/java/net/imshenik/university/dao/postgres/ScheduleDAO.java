@@ -9,6 +9,7 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import org.apache.log4j.Logger;
 import net.imshenik.university.domain.entities.Classroom;
@@ -17,10 +18,12 @@ import net.imshenik.university.domain.entities.Schedule;
 import net.imshenik.university.domain.entities.Subject;
 import net.imshenik.university.domain.entities.Teacher;
 
-public class ScheduleDAO extends AbstractDAO {
+public class ScheduleDAO extends AbstractDAO<Schedule> {
+    
     private static final Logger log = Logger.getLogger(ScheduleDAO.class.getName());
     
-    public ScheduleDAO() throws DAOException {super();
+    public ScheduleDAO() throws DAOException {
+        super();
     }
     
     public Set<Schedule> findAll() throws DAOException {
@@ -155,5 +158,17 @@ public class ScheduleDAO extends AbstractDAO {
             log.error("delete() | Unable to open connection", e);
             throw new DAOException("delete() | Unable to open connection", e);
         }
+    }
+    
+    @Override
+    protected List<Schedule> retrieveAllEntitiesFromResultSet(ResultSet resultSet) throws DAOException {
+        // TODO Auto-generated method stub
+        return null;
+    }
+    
+    @Override
+    protected Schedule retrieveOneEntityFromResultSet(ResultSet resultSet) throws DAOException {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

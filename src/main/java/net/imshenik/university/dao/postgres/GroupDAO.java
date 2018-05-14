@@ -5,37 +5,40 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import org.apache.log4j.Logger;
 import net.imshenik.university.domain.entities.Group;
 
-public class GroupDAO extends AbstractDAO {
+public class GroupDAO extends AbstractDAO<Group> {
+    
     private static final Logger log = Logger.getLogger(GroupDAO.class.getName());
     
-    public GroupDAO() throws DAOException {super();
+    public GroupDAO() throws DAOException {
     }
     
-    public Set<Group> findAll() throws DAOException {
-        log.trace("findAll() | Getting list of all groups");
-        Set<Group> groups = null;
-        String sql = "select * from groups;";
-        log.trace("findAll() | Creating Connection, PreparedStatement and ResultSet...");
+    public List<Group> findAll() throws DAOException {
+        log.trace("findAll() | start");
+        String sql = "select * from Groups;";
+        List<Group> groups = null;
         try (Connection connection = getConnection();
                 PreparedStatement statement = connection.prepareStatement(sql);
-                ResultSet resultSet = statement.executeQuery();) {
-            log.trace("findAll() | Iterating by ResultSet...");
-            groups = new HashSet<Group>();
+                ResultSet resultSet = statement.executeQuery()) {
+            groups = new ArrayList<>();
+            int id = 0;
+            String name = null;
+            log.trace("findAll() | getting Groups from ResultSet");
             while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                String name = resultSet.getString("name");
+                id = resultSet.getInt("id");
+                name = resultSet.getString("name");
                 groups.add(new Group(id, name));
             }
-            log.info("findAll() | All " + groups.size() + " groups found");
+            log.info("findAll() | " + groups.size() + " Groups found");
         } catch (SQLException e) {
-            log.error("findAll() | Unable to read all groups from database", e);
-            throw new DAOException("findAll() | Unable to read all groups from database", e);
+            log.error("findAll() | Unable to read all Groups", e);
+            throw new DAOException("findAll() | Unable to read all Groups", e);
         }
+        log.trace("findAll() | End");
         return groups;
     }
     
@@ -121,5 +124,17 @@ public class GroupDAO extends AbstractDAO {
             log.error("delete() | Unable to open connection", e);
             throw new DAOException("Unable to open connection", e);
         }
+    }
+
+    @Override
+    protected List<Group> retrieveAllEntitiesFromResultSet(ResultSet resultSet) throws DAOException {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    protected Group retrieveOneEntityFromResultSet(ResultSet resultSet) throws DAOException {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

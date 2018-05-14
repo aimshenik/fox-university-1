@@ -2,7 +2,7 @@ package net.imshenik.university.domain.entities;
 
 import java.io.Serializable;
 
-public class Classroom implements Serializable {
+public class Classroom implements Serializable, UniversityEntity {
     private static final long serialVersionUID = 3753042427321148979L;
     private int               id;
     private String            number;
