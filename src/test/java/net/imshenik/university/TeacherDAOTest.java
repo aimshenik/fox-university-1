@@ -2,11 +2,11 @@ package net.imshenik.university;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-import java.util.Set;
+import java.util.List;
 import org.junit.Test;
-import net.imshenik.university.dao.postgres.DAOException;
-import net.imshenik.university.dao.postgres.TeacherDAO;
-import net.imshenik.university.domain.entities.Teacher;
+import net.imshenik.university.dao.DAOException;
+import net.imshenik.university.dao.TeacherDAO;
+import net.imshenik.university.domain.Teacher;
 
 public class TeacherDAOTest {
     TeacherDAO teacherDAO = null;
@@ -17,7 +17,7 @@ public class TeacherDAOTest {
     
     @Test
     public void findAllTest() throws DAOException {
-        Set<Teacher> teachers = null;
+        List<Teacher> teachers = null;
         teachers = teacherDAO.findAll();
         assertNotNull(teachers);
     }

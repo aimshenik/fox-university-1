@@ -4,15 +4,15 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Set;
+import java.util.List;
 import org.junit.Test;
-import net.imshenik.university.dao.postgres.ClassroomDAO;
-import net.imshenik.university.dao.postgres.DAOException;
-import net.imshenik.university.dao.postgres.GroupDAO;
-import net.imshenik.university.dao.postgres.ScheduleDAO;
-import net.imshenik.university.dao.postgres.SubjectDAO;
-import net.imshenik.university.dao.postgres.TeacherDAO;
-import net.imshenik.university.domain.entities.Schedule;
+import net.imshenik.university.dao.ClassroomDAO;
+import net.imshenik.university.dao.DAOException;
+import net.imshenik.university.dao.GroupDAO;
+import net.imshenik.university.dao.ScheduleDAO;
+import net.imshenik.university.dao.SubjectDAO;
+import net.imshenik.university.dao.TeacherDAO;
+import net.imshenik.university.domain.Schedule;
 
 public class ScheduleDAOTest {
     ScheduleDAO scheduleDAO = null;
@@ -23,7 +23,7 @@ public class ScheduleDAOTest {
     
     @Test
     public void findAllTest() throws DAOException {
-        Set<Schedule> schedules = null;
+        List<Schedule> schedules = null;
         schedules = scheduleDAO.findAll();
         assertNotNull(schedules);
     }

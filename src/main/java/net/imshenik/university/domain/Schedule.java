@@ -1,9 +1,9 @@
-package net.imshenik.university.domain.entities;
+package net.imshenik.university.domain;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Schedule implements Serializable, UniversityEntity {
+public class Schedule implements Serializable {
     private static final long serialVersionUID = 5503178363951950533L;
     private int id;
     private Teacher teacher;
