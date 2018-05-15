@@ -10,11 +10,11 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import net.imshenik.university.domain.Group;
 
-public class GroupDAO extends AbstractDAO<Group> {
+public class GroupDao extends AbstractDao<Group> {
     
-    private static final Logger log = Logger.getLogger(GroupDAO.class.getName());
+    private static final Logger log = Logger.getLogger(GroupDao.class.getName());
     
-    public List<Group> findAll() throws DAOException {
+    public List<Group> findAll() throws DaoException {
         log.trace("findAll() | call AbstractDAO.findAll() | start");
         String sql = "select * from Groups;";
         List<Group> groups = super.findAll(sql);
@@ -22,7 +22,7 @@ public class GroupDAO extends AbstractDAO<Group> {
         return groups;
     }
     
-    public Group findOne(int id) throws DAOException {
+    public Group findOne(int id) throws DaoException {
         log.trace("findOne() | call AbstractDAO.findOne() | start");
         String sql = "select * from groups where id=?;";
         Group group = super.findOne(id, sql);
@@ -35,7 +35,7 @@ public class GroupDAO extends AbstractDAO<Group> {
         return group;
     }
     
-    public Group create(String name) throws DAOException {
+    public Group create(String name) throws DaoException {
         log.trace("create() | start");
         String sql = "insert into groups (name) values (?);";
         Group group = null;
@@ -50,11 +50,11 @@ public class GroupDAO extends AbstractDAO<Group> {
                 group = collectOneElementFromResultSet(resultSet);
             } catch (SQLException e) {
                 log.error("create() | Unable to create ResultSet", e);
-                throw new DAOException("create() | Unable to create ResultSet", e);
+                throw new DaoException("create() | Unable to create ResultSet", e);
             }
         } catch (SQLException e) {
             log.error("create() | Unable to create SQL resourses", e);
-            throw new DAOException("create() | Unable to create SQL resourses", e);
+            throw new DaoException("create() | Unable to create SQL resourses", e);
         }
         if (group == null) {
             log.error("create() | Group was NOT created!");
@@ -65,7 +65,7 @@ public class GroupDAO extends AbstractDAO<Group> {
         return group;
     }
     
-    public void update(int id, String name) throws DAOException {
+    public void update(int id, String name) throws DaoException {
         log.trace("update() | start");
         String sql = "update groups set name=? where id=?;";
         try (Connection connection = ConnectionFactory.getConnection();
@@ -80,12 +80,12 @@ public class GroupDAO extends AbstractDAO<Group> {
             }
         } catch (SQLException e) {
             log.error("update() | Unable to create SQL resourses", e);
-            throw new DAOException("update() | Unable to create SQL resourses", e);
+            throw new DaoException("update() | Unable to create SQL resourses", e);
         }
         log.trace("update() | end");
     }
     
-    public void delete(int id) throws DAOException {
+    public void delete(int id) throws DaoException {
         log.trace("delete() | call AbstractDAO.delete() | start");
         String sql = "delete from groups as g where g.id = ?;";
         int rowsDeleted = super.delete(id, sql);
@@ -98,7 +98,7 @@ public class GroupDAO extends AbstractDAO<Group> {
     }
     
     @Override
-    protected List<Group> collectManyElementsFromResultSet(ResultSet resultSet) throws DAOException {
+    protected List<Group> collectManyElementsFromResultSet(ResultSet resultSet) throws DaoException {
         List<Group> groups = new ArrayList<>();
         int id = 0;
         String name = null;
@@ -111,14 +111,14 @@ public class GroupDAO extends AbstractDAO<Group> {
             }
         } catch (SQLException e) {
             log.error("collectManyElementsFromResultSet() | error while handling ResultSet with Groups", e);
-            throw new DAOException("collectManyElementsFromResultSet() | error while handling ResultSet with Groups",
+            throw new DaoException("collectManyElementsFromResultSet() | error while handling ResultSet with Groups",
                     e);
         }
         return groups;
     }
     
     @Override
-    protected Group collectOneElementFromResultSet(ResultSet resultSet) throws DAOException {
+    protected Group collectOneElementFromResultSet(ResultSet resultSet) throws DaoException {
         Group group = null;
         List<Group> groups = collectManyElementsFromResultSet(resultSet);
         if(groups.size() > 0) {

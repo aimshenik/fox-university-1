@@ -10,11 +10,11 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import net.imshenik.university.domain.Classroom;
 
-public class ClassroomDAO extends AbstractDAO<Classroom> {
+public class ClassroomDao extends AbstractDao<Classroom> {
     
-    private static final Logger log = Logger.getLogger(ClassroomDAO.class.getName());
+    private static final Logger log = Logger.getLogger(ClassroomDao.class.getName());
     
-    public List<Classroom> findAll() throws DAOException {
+    public List<Classroom> findAll() throws DaoException {
         log.trace("findAll() | call AbstractDAO.findAll() | start");
         String sql = "select * from classrooms;";
         List<Classroom> classrooms = super.findAll(sql);
@@ -22,7 +22,7 @@ public class ClassroomDAO extends AbstractDAO<Classroom> {
         return classrooms;
     }
     
-    public Classroom findOne(int id) throws DAOException {
+    public Classroom findOne(int id) throws DaoException {
         log.trace("findOne() | call AbstractDAO.findOne() | start");
         String sql = "select * from classrooms where id=?;";
         Classroom classroom = super.findOne(id, sql);
@@ -35,7 +35,7 @@ public class ClassroomDAO extends AbstractDAO<Classroom> {
         return classroom;
     }
     
-    public Classroom create(String number, String building, int capacity) throws DAOException {
+    public Classroom create(String number, String building, int capacity) throws DaoException {
         log.trace("create() | start");
         String sql = "insert into classrooms (number, building, capacity) values (?,?,?);";
         Classroom classroom = null;
@@ -52,11 +52,11 @@ public class ClassroomDAO extends AbstractDAO<Classroom> {
                 classroom = collectOneElementFromResultSet(resultSet);
             } catch (SQLException e) {
                 log.error("create() | Unable to create ResultSet", e);
-                throw new DAOException("create() | Unable to create ResultSet", e);
+                throw new DaoException("create() | Unable to create ResultSet", e);
             }
         } catch (SQLException e) {
             log.error("create() | Unable to create SQL resourses", e);
-            throw new DAOException("create() | Unable to create SQL resourses", e);
+            throw new DaoException("create() | Unable to create SQL resourses", e);
         }
         if (classroom == null) {
             log.error("create() | Classroom was NOT created!");
@@ -67,7 +67,7 @@ public class ClassroomDAO extends AbstractDAO<Classroom> {
         return classroom;
     }
     
-    public void update(int id, String number, String building, int capacity) throws DAOException {
+    public void update(int id, String number, String building, int capacity) throws DaoException {
         log.trace("update() | start");
         String sql = "update classrooms set number=?,building=?, capacity=? where id=?;";
         try (Connection connection = ConnectionFactory.getConnection();
@@ -84,12 +84,12 @@ public class ClassroomDAO extends AbstractDAO<Classroom> {
             }
         } catch (SQLException e) {
             log.error("update() | Unable to create SQL resourses", e);
-            throw new DAOException("update() | Unable to create SQL resourses", e);
+            throw new DaoException("update() | Unable to create SQL resourses", e);
         }
         log.trace("update() | end");
     }
     
-    public void delete(int id) throws DAOException {
+    public void delete(int id) throws DaoException {
         log.trace("delete() | call AbstractDAO.delete() | start");
         String sql = "delete from classrooms as c where c.id = ?;";
         int rowsDeleted = super.delete(id, sql);
@@ -102,7 +102,7 @@ public class ClassroomDAO extends AbstractDAO<Classroom> {
     }
     
     @Override
-    protected List<Classroom> collectManyElementsFromResultSet(ResultSet resultSet) throws DAOException {
+    protected List<Classroom> collectManyElementsFromResultSet(ResultSet resultSet) throws DaoException {
         List<Classroom> classrooms = new ArrayList<>();
         int id = 0;
         String building = null;
@@ -119,14 +119,14 @@ public class ClassroomDAO extends AbstractDAO<Classroom> {
             }
         } catch (SQLException e) {
             log.error("collectManyElementsFromResultSet() | error while handling ResultSet with Classrooms", e);
-            throw new DAOException(
+            throw new DaoException(
                     "collectManyElementsFromResultSet() | error while handling ResultSet with Classrooms", e);
         }
         return classrooms;
     }
     
     @Override
-    protected Classroom collectOneElementFromResultSet(ResultSet resultSet) throws DAOException {
+    protected Classroom collectOneElementFromResultSet(ResultSet resultSet) throws DaoException {
         Classroom classroom = null;
         List<Classroom> classrooms = collectManyElementsFromResultSet(resultSet);
         if (classrooms.size() > 0) {

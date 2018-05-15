@@ -10,11 +10,11 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import net.imshenik.university.domain.Student;
 
-public class StudentDAO extends AbstractDAO<Student> {
+public class StudentDao extends AbstractDao<Student> {
     
-    private static final Logger log = Logger.getLogger(StudentDAO.class.getName());
+    private static final Logger log = Logger.getLogger(StudentDao.class.getName());
     
-    public List<Student> findAll() throws DAOException {
+    public List<Student> findAll() throws DaoException {
         log.trace("findAll() | call AbstractDAO.findAll() | start");
         String sql = "select * from students;";
         List<Student> students = super.findAll(sql);
@@ -22,7 +22,7 @@ public class StudentDAO extends AbstractDAO<Student> {
         return students;
     }
     
-    public Student findOne(int id) throws DAOException {
+    public Student findOne(int id) throws DaoException {
         log.trace("findOne() | call AbstractDAO.findOne() | start");
         String sql = "select * from students where id=?;";
         Student student = super.findOne(id, sql);
@@ -35,7 +35,7 @@ public class StudentDAO extends AbstractDAO<Student> {
         return student;
     }
     
-    public Student create(String firstName, String lastName) throws DAOException {
+    public Student create(String firstName, String lastName) throws DaoException {
         log.trace("create() | start");
         String sql = "insert into students (firstname,lastname) values (?,?);";
         Student student = null;
@@ -51,16 +51,16 @@ public class StudentDAO extends AbstractDAO<Student> {
                 student = collectOneElementFromResultSet(resultSet);
             } catch (SQLException e) {
                 log.error("create() | Unable to create ResultSet", e);
-                throw new DAOException("create() | Unable to create ResultSet", e);
+                throw new DaoException("create() | Unable to create ResultSet", e);
             }
         } catch (SQLException e) {
             log.error("create() | Unable to open connection", e);
-            throw new DAOException("create() | Unable to open connection", e);
+            throw new DaoException("create() | Unable to open connection", e);
         }
         return student;
     }
     
-    public void update(int id, String firstName, String lastName, int group_id) throws DAOException {
+    public void update(int id, String firstName, String lastName, int group_id) throws DaoException {
         log.trace("update() | start");
         String sql = "update students set firstname=?,lastname=?, group_id=? where id=?;";
         try (Connection connection = ConnectionFactory.getConnection();
@@ -77,12 +77,12 @@ public class StudentDAO extends AbstractDAO<Student> {
             }
         } catch (SQLException e) {
             log.error("update() |   Unable to create SQL resourses", e);
-            throw new DAOException("update()    |   Unable to create SQL resourses", e);
+            throw new DaoException("update()    |   Unable to create SQL resourses", e);
         }
         log.trace("update() | end");
     }
     
-    public void delete(int id) throws DAOException {
+    public void delete(int id) throws DaoException {
         log.trace("delete() | call AbstractDAO.delete() |   start");
         String sql = "delete from students as s where s.id = ?;";
         int rowsDeleted = super.delete(id, sql);
@@ -95,7 +95,7 @@ public class StudentDAO extends AbstractDAO<Student> {
     }
     
     @Override
-    protected List<Student> collectManyElementsFromResultSet(ResultSet resultSet) throws DAOException {
+    protected List<Student> collectManyElementsFromResultSet(ResultSet resultSet) throws DaoException {
         List<Student> students = new ArrayList<>();
         int id = 0;
         String firstName = null;
@@ -110,14 +110,14 @@ public class StudentDAO extends AbstractDAO<Student> {
             }
         } catch (SQLException e) {
             log.error("collectManyElementsFromResultSet() | error while handling ResultSet with Students", e);
-            throw new DAOException("collectManyElementsFromResultSet() | error while handling ResultSet with Students",
+            throw new DaoException("collectManyElementsFromResultSet() | error while handling ResultSet with Students",
                     e);
         }
         return students;
     }
     
     @Override
-    protected Student collectOneElementFromResultSet(ResultSet resultSet) throws DAOException {
+    protected Student collectOneElementFromResultSet(ResultSet resultSet) throws DaoException {
         Student student = null;
         List<Student> students = collectManyElementsFromResultSet(resultSet);
         if (students.size() > 0) {

@@ -17,11 +17,11 @@ import net.imshenik.university.domain.Schedule;
 import net.imshenik.university.domain.Subject;
 import net.imshenik.university.domain.Teacher;
 
-public class ScheduleDAO extends AbstractDAO<Schedule> {
+public class ScheduleDao extends AbstractDao<Schedule> {
     
-    private static final Logger log = Logger.getLogger(ScheduleDAO.class.getName());
+    private static final Logger log = Logger.getLogger(ScheduleDao.class.getName());
     
-    public List<Schedule> findAll() throws DAOException {
+    public List<Schedule> findAll() throws DaoException {
         log.trace("findAll() | call AbstractDAO.findAll() | start");
         String sql = "select * from schedules;";
         List<Schedule> schedules = super.findAll(sql);
@@ -29,7 +29,7 @@ public class ScheduleDAO extends AbstractDAO<Schedule> {
         return schedules;
     }
     
-    public Schedule findOne(int id) throws DAOException {
+    public Schedule findOne(int id) throws DaoException {
         log.trace("findOne() | call AbstractDAO.findOne() | start");
         String sql = "select * from schedules where id=?;";
         Schedule schedule = super.findOne(id, sql);
@@ -43,7 +43,7 @@ public class ScheduleDAO extends AbstractDAO<Schedule> {
     }
     
     public Schedule create(Teacher teacher, Group group, Classroom classroom, Subject subject, LocalDateTime start,
-            LocalDateTime end) throws DAOException {
+            LocalDateTime end) throws DaoException {
         log.trace("create() | start");
         String sql = "insert into schedules (teacher_id, group_id, classroom_id, subject_id, start_time, end_time) values (?,?,?,?,?,?);";
         Schedule schedule = null;
@@ -64,17 +64,17 @@ public class ScheduleDAO extends AbstractDAO<Schedule> {
                 schedule = collectOneElementFromResultSet(resultSet);
             } catch (SQLException e) {
                 log.error("create() | Unable to create ResultSet", e);
-                throw new DAOException("create() | Unable to create ResultSet", e);
+                throw new DaoException("create() | Unable to create ResultSet", e);
             }
         } catch (SQLException e) {
             log.error("create() | Unable to create SQL resourses", e);
-            throw new DAOException("create() | Unable to create SQL resourses", e);
+            throw new DaoException("create() | Unable to create SQL resourses", e);
         }
         return schedule;
     }
     
     public void update(int id, Teacher teacher, Group group, Classroom classroom, Subject subject, LocalDateTime start,
-            LocalDateTime end) throws DAOException {
+            LocalDateTime end) throws DaoException {
         log.trace("update() | Updating schedule with id = " + id);
         String sql = "update schedules set teacher_id=?, group_id=?, classroom_id=?,subject_id=?,start_time=?,end_time=? where id=?;";
         try (Connection connection = ConnectionFactory.getConnection();
@@ -96,11 +96,11 @@ public class ScheduleDAO extends AbstractDAO<Schedule> {
             }
         } catch (SQLException e) {
             log.error("update() | Unable to create SQL resourses", e);
-            throw new DAOException("update() | Unable to create SQL resourses", e);
+            throw new DaoException("update() | Unable to create SQL resourses", e);
         }
     }
     
-    public void delete(int id) throws DAOException {
+    public void delete(int id) throws DaoException {
         log.trace("delete() | call AbstractDAO.delete() | start");
         String sql = "delete from schedules as s where s.id = ?;";
         int rowsDeleted = super.delete(id, sql);
@@ -113,7 +113,7 @@ public class ScheduleDAO extends AbstractDAO<Schedule> {
     }
     
     @Override
-    protected List<Schedule> collectManyElementsFromResultSet(ResultSet resultSet) throws DAOException {
+    protected List<Schedule> collectManyElementsFromResultSet(ResultSet resultSet) throws DaoException {
         List<Schedule> schedules = new ArrayList<>();
         int id = 0;
         Teacher teacher = null;
@@ -125,24 +125,24 @@ public class ScheduleDAO extends AbstractDAO<Schedule> {
         try {
             while (resultSet.next()) {
                 id = resultSet.getInt("id");
-                teacher = new TeacherDAO().findOne(resultSet.getInt("teacher_id"));
-                group = new GroupDAO().findOne(resultSet.getInt("group_id"));
-                classroom = new ClassroomDAO().findOne(resultSet.getInt("classroom_id"));
-                subject = new SubjectDAO().findOne(resultSet.getInt("subject_id"));
+                teacher = new TeacherDao().findOne(resultSet.getInt("teacher_id"));
+                group = new GroupDao().findOne(resultSet.getInt("group_id"));
+                classroom = new ClassroomDao().findOne(resultSet.getInt("classroom_id"));
+                subject = new SubjectDao().findOne(resultSet.getInt("subject_id"));
                 start = LocalDateTime.parse(resultSet.getString("start_time").replace(' ', 'T'));
                 end = LocalDateTime.parse(resultSet.getString("end_time").replace(' ', 'T'));
                 schedules.add(new Schedule(id, teacher, group, classroom, subject, start, end));
             }
         } catch (SQLException e) {
             log.error("collectManyElementsFromResultSet() | error while handling ResultSet with Schedules", e);
-            throw new DAOException("collectManyElementsFromResultSet() | error while handling ResultSet with Schedules",
+            throw new DaoException("collectManyElementsFromResultSet() | error while handling ResultSet with Schedules",
                     e);
         }
         return schedules;
     }
     
     @Override
-    protected Schedule collectOneElementFromResultSet(ResultSet resultSet) throws DAOException {
+    protected Schedule collectOneElementFromResultSet(ResultSet resultSet) throws DaoException {
         Schedule schedule = null;
         List<Schedule> schedules = collectManyElementsFromResultSet(resultSet);
         if (schedules.size() > 0) {

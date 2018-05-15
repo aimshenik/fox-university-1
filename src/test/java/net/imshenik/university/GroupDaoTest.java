@@ -4,26 +4,26 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import java.util.List;
 import org.junit.Test;
-import net.imshenik.university.dao.DAOException;
-import net.imshenik.university.dao.GroupDAO;
+import net.imshenik.university.dao.DaoException;
+import net.imshenik.university.dao.GroupDao;
 import net.imshenik.university.domain.Group;
 
-public class GroupDAOTest {
-    GroupDAO groupDAO = null;
+public class GroupDaoTest {
+    GroupDao groupDAO = null;
     
-    public GroupDAOTest() throws DAOException {
-        groupDAO = new GroupDAO();
+    public GroupDaoTest() throws DaoException {
+        groupDAO = new GroupDao();
     }
     
     @Test
-    public void findAllTest() throws DAOException {
+    public void findAllTest() throws DaoException {
         List<Group> groups = null;
         groups = groupDAO.findAll();
         assertNotNull(groups);
     }
     
     @Test
-    public void findOneTest() throws DAOException {
+    public void findOneTest() throws DaoException {
         Group group = groupDAO.findOne(Integer.MAX_VALUE);
         assertNull(group);
         Group group2 = groupDAO.findOne(101);
@@ -33,19 +33,19 @@ public class GroupDAOTest {
     }
     
     @Test
-    public void createTest() throws DAOException {
+    public void createTest() throws DaoException {
         Group group = groupDAO.create("1-K-9000");
         assertNotNull(group);
     }
     
     @Test
-    public void updateTest() throws DAOException {
+    public void updateTest() throws DaoException {
         Group group = groupDAO.create("3-DDD-200");
         groupDAO.update(group.getId(), "NEW" + group.getName());
     }
     
     @Test
-    public void deleteTest() throws DAOException {
+    public void deleteTest() throws DaoException {
         Group newGroup = groupDAO.create("TO_DELETE");
         int lastID = newGroup.getId();
         groupDAO.delete(lastID);

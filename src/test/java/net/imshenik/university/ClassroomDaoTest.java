@@ -4,26 +4,26 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import java.util.List;
 import org.junit.Test;
-import net.imshenik.university.dao.ClassroomDAO;
-import net.imshenik.university.dao.DAOException;
+import net.imshenik.university.dao.ClassroomDao;
+import net.imshenik.university.dao.DaoException;
 import net.imshenik.university.domain.Classroom;
 
-public class ClassroomDAOTest {
-    ClassroomDAO classroomDAO = null;
+public class ClassroomDaoTest {
+    ClassroomDao classroomDAO = null;
     
-    public ClassroomDAOTest() throws DAOException {
-        classroomDAO = new ClassroomDAO();
+    public ClassroomDaoTest() throws DaoException {
+        classroomDAO = new ClassroomDao();
     }
     
     @Test
-    public void findAllTest() throws DAOException {
+    public void findAllTest() throws DaoException {
         List<Classroom> classrooms = null;
         classrooms = classroomDAO.findAll();
         assertNotNull(classrooms);
     }
     
     @Test
-    public void findOneTest() throws DAOException {
+    public void findOneTest() throws DaoException {
         Classroom classroom = classroomDAO.findOne(Integer.MAX_VALUE);
         assertNull(classroom);
         Classroom classroom2 = classroomDAO.findOne(1);
@@ -33,20 +33,20 @@ public class ClassroomDAOTest {
     }
     
     @Test
-    public void createTest() throws DAOException {
+    public void createTest() throws DaoException {
         Classroom classroom = classroomDAO.create("213", "26a", 50);
         assertNotNull(classroom);
     }
     
     @Test
-    public void updateTest() throws DAOException {
+    public void updateTest() throws DaoException {
         Classroom classroom = classroomDAO.create("213", "26a", 50);
         classroomDAO.update(classroom.getId(), "NEW" + classroom.getNumber(), classroom.getBuilding(),
                 classroom.getCapacity());
     }
     
     @Test
-    public void deleteTest() throws DAOException {
+    public void deleteTest() throws DaoException {
         Classroom newClassroom = classroomDAO.create("TO DELETE", "TO DELETE", 5000);
         int lastID = newClassroom.getId();
         classroomDAO.delete(lastID);

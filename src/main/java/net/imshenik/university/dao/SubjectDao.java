@@ -10,11 +10,11 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import net.imshenik.university.domain.Subject;
 
-public class SubjectDAO extends AbstractDAO<Subject> {
+public class SubjectDao extends AbstractDao<Subject> {
     
-    private static final Logger log = Logger.getLogger(SubjectDAO.class.getName());
+    private static final Logger log = Logger.getLogger(SubjectDao.class.getName());
     
-    public List<Subject> findAll() throws DAOException {
+    public List<Subject> findAll() throws DaoException {
         log.trace("findAll() | call AbstractDAO.findAll() | start");
         String sql = "select * from subjects;";
         List<Subject> subjects = super.findAll(sql);
@@ -22,7 +22,7 @@ public class SubjectDAO extends AbstractDAO<Subject> {
         return subjects;
     }
     
-    public Subject findOne(int id) throws DAOException {
+    public Subject findOne(int id) throws DaoException {
         log.trace("findOne() | call AbstractDAO.findOne() | start");
         String sql = "select * from subjects where id=?;";
         Subject subject = super.findOne(id, sql);
@@ -35,7 +35,7 @@ public class SubjectDAO extends AbstractDAO<Subject> {
         return subject;
     }
     
-    public Subject create(String name) throws DAOException {
+    public Subject create(String name) throws DaoException {
         log.trace("create() | Creating new subject with name = " + name);
         String sql = "insert into subjects (name) values (?);";
         Subject subject = null;
@@ -50,16 +50,16 @@ public class SubjectDAO extends AbstractDAO<Subject> {
                 subject = collectOneElementFromResultSet(resultSet);
             } catch (SQLException e) {
                 log.error("create() | Unable to create ResultSet", e);
-                throw new DAOException("create() | Unable to create ResultSet", e);
+                throw new DaoException("create() | Unable to create ResultSet", e);
             }
         } catch (SQLException e) {
             log.error("create() | Unable to create SQL resourses", e);
-            throw new DAOException("create() | Unable to create SQL resourses", e);
+            throw new DaoException("create() | Unable to create SQL resourses", e);
         }
         return subject;
     }
     
-    public void update(int id, String name) throws DAOException {
+    public void update(int id, String name) throws DaoException {
         log.trace("update() | start");
         String sql = "update subjects set name=? where id=?;";
         try (Connection connection = ConnectionFactory.getConnection();
@@ -74,11 +74,11 @@ public class SubjectDAO extends AbstractDAO<Subject> {
             }
         } catch (SQLException e) {
             log.error("update() | Unable to create SQL resourses", e);
-            throw new DAOException("update() | Unable to create SQL resourses", e);
+            throw new DaoException("update() | Unable to create SQL resourses", e);
         }
     }
     
-    public void delete(int id) throws DAOException {
+    public void delete(int id) throws DaoException {
         log.trace("delete() | call AbstractDAO.delete() | start");
         String sql = "delete from subjects as s where s.id = ?;";
         int rowsDeleted = super.delete(id, sql);
@@ -91,7 +91,7 @@ public class SubjectDAO extends AbstractDAO<Subject> {
     }
     
     @Override
-    protected List<Subject> collectManyElementsFromResultSet(ResultSet resultSet) throws DAOException {
+    protected List<Subject> collectManyElementsFromResultSet(ResultSet resultSet) throws DaoException {
         List<Subject> subjects = new ArrayList<>();
         int id = 0;
         String name = null;
@@ -104,14 +104,14 @@ public class SubjectDAO extends AbstractDAO<Subject> {
             }
         } catch (SQLException e) {
             log.error("collectManyElementsFromResultSet() | error while handling ResultSet with Subjects", e);
-            throw new DAOException("collectManyElementsFromResultSet() | error while handling ResultSet with Subjects",
+            throw new DaoException("collectManyElementsFromResultSet() | error while handling ResultSet with Subjects",
                     e);
         }
         return subjects;
     }
     
     @Override
-    protected Subject collectOneElementFromResultSet(ResultSet resultSet) throws DAOException {
+    protected Subject collectOneElementFromResultSet(ResultSet resultSet) throws DaoException {
         Subject subject = null;
         List<Subject> subjects = collectManyElementsFromResultSet(resultSet);
         if (subjects.size() > 0) {
