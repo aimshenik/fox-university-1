@@ -135,9 +135,9 @@ public class ClassroomDaoPostgres implements ClassroomDao {
 	    statement.setInt(1, id);
 	    int rowsDeleted = statement.executeUpdate();
 	    if (rowsDeleted == 0) {
-		log.error("deleteEntity() | Classroom with  ID = " + id + " was NOT deleted!");
+		log.error("delete() | Classroom with  ID = " + id + " was NOT deleted!");
 	    } else {
-		log.info("deleteEntity() | Classroom with  ID = " + id + " was deleted");
+		log.info("delete() | Classroom with  ID = " + id + " was deleted");
 	    }
 	} catch (SQLException e) {
 	    log.error("delete() | Unable to create SQL resourses", e);
