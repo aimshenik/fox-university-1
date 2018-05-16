@@ -35,8 +35,8 @@ public class ClassroomDaoPostgres implements ClassroomDao {
 		classrooms.add(new Classroom(id, number, building, capacity));
 	    }
 	} catch (SQLException e) {
-	    log.error("findAll() | Database iteraction failure ", e);
-	    throw new DaoException("findAll() | Database iteraction failure", e);
+	    log.error("findAll() | database: interaction failure ", e);
+	    throw new DaoException("findAll() | database: interaction failure", e);
 	}
 	log.trace("findAll() | end");
 	return classrooms;
@@ -60,12 +60,12 @@ public class ClassroomDaoPostgres implements ClassroomDao {
 		    classroom = new Classroom(id, number, building, capacity);
 		}
 	    } catch (SQLException e) {
-		log.error("findOne() | ResultSet iteraction failure", e);
-		throw new DaoException("findOne() | ResultSet iteraction failure", e);
+		log.error("findOne() | resultSet: interaction failure", e);
+		throw new DaoException("findOne() | resultSet: interaction failure", e);
 	    }
 	} catch (SQLException e) {
-	    log.error("findOne() | Database iteraction failure", e);
-	    throw new DaoException("findOne() | Database iteraction failure", e);
+	    log.error("findOne() | database: interaction failure", e);
+	    throw new DaoException("findOne() | database: interaction failure", e);
 	}
 	log.info(classroom == null ? "findOne() | Classroom with ID = " + id + " was NOT found!"
 		: "findOne() | Classroom with ID = " + id + " was found | " + classroom.toString());
@@ -89,12 +89,12 @@ public class ClassroomDaoPostgres implements ClassroomDao {
 		    classroom = new Classroom(id, number, building, capacity);
 		}
 	    } catch (SQLException e) {
-		log.error("create() | ResultSet iteraction failure", e);
-		throw new DaoException("create() | ResultSet iteraction failure", e);
+		log.error("create() | resultSet: interaction failure", e);
+		throw new DaoException("create() | resultSet: interaction failure", e);
 	    }
 	} catch (SQLException e) {
-	    log.error("create() | Database iteraction failure", e);
-	    throw new DaoException("create() | Database iteraction failure", e);
+	    log.error("create() | database: interaction failure", e);
+	    throw new DaoException("create() | database: interaction failure", e);
 	}
 	if (classroom == null) {
 	    log.error("create() | Classroom was NOT created!");
@@ -121,8 +121,8 @@ public class ClassroomDaoPostgres implements ClassroomDao {
 		log.info("update() | Classroom with ID =  " + id + " was updated");
 	    }
 	} catch (SQLException e) {
-	    log.error("update() | Unable to create SQL resourses", e);
-	    throw new DaoException("update() | Unable to create SQL resourses", e);
+	    log.error("update() | database: interaction failure", e);
+	    throw new DaoException("update() | database: interaction failure", e);
 	}
 	log.trace("update() | end");
     }
@@ -140,8 +140,8 @@ public class ClassroomDaoPostgres implements ClassroomDao {
 		log.info("delete() | Classroom with  ID = " + id + " was deleted");
 	    }
 	} catch (SQLException e) {
-	    log.error("delete() | Unable to create SQL resourses", e);
-	    throw new DaoException("delete() | Unable to create SQL resourses", e);
+	    log.error("delete() | database: interaction failure", e);
+	    throw new DaoException("delete() | database: interaction failure", e);
 	}
 	log.trace("delete() | end");
     }
