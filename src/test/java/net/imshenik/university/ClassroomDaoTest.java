@@ -4,15 +4,15 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import java.util.List;
 import org.junit.Test;
-import net.imshenik.university.dao.ClassroomDao;
+import net.imshenik.university.dao.ClassroomDaoPostgres;
 import net.imshenik.university.dao.DaoException;
 import net.imshenik.university.domain.Classroom;
 
 public class ClassroomDaoTest {
-    ClassroomDao classroomDAO = null;
+    ClassroomDaoPostgres classroomDAO = null;
     
     public ClassroomDaoTest() throws DaoException {
-        classroomDAO = new ClassroomDao();
+        classroomDAO = new ClassroomDaoPostgres();
     }
     
     @Test

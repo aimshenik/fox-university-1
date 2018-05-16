@@ -22,7 +22,7 @@ abstract class AbstractDao<T> {
             log.error("findAll() | Unable to create SQL resourses", e);
             throw new DaoException("findAll() | Unable to create SQL resourses", e);
         }
-        log.trace("findAllEntities() | end");
+        log.trace("findAll() | end");
         return entities;
     }
     
