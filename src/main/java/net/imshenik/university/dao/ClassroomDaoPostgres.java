@@ -17,22 +17,14 @@ public class ClassroomDaoPostgres implements ClassroomDao {
     public List<Classroom> findAll() throws DaoException {
 	log.trace("findAll() | start");
 	String sql = "select * from classrooms;";
-	List<Classroom> classrooms = null;
+	List<Classroom> classrooms = new ArrayList<>();
 	try (Connection connection = ConnectionFactory.getConnection();
 		PreparedStatement statement = connection.prepareStatement(sql);
 		ResultSet resultSet = statement.executeQuery()) {
-	    classrooms = new ArrayList<>();
-	    int id = 0;
-	    String building = null;
-	    String number = null;
-	    int capacity = 0;
 	    log.trace("findAll() | Getting Classrooms from ResultSet...");
 	    while (resultSet.next()) {
-		id = resultSet.getInt("id");
-		building = resultSet.getString("building");
-		number = resultSet.getString("number");
-		capacity = resultSet.getInt("capacity");
-		classrooms.add(new Classroom(id, number, building, capacity));
+		classrooms.add(new Classroom(resultSet.getInt("id"), resultSet.getString("number"),
+			resultSet.getString("building"), resultSet.getInt("capacity")));
 	    }
 	} catch (SQLException e) {
 	    log.error("findAll() | database: interaction failure ", e);
@@ -50,25 +42,17 @@ public class ClassroomDaoPostgres implements ClassroomDao {
 		PreparedStatement statement = connection.prepareStatement(sql)) {
 	    statement.setInt(1, id);
 	    try (ResultSet resultSet = statement.executeQuery()) {
-		String building = null;
-		String number = null;
-		int capacity = 0;
 		if (resultSet.next()) {
-		    building = resultSet.getString("building");
-		    number = resultSet.getString("number");
-		    capacity = resultSet.getInt("capacity");
-		    classroom = new Classroom(id, number, building, capacity);
+		    classroom = new Classroom(id, resultSet.getString("number"), resultSet.getString("building"),
+			    resultSet.getInt("capacity"));
 		}
-	    } catch (SQLException e) {
-		log.error("findOne() | resultSet: interaction failure", e);
-		throw new DaoException("findOne() | resultSet: interaction failure", e);
 	    }
 	} catch (SQLException e) {
 	    log.error("findOne() | database: interaction failure", e);
 	    throw new DaoException("findOne() | database: interaction failure", e);
 	}
-	log.info(classroom == null ? "findOne() | Classroom with ID = " + id + " was NOT found!"
-		: "findOne() | Classroom with ID = " + id + " was found | " + classroom.toString());
+	log.trace(classroom == null ? "findOne() | Classroom with ID = " + id + " was NOT found!"
+		: "findOne() | Classroom with ID = " + id + " was found");
 	log.trace("findOne() | end");
 	return classroom;
     }
@@ -88,9 +72,6 @@ public class ClassroomDaoPostgres implements ClassroomDao {
 		    int id = resultSet.getInt("id");
 		    classroom = new Classroom(id, number, building, capacity);
 		}
-	    } catch (SQLException e) {
-		log.error("create() | resultSet: interaction failure", e);
-		throw new DaoException("create() | resultSet: interaction failure", e);
 	    }
 	} catch (SQLException e) {
 	    log.error("create() | database: interaction failure", e);
