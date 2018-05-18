@@ -2,8 +2,7 @@ package net.imshenik.university.dao;
 
 import java.util.List;
 
-public interface ClassroomDao<T> extends CommonDao<T>{
-
+interface CommonDao<T> {
     public List<T> findAll() throws DaoException;
 
     public T findOne(int id) throws DaoException;

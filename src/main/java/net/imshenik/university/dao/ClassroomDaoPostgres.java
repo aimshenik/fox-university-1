@@ -10,7 +10,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import net.imshenik.university.domain.Classroom;
 
-public class ClassroomDaoPostgres implements ClassroomDao {
+public class ClassroomDaoPostgres implements ClassroomDao<Classroom> {
 
     private static final Logger log = Logger.getLogger(ClassroomDaoPostgres.class.getName());
 
@@ -57,49 +57,49 @@ public class ClassroomDaoPostgres implements ClassroomDao {
 	return classroom;
     }
 
-    public Classroom create(String number, String building, int capacity) throws DaoException {
+    public Classroom create(Classroom classroom) throws DaoException {
 	log.trace("create() | start");
 	String sql = "insert into classrooms (number, building, capacity) values (?,?,?);";
-	Classroom classroom = null;
+	Classroom createdClassroom = null;
 	try (Connection connection = ConnectionFactory.getConnection();
 		PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-	    statement.setString(1, number);
-	    statement.setString(2, building);
-	    statement.setInt(3, capacity);
+	    statement.setString(1, classroom.getNumber());
+	    statement.setString(2, classroom.getBuilding());
+	    statement.setInt(3, classroom.getCapacity());
 	    statement.executeUpdate();
 	    try (ResultSet resultSet = statement.getGeneratedKeys()) {
 		if (resultSet.next()) {
-		    int id = resultSet.getInt("id");
-		    classroom = new Classroom(id, number, building, capacity);
+		    createdClassroom = new Classroom(resultSet.getInt("id"), resultSet.getString("number"),
+			    resultSet.getString("building"), resultSet.getInt("capacity"));
 		}
 	    }
 	} catch (SQLException e) {
 	    log.error("create() | database: interaction failure", e);
 	    throw new DaoException("create() | database: interaction failure", e);
 	}
-	if (classroom == null) {
+	if (createdClassroom == null) {
 	    log.error("create() | Classroom was NOT created!");
 	} else {
-	    log.info("create() | Classroom was created | " + classroom.toString());
+	    log.info("create() | Classroom was created | " + createdClassroom.toString());
 	}
 	log.trace("create() | end");
-	return classroom;
+	return createdClassroom;
     }
 
-    public void update(int id, String number, String building, int capacity) throws DaoException {
+    public void update(Classroom classroom) throws DaoException {
 	log.trace("update() | start");
 	String sql = "update classrooms set number=?,building=?, capacity=? where id=?;";
 	try (Connection connection = ConnectionFactory.getConnection();
 		PreparedStatement statement = connection.prepareStatement(sql)) {
-	    statement.setString(1, number);
-	    statement.setString(2, building);
-	    statement.setInt(3, capacity);
-	    statement.setInt(4, id);
+	    statement.setString(1, classroom.getNumber());
+	    statement.setString(2, classroom.getBuilding());
+	    statement.setInt(3, classroom.getCapacity());
+	    statement.setInt(4, classroom.getId());
 	    int rowsUpdated = statement.executeUpdate();
 	    if (rowsUpdated == 0) {
-		log.error("update() | Classroom with ID =  " + id + " was NOT updated!");
+		log.error("update() | Classroom with ID =  " + classroom.getId() + " was NOT updated!");
 	    } else {
-		log.info("update() | Classroom with ID =  " + id + " was updated");
+		log.info("update() | Classroom with ID =  " + classroom.getId() + " was updated");
 	    }
 	} catch (SQLException e) {
 	    log.error("update() | database: interaction failure", e);
