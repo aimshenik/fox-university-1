@@ -1,5 +1,6 @@
 package net.imshenik.university.dao;
 
+import net.imshenik.university.domain.Classroom;
 
-public interface ClassroomDao<T> extends CommonDao<T>{
+public interface ClassroomDao extends CommonDao<Classroom>{
 }

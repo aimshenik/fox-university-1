@@ -10,7 +10,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import net.imshenik.university.domain.Classroom;
 
-public class ClassroomDaoPostgres implements ClassroomDao<Classroom> {
+public class ClassroomDaoPostgres implements ClassroomDao {
 
     private static final Logger log = Logger.getLogger(ClassroomDaoPostgres.class.getName());
 
@@ -71,16 +71,12 @@ public class ClassroomDaoPostgres implements ClassroomDao<Classroom> {
 		if (resultSet.next()) {
 		    createdClassroom = new Classroom(resultSet.getInt("id"), resultSet.getString("number"),
 			    resultSet.getString("building"), resultSet.getInt("capacity"));
+		    log.info("create() | Classroom was created | " + createdClassroom.toString());
 		}
 	    }
 	} catch (SQLException e) {
 	    log.error("create() | database: interaction failure", e);
 	    throw new DaoException("create() | database: interaction failure", e);
-	}
-	if (createdClassroom == null) {
-	    log.error("create() | Classroom was NOT created!");
-	} else {
-	    log.info("create() | Classroom was created | " + createdClassroom.toString());
 	}
 	log.trace("create() | end");
 	return createdClassroom;
