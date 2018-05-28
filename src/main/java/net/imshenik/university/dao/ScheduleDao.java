@@ -18,7 +18,6 @@ import net.imshenik.university.domain.Subject;
 import net.imshenik.university.domain.Teacher;
 
 public class ScheduleDao extends AbstractDao<Schedule> {
-    
     private static final Logger log = Logger.getLogger(ScheduleDao.class.getName());
     
     public List<Schedule> findAll() throws DaoException {

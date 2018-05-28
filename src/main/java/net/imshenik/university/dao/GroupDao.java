@@ -11,7 +11,6 @@ import org.apache.log4j.Logger;
 import net.imshenik.university.domain.Group;
 
 public class GroupDao extends AbstractDao<Group> {
-    
     private static final Logger log = Logger.getLogger(GroupDao.class.getName());
     
     public List<Group> findAll() throws DaoException {
@@ -121,7 +120,7 @@ public class GroupDao extends AbstractDao<Group> {
     protected Group collectOneElementFromResultSet(ResultSet resultSet) throws DaoException {
         Group group = null;
         List<Group> groups = collectManyElementsFromResultSet(resultSet);
-        if(groups.size() > 0) {
+        if (groups.size() > 0) {
             group = groups.get(0);
         }
         return group;

@@ -8,7 +8,6 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 abstract class AbstractDao<T> {
-    
     private static final Logger log = Logger.getLogger(AbstractDao.class.getName());
     
     List<T> findAll(String sql) throws DaoException {

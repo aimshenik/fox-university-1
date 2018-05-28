@@ -11,7 +11,6 @@ import org.apache.log4j.Logger;
 import net.imshenik.university.domain.Subject;
 
 public class SubjectDao extends AbstractDao<Subject> {
-    
     private static final Logger log = Logger.getLogger(SubjectDao.class.getName());
     
     public List<Subject> findAll() throws DaoException {

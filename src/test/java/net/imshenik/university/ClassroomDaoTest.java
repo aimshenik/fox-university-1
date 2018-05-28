@@ -34,21 +34,21 @@ public class ClassroomDaoTest {
     
     @Test
     public void createTest() throws DaoException {
-        Classroom classroom = classroomDAO.create(new Classroom(0,"213", "26a", 50));
+        Classroom classroom = classroomDAO.create(new Classroom(0, "213", "26a", 50));
         assertNotNull(classroom);
     }
     
     @Test
     public void updateTest() throws DaoException {
-        Classroom classroom = classroomDAO.create(new Classroom(0,"213", "26a", 50));
+        Classroom classroom = classroomDAO.create(new Classroom(0, "213", "26a", 50));
         classroom.setBuilding(null);
-//        classroom.setId(800);
+        // classroom.setId(800);
         classroomDAO.update(classroom);
     }
     
     @Test
     public void deleteTest() throws DaoException {
-        Classroom newClassroom = classroomDAO.create(new Classroom(0,"TO DELETE", "TO DELETE", 5000));
+        Classroom newClassroom = classroomDAO.create(new Classroom(0, "TO DELETE", "TO DELETE", 5000));
         int lastID = newClassroom.getId();
         classroomDAO.delete(lastID);
         Classroom removedClassroom = classroomDAO.findOne(lastID);
