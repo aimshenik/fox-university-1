@@ -3,7 +3,7 @@ package net.imshenik.university.dao;
 import java.io.Serializable;
 import java.util.List;
 
-interface CommonDao<T extends Serializable, K extends Serializable> {
+interface CommonDao<T, K extends Serializable> {
     public List<T> findAll() throws DaoException;
     
     public T findOne(K id) throws DaoException;

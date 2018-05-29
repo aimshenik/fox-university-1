@@ -40,8 +40,9 @@ public class ClassroomDaoPostgres implements ClassroomDao {
         try (Connection connection = ConnectionFactory.getConnection();
                 PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, id);
-            try (ResultSet resultSet = statement.executeQuery()) {
-                if (resultSet.next()) {
+            if (exist(connection, id)) {
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    resultSet.next();
                     classroom = new Classroom(resultSet.getInt("id"), resultSet.getString("number"),
                             resultSet.getString("building"), resultSet.getInt("capacity"));
                 }
@@ -119,5 +120,18 @@ public class ClassroomDaoPostgres implements ClassroomDao {
             throw new DaoException("delete() | database: interaction failure", e);
         }
         log.trace("delete() | end");
+    }
+    
+    private boolean exist(Connection connection, Integer id) throws SQLException {
+        boolean exist = false;
+        String sql = "select * from classrooms where id=?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, id);
+            int count = 1;
+            exist = count > 0 ? true : false;
+        } catch (SQLException e) {
+            throw new SQLException("exist() | database: interaction failure", e);
+        }
+        return exist;
     }
 }
