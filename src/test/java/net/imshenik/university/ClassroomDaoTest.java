@@ -41,8 +41,7 @@ public class ClassroomDaoTest {
     @Test
     public void updateTest() throws DaoException {
         Classroom classroom = classroomDaoPostgres.create(new Classroom(0, "213", "26a", 50));
-        classroom.setBuilding(null);
-        classroom.setId(800);
+        classroom.setBuilding("67b");
         classroomDaoPostgres.update(classroom);
     }
     
