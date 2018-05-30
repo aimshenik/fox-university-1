@@ -12,10 +12,10 @@ import net.imshenik.university.domain.Classroom;
 
 public class ClassroomDaoPostgres implements ClassroomDao {
     private static final Logger log = Logger.getLogger(ClassroomDaoPostgres.class.getName());
-
+    
     public List<Classroom> findAll() throws DaoException {
         log.trace("findAll() | start");
-        String sql = "select * from classrooms;";
+        String sql = "select * from classrooms";
         List<Classroom> classrooms = new ArrayList<>();
         try (Connection connection = ConnectionFactory.getConnection();
                 PreparedStatement statement = connection.prepareStatement(sql);
@@ -32,13 +32,13 @@ public class ClassroomDaoPostgres implements ClassroomDao {
         log.trace("findAll() | end");
         return classrooms;
     }
-
+    
     public Classroom findOne(Integer id) throws DaoException {
         log.trace("findOne() | start");
         if (!exist(id)) {
             return null;
         }
-        String sql = "select * from classrooms where id=?;";
+        String sql = "select * from classrooms where id=?";
         Classroom classroom = null;
         try (Connection connection = ConnectionFactory.getConnection();
                 PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -58,10 +58,10 @@ public class ClassroomDaoPostgres implements ClassroomDao {
         log.trace("findOne() | end");
         return classroom;
     }
-
+    
     public Classroom create(Classroom classroom) throws DaoException {
         log.trace("create() | start");
-        String sql = "insert into classrooms (number, building, capacity) values (?,?,?);";
+        String sql = "insert into classrooms (number, building, capacity) values (?,?,?)";
         Classroom createdClassroom = null;
         try (Connection connection = ConnectionFactory.getConnection();
                 PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -84,13 +84,13 @@ public class ClassroomDaoPostgres implements ClassroomDao {
         log.trace("create() | end");
         return createdClassroom;
     }
-
+    
     public void update(Classroom classroom) throws DaoException {
         log.trace("update() | start");
         if (!exist(classroom.getId())) {
             throw new DaoException("update() | Classroom with ID =  " + classroom.getId() + " does NOT exist!");
         }
-        String sql = "update classrooms set number=?,building=?, capacity=? where id=?;";
+        String sql = "update classrooms set number=?,building=?, capacity=? where id=?";
         try (Connection connection = ConnectionFactory.getConnection();
                 PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, classroom.getNumber());
@@ -108,28 +108,25 @@ public class ClassroomDaoPostgres implements ClassroomDao {
         }
         log.trace("update() | end");
     }
-
+    
     public void delete(Integer id) throws DaoException {
         log.trace("delete() | start");
         if (!exist(id)) {
             throw new DaoException("delete() | Classroom with  ID = " + id + " does NOT exist!");
         }
-        String sql = "delete from classrooms as c where c.id = ?;";
+        String sql = "delete from classrooms as c where c.id = ?";
         try (Connection connection = ConnectionFactory.getConnection();
                 PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, id);
-            if (statement.executeUpdate() == 1) {
-                log.info("delete() | Classroom with  ID = " + id + " was deleted");
-            } else {
-                throw new DaoException("delete() | Classroom with  ID = " + id + " was NOT deleted!");
-            }
+            statement.executeUpdate();
+            log.info("delete() | Classroom with  ID = " + id + " was deleted");
         } catch (SQLException e) {
             log.error("delete() | database: interaction failure", e);
             throw new DaoException("delete() | database: interaction failure", e);
         }
         log.trace("delete() | end");
     }
-
+    
     private boolean exist(Integer id) throws DaoException {
         boolean exist = false;
         String sql = "select * from classrooms where id=?";
