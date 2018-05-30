@@ -136,7 +136,7 @@ public class ClassroomDaoPostgres implements ClassroomDao {
             if (statement.execute()) {
                 exist = true;
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             throw new DaoException("exist() | database: interaction failure", e);
         }
         return exist;
