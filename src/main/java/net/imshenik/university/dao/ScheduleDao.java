@@ -125,7 +125,7 @@ public class ScheduleDao extends AbstractDao<Schedule> {
             while (resultSet.next()) {
                 id = resultSet.getInt("id");
                 teacher = new TeacherDao().findOne(resultSet.getInt("teacher_id"));
-                group = new GroupDao().findOne(resultSet.getInt("group_id"));
+                group = new GroupDaoPostgres().findOne(resultSet.getInt("group_id"));
                 classroom = new ClassroomDaoPostgres().findOne(resultSet.getInt("classroom_id"));
                 subject = new SubjectDao().findOne(resultSet.getInt("subject_id"));
                 start = LocalDateTime.parse(resultSet.getString("start_time").replace(' ', 'T'));

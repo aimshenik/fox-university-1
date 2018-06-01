@@ -5,14 +5,14 @@ import static org.junit.Assert.assertNull;
 import java.util.List;
 import org.junit.Test;
 import net.imshenik.university.dao.DaoException;
-import net.imshenik.university.dao.StudentDao;
+import net.imshenik.university.dao.StudentDaoPostgres;
 import net.imshenik.university.domain.Student;
 
 public class StudentDaoTest {
-    StudentDao studentDAO = null;
+    StudentDaoPostgres studentDAO = null;
     
     public StudentDaoTest() throws DaoException {
-        studentDAO = new StudentDao();
+        studentDAO = new StudentDaoPostgres();
     }
     
     @Test
@@ -34,19 +34,20 @@ public class StudentDaoTest {
     
     @Test
     public void createTest() throws DaoException {
-        Student student = studentDAO.create("SERGEY", "IVANOV");
+        Student student = studentDAO.create(new Student(0, "SERGEY", "IVANOV", 0));
         assertNotNull(student);
     }
     
     @Test
     public void updateTest() throws DaoException {
-        Student student = studentDAO.create("FORUPDATE", "FORUPDATE");
-        studentDAO.update(student.getId(), "NEW" + student.getFirstName(), "NEW" + student.getLastName(), 101);
+        Student student = studentDAO.create(new Student(0,"FORUPDATE", "FORUPDATE", 0));
+        student.setFirstName("CHANGED");
+        studentDAO.update(student);
     }
     
     @Test
     public void deleteTest() throws DaoException {
-        Student newStudent = studentDAO.create("TODELETE:", "TODELETE");
+        Student newStudent = studentDAO.create(new Student(0,"TODELETE", "TODELETE", 0));
         int lastID = newStudent.getId();
         studentDAO.delete(lastID);
         Student removedStudent = studentDAO.findOne(lastID);

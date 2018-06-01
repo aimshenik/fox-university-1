@@ -11,10 +11,10 @@ final class ConnectionFactory {
     private static final String URL = "jdbc:postgresql://localhost:5432/university";
     private static final String LOGIN = "andrey";
     private static final String PASSWORD = "1234321";
-    private static boolean driverIsLoaded = false;
+    private static boolean driverIsNotLoaded = true;
     
     static Connection getConnection() throws DaoException {
-        if (!driverIsLoaded) {
+        if (driverIsNotLoaded) {
             loadDriver();
         }
         Connection connection = null;
@@ -31,7 +31,7 @@ final class ConnectionFactory {
     private static void loadDriver() throws DaoException {
         try {
             Class.forName(DRIVER);
-            driverIsLoaded = true;
+            driverIsNotLoaded = false;
         } catch (ClassNotFoundException e) {
             log.fatal("AbstractDAO() | Unable to load driver " + DRIVER, e);
             throw new DaoException("AbstractDAO() | Unable to load driver " + DRIVER, e);
