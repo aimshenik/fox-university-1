@@ -34,8 +34,6 @@ public class ClassroomDaoPostgres implements ClassroomDao {
     }
     
     public Classroom findOne(Integer id) throws DaoException {
-        System.out.println(doesNotExist(1));
-        System.out.println(doesNotExist(100));
         log.trace("findOne() | start");
         String sql = "select * from classrooms where id=?";
         Classroom classroom = null;
