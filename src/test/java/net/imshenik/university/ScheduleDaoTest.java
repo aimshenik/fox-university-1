@@ -6,12 +6,13 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import org.junit.Test;
+
 import net.imshenik.university.dao.ClassroomDaoPostgres;
 import net.imshenik.university.dao.DaoException;
 import net.imshenik.university.dao.GroupDaoPostgres;
 import net.imshenik.university.dao.ScheduleDao;
-import net.imshenik.university.dao.SubjectDao;
-import net.imshenik.university.dao.TeacherDao;
+import net.imshenik.university.dao.SubjectDaoPostgres;
+import net.imshenik.university.dao.TeacherDaoPostgres;
 import net.imshenik.university.domain.Schedule;
 
 public class ScheduleDaoTest {
@@ -41,8 +42,8 @@ public class ScheduleDaoTest {
     @Test
     public void createTest() throws DaoException {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        Schedule schedule = scheduleDAO.create(new TeacherDao().findOne(1), new GroupDaoPostgres().findOne(101),
-                new ClassroomDaoPostgres().findOne(1), new SubjectDao().findOne(1),
+        Schedule schedule = scheduleDAO.create(new TeacherDaoPostgres().findOne(1), new GroupDaoPostgres().findOne(101),
+                new ClassroomDaoPostgres().findOne(1), new SubjectDaoPostgres().findOne(1),
                 LocalDateTime.parse("2018-01-09 10:40:00", dtf), LocalDateTime.parse("2018-01-09T12:00:00"));
         assertNotNull(schedule);
     }
@@ -50,19 +51,19 @@ public class ScheduleDaoTest {
     @Test
     public void updateTest() throws DaoException {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        Schedule schedule = scheduleDAO.create(new TeacherDao().findOne(1), new GroupDaoPostgres().findOne(101),
-                new ClassroomDaoPostgres().findOne(1), new SubjectDao().findOne(1),
+        Schedule schedule = scheduleDAO.create(new TeacherDaoPostgres().findOne(1), new GroupDaoPostgres().findOne(101),
+                new ClassroomDaoPostgres().findOne(1), new SubjectDaoPostgres().findOne(1),
                 LocalDateTime.parse("2018-01-09 10:40:00", dtf), LocalDateTime.parse("2018-01-09T12:00:00"));
-        scheduleDAO.update(schedule.getId(), new TeacherDao().findOne(1), new GroupDaoPostgres().findOne(101),
-                new ClassroomDaoPostgres().findOne(1), new SubjectDao().findOne(1),
+        scheduleDAO.update(schedule.getId(), new TeacherDaoPostgres().findOne(1), new GroupDaoPostgres().findOne(101),
+                new ClassroomDaoPostgres().findOne(1), new SubjectDaoPostgres().findOne(1),
                 LocalDateTime.parse("2018-01-09 12:40:00", dtf), LocalDateTime.parse("2018-01-09T14:00:00"));
     }
     
     @Test
     public void deleteTest() throws DaoException {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        Schedule newschedule = scheduleDAO.create(new TeacherDao().findOne(1), new GroupDaoPostgres().findOne(101),
-                new ClassroomDaoPostgres().findOne(1), new SubjectDao().findOne(1),
+        Schedule newschedule = scheduleDAO.create(new TeacherDaoPostgres().findOne(1), new GroupDaoPostgres().findOne(101),
+                new ClassroomDaoPostgres().findOne(1), new SubjectDaoPostgres().findOne(1),
                 LocalDateTime.parse("2018-01-09 10:40:00", dtf), LocalDateTime.parse("2018-01-09T12:00:00"));
         int lastID = newschedule.getId();
         scheduleDAO.delete(lastID);

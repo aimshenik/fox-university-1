@@ -5,14 +5,14 @@ import static org.junit.Assert.assertNull;
 import java.util.List;
 import org.junit.Test;
 import net.imshenik.university.dao.DaoException;
-import net.imshenik.university.dao.TeacherDao;
+import net.imshenik.university.dao.TeacherDaoPostgres;
 import net.imshenik.university.domain.Teacher;
 
 public class TeacherDaoTest {
-    TeacherDao teacherDAO = null;
+    TeacherDaoPostgres teacherDAO = null;
     
     public TeacherDaoTest() throws DaoException {
-     teacherDAO =  new TeacherDao();
+     teacherDAO =  new TeacherDaoPostgres();
     }
     
     @Test
@@ -34,19 +34,20 @@ public class TeacherDaoTest {
     
     @Test
     public void createTest() throws DaoException {
-        Teacher teacher = teacherDAO.create("SERGEY IVANOVICH", "KRIVONOS" , "123");
+        Teacher teacher = teacherDAO.create(new Teacher(0, "SERGEY IVANOVICH", "KRIVONOS" , "123"));
         assertNotNull(teacher);
     }
     
     @Test
     public void updateTest() throws DaoException {
-        Teacher teacher = teacherDAO.create("FORUPDATE", "FORUPDATE", "000000");
-        teacherDAO.update(teacher.getId(), "NEW" + teacher.getFirstName(), "NEW" + teacher.getLastName(), "NEW" + teacher.getPassport());
+        Teacher teacher = teacherDAO.create(new Teacher(0, "TO UPDATE", "TO UPDATE" , "TO UPDATE"));
+        teacher.setFirstName("UPDATED");
+        teacherDAO.update(teacher);
     }
     
     @Test
     public void deleteTest() throws DaoException {
-        Teacher newTeacher = teacherDAO.create("TODELETE:", "TODELETE","29361293");
+        Teacher newTeacher = teacherDAO.create(new Teacher(0, "TO DELETE", "TO DELETE" , "TO DELETE"));
         int lastID = newTeacher.getId();
         teacherDAO.delete(lastID);
         Teacher removedTeacher = teacherDAO.findOne(lastID);
