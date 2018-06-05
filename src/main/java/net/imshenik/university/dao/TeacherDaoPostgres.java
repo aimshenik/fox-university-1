@@ -59,7 +59,7 @@ public class TeacherDaoPostgres implements TeacherDao {
 
     public Teacher create(Teacher teacher) throws DaoException {
 	log.trace("create() | start");
-	String sql = "insert into teachers (firstname, lastname, group_id) values (?,?,?)";
+	String sql = "insert into teachers (firstname, lastname, passport) values (?,?,?)";
 	try (Connection connection = ConnectionFactory.getConnection();
 		PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 	    statement.setString(1, teacher.getFirstName());
@@ -107,7 +107,7 @@ public class TeacherDaoPostgres implements TeacherDao {
 	if (doesNotExist(id)) {
 	    throw new DaoException("delete() | Teacher with  ID = " + id + " does NOT exist!");
 	}
-	String sql = "delete from Tteachers as t where t.id = ?";
+	String sql = "delete from teachers as t where t.id = ?";
 	try (Connection connection = ConnectionFactory.getConnection();
 		PreparedStatement statement = connection.prepareStatement(sql)) {
 	    statement.setInt(1, id);

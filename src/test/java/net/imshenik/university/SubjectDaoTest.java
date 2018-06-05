@@ -9,48 +9,48 @@ import net.imshenik.university.dao.SubjectDaoPostgres;
 import net.imshenik.university.domain.Subject;
 
 public class SubjectDaoTest {
-    SubjectDaoPostgres subjectDAO = null;
+    SubjectDaoPostgres subjectDaoPostgres = null;
     
     public SubjectDaoTest() throws DaoException {
-     subjectDAO =  new SubjectDaoPostgres();
+        subjectDaoPostgres = new SubjectDaoPostgres();
     }
     
     @Test
     public void findAllTest() throws DaoException {
         List<Subject> subjects = null;
-        subjects = subjectDAO.findAll();
+        subjects = subjectDaoPostgres.findAll();
         assertNotNull(subjects);
     }
     
     @Test
     public void findOneTest() throws DaoException {
-        Subject subject = subjectDAO.findOne(Integer.MAX_VALUE);
+        Subject subject = subjectDaoPostgres.findOne(Integer.MAX_VALUE);
         assertNull(subject);
-        Subject Subject2 = subjectDAO.findOne(1);
+        Subject Subject2 = subjectDaoPostgres.findOne(1);
         assertNotNull(Subject2);
-        Subject Subject3 = subjectDAO.findOne(Integer.MIN_VALUE);
+        Subject Subject3 = subjectDaoPostgres.findOne(Integer.MIN_VALUE);
         assertNull(Subject3);
     }
     
     @Test
     public void createTest() throws DaoException {
-        Subject Subject = subjectDAO.create(new Subject(0, "High Math"));
+        Subject Subject = subjectDaoPostgres.create(new Subject(0, "High Math"));
         assertNotNull(Subject);
     }
     
     @Test
     public void updateTest() throws DaoException {
-        Subject subject = subjectDAO.create(new Subject(0, "FRffdfa"));
+        Subject subject = subjectDaoPostgres.create(new Subject(0, "FRffdfa"));
         subject.setName("Franch");
-        subjectDAO.update(subject);
+        subjectDaoPostgres.update(subject);
     }
     
     @Test
     public void deleteTest() throws DaoException {
-        Subject newSubject = subjectDAO.create(new Subject(0, "TO DELETE"));
+        Subject newSubject = subjectDaoPostgres.create(new Subject(0, "TO DELETE"));
         int lastID = newSubject.getId();
-        subjectDAO.delete(lastID);
-        Subject removedSubject = subjectDAO.findOne(lastID);
+        subjectDaoPostgres.delete(lastID);
+        Subject removedSubject = subjectDaoPostgres.findOne(lastID);
         assertNull(removedSubject);
     }
 }
