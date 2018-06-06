@@ -26,7 +26,7 @@ public class ScheduleDaoTest {
     public void findAllTest() throws DaoException {
         List<Schedule> schedules = null;
         schedules = scheduleDaoPostgres.findAll();
-        assertNotNull(schedules);
+        assertTrue(schedules.size() > 0);
     }
     
     @Test
@@ -40,10 +40,10 @@ public class ScheduleDaoTest {
     @Test
     public void createTest() throws DaoException {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        Schedule schedule = new Schedule(0, new TeacherDaoPostgres().findOne(1), new GroupDaoPostgres().findOne(101),
-                new ClassroomDaoPostgres().findOne(1), new SubjectDaoPostgres().findOne(1),
-                LocalDateTime.parse("2018-01-09 10:40:00", dtf), LocalDateTime.parse("2018-01-09T12:00:00"));
-        scheduleDaoPostgres.create(schedule);
+        Schedule schedule = scheduleDaoPostgres
+                .create(new Schedule(0, new TeacherDaoPostgres().findOne(1), new GroupDaoPostgres().findOne(101),
+                        new ClassroomDaoPostgres().findOne(1), new SubjectDaoPostgres().findOne(1),
+                        LocalDateTime.parse("2018-01-09 10:40:00", dtf), LocalDateTime.parse("2018-01-09T12:00:00")));
         assertTrue(schedule.getId() != 0);
     }
     

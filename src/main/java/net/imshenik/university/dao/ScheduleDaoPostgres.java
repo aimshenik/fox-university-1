@@ -124,7 +124,7 @@ public class ScheduleDaoPostgres implements ScheduleDao {
         if (doesNotExist(id)) {
             throw new DaoException("delete() | Schedule with  ID = " + id + " does NOT exist!");
         }
-        String sql = "delete from Schedules as t where t.id = ?";
+        String sql = "delete from schedules as s where s.id = ?";
         try (Connection connection = ConnectionFactory.getConnection();
                 PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, id);
@@ -145,7 +145,7 @@ public class ScheduleDaoPostgres implements ScheduleDao {
             statement.setInt(1, id);
             try (ResultSet resultSet = statement.executeQuery()) {
                 resultSet.next();
-                if (resultSet.getBoolean("exists") == true) {
+                if (resultSet.getBoolean(1) == true) {
                     notFound = false;
                 }
             }

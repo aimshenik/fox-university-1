@@ -122,7 +122,7 @@ public class SubjectDaoPostgres implements SubjectDao {
             statement.setInt(1, id);
             try (ResultSet resultSet = statement.executeQuery()) {
                 resultSet.next();
-                if (resultSet.getBoolean("exists") == true) {
+                if (resultSet.getBoolean(1) == true) {
                     notFound = false;
                 }
             }

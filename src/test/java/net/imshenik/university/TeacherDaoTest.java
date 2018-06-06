@@ -2,6 +2,7 @@ package net.imshenik.university;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 import java.util.List;
 import org.junit.Test;
 import net.imshenik.university.dao.DaoException;
@@ -19,7 +20,7 @@ public class TeacherDaoTest {
     public void findAllTest() throws DaoException {
         List<Teacher> teachers = null;
         teachers = teacherDAO.findAll();
-        assertNotNull(teachers);
+        assertTrue(teachers.size() > 0);
     }
     
     @Test
@@ -28,14 +29,12 @@ public class TeacherDaoTest {
         assertNull(teacher1);
         Teacher teacher2 = teacherDAO.findOne(2);
         assertNotNull(teacher2);
-        Teacher teacher3 = teacherDAO.findOne(Integer.MIN_VALUE);
-        assertNull(teacher3);
     }
     
     @Test
     public void createTest() throws DaoException {
         Teacher teacher = teacherDAO.create(new Teacher(0, "SERGEY IVANOVICH", "KRIVONOS" , "123"));
-        assertNotNull(teacher);
+        assertTrue(teacher.getId() != 0);
     }
     
     @Test

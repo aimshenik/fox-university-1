@@ -2,6 +2,7 @@ package net.imshenik.university;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 import java.util.List;
 import org.junit.Test;
 import net.imshenik.university.dao.DaoException;
@@ -19,7 +20,7 @@ public class GroupDaoTest {
     public void findAllTest() throws DaoException {
         List<Group> groups = null;
         groups = groupDaoPostgres.findAll();
-        assertNotNull(groups);
+        assertTrue(groups.size() > 0);
     }
     
     @Test
@@ -28,14 +29,12 @@ public class GroupDaoTest {
         assertNull(group);
         Group group2 = groupDaoPostgres.findOne(101);
         assertNotNull(group2);
-        Group group3 = groupDaoPostgres.findOne(Integer.MIN_VALUE);
-        assertNull(group3);
     }
     
     @Test
     public void createTest() throws DaoException {
         Group group = groupDaoPostgres.create(new Group(0, "1-K-9000"));
-        assertNotNull(group);
+        assertTrue(group.getId() != 0);
     }
     
     @Test

@@ -18,6 +18,12 @@ public class Classroom implements Serializable {
         this.capacity = capacity;
     }
     
+    public Classroom(String number, String building, int capacity) {
+        this.number = number;
+        this.building = building;
+        this.capacity = capacity;
+    }
+    
     public int getId() {
         return id;
     }
@@ -52,13 +58,16 @@ public class Classroom implements Serializable {
     
     @Override
     public boolean equals(Object o) {
-        if (this == o)
+        if (this == o) {
             return true;
-        if (o == null || getClass() != o.getClass())
+        }
+        if (o == null || getClass() != o.getClass()) {
             return false;
+        }
         Classroom classroom = (Classroom) o;
-        if (number != null ? !number.equals(classroom.number) : classroom.number != null)
+        if (number != null ? !number.equals(classroom.number) : classroom.number != null) {
             return false;
+        }
         return building != null ? building.equals(classroom.building) : classroom.building == null;
     }
     

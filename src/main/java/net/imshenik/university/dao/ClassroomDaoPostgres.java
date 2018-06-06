@@ -8,7 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.log4j.Logger;
-
 import net.imshenik.university.domain.Classroom;
 
 public class ClassroomDaoPostgres implements ClassroomDao {
@@ -128,7 +127,7 @@ public class ClassroomDaoPostgres implements ClassroomDao {
             statement.setInt(1, id);
             try (ResultSet resultSet = statement.executeQuery()) {
                 resultSet.next();
-                if (resultSet.getBoolean("exists") == true) {
+                if (resultSet.getBoolean(1) == true) {
                     notFound = false;
                 }
             }

@@ -19,7 +19,7 @@ DROP TABLE schedules;
 
 -----------------------------------------------------------------
 -- CREATE  Groups
-CREATE TABLE groups
+CREATE TABLE IF NOT EXISTS groups
 (
     id SERIAL NOT NULL,
     name varchar(50) NOT NULL,    	
@@ -29,7 +29,7 @@ TABLESPACE pg_default;
 ALTER TABLE groups OWNER to andrey;
 -----------------------------------------------------------------
 -- CREATE  Students
-CREATE TABLE students
+CREATE TABLE IF NOT EXISTS students
 (
     id SERIAL NOT NULL,
     group_id INT DEFAULT NULL,
@@ -43,7 +43,7 @@ ALTER TABLE students OWNER to andrey;
 
 -----------------------------------------------------------------
 -- CREATE  Teachers
-CREATE TABLE teachers
+CREATE TABLE IF NOT EXISTS teachers
 (
     id SERIAL NOT NULL,
     firstname varchar(50) NOT NULL,
@@ -55,7 +55,7 @@ TABLESPACE pg_default;
 ALTER TABLE teachers OWNER to andrey;    
 -----------------------------------------------------------------
 -- CREATE  Subjects
-CREATE TABLE subjects
+CREATE TABLE IF NOT EXISTS subjects
 (
     id SERIAL NOT NULL,
     name varchar(100) NOT NULL,    	
@@ -65,10 +65,10 @@ TABLESPACE pg_default;
 ALTER TABLE subjects OWNER to andrey;
 -----------------------------------------------------------------
 -- CREATE  Classrooms
-CREATE TABLE classrooms
+CREATE TABLE IF NOT EXISTS classrooms
 (
     id SERIAL NOT NULL,
-    number varchar(10) NOT NULL,
+    number varchar(10),
     building varchar(10),
     capacity integer NOT NULL,
     CONSTRAINT classroom_id_pkey PRIMARY KEY (id)
@@ -77,7 +77,7 @@ TABLESPACE pg_default;
 ALTER TABLE classrooms OWNER to andrey;
 -----------------------------------------------------------------
 -- CREATE  Schedules
-CREATE TABLE schedules
+CREATE TABLE IF NOT EXISTS schedules
 (
     id SERIAL NOT NULL,
     teacher_id integer NOT NULL,

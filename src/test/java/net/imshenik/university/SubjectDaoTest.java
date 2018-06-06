@@ -2,6 +2,7 @@ package net.imshenik.university;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 import java.util.List;
 import org.junit.Test;
 import net.imshenik.university.dao.DaoException;
@@ -19,23 +20,21 @@ public class SubjectDaoTest {
     public void findAllTest() throws DaoException {
         List<Subject> subjects = null;
         subjects = subjectDaoPostgres.findAll();
-        assertNotNull(subjects);
+        assertTrue(subjects.size() > 0);
     }
     
     @Test
     public void findOneTest() throws DaoException {
         Subject subject = subjectDaoPostgres.findOne(Integer.MAX_VALUE);
         assertNull(subject);
-        Subject Subject2 = subjectDaoPostgres.findOne(1);
-        assertNotNull(Subject2);
-        Subject Subject3 = subjectDaoPostgres.findOne(Integer.MIN_VALUE);
-        assertNull(Subject3);
+        Subject subject2 = subjectDaoPostgres.findOne(1);
+        assertNotNull(subject2);
     }
     
     @Test
     public void createTest() throws DaoException {
-        Subject Subject = subjectDaoPostgres.create(new Subject(0, "High Math"));
-        assertNotNull(Subject);
+        Subject subject = subjectDaoPostgres.create(new Subject(0, "High Math"));
+        assertTrue(subject.getId() != 0);
     }
     
     @Test
