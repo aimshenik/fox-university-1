@@ -7,28 +7,23 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Properties;
 import org.apache.log4j.Logger;
 
 public class ConnectionFactory {
     private static final Logger log = Logger.getLogger(ConnectionFactory.class.getName());
     private static Properties properties;
-    private static String driver;
-    private static String url;
-    private static String login;
-    private static String password;
     
     static Connection getConnection() throws DaoException {
         log.trace("getConnection() | start");
         if (properties == null) {
             loadConfigFromFile();
-            loadDriver(driver);
+            loadDriver(properties.getProperty("driver"));
         }
         Connection connection;
         try {
             log.trace("getConnection() | opening connection to database");
-            connection = DriverManager.getConnection(url, login, password);
+            connection = DriverManager.getConnection(properties.getProperty("url"), properties.getProperty("login"), properties.getProperty("password"));
         } catch (SQLException e) {
             log.fatal("getConnection() | unable to create Connection", e);
             throw new DaoException("getConnection() | unable to create Connection", e);
@@ -40,16 +35,12 @@ public class ConnectionFactory {
     private static void loadConfigFromFile() throws DaoException {
         log.trace("loadConfigFromFile() | start");
         properties = new Properties();
-        try (FileInputStream fileInputStream = new FileInputStream(new File("config/config.properties"))) {
+        try (FileInputStream fileInputStream = new FileInputStream(new File("./src/main/resources/config.properties"))) {
             properties.load(fileInputStream);
-            driver = properties.getProperty("driver");
-            url = properties.getProperty("url");
-            login = properties.getProperty("login");
-            password = properties.getProperty("password");
         } catch (FileNotFoundException e) {
-            throw new DaoException("loadConfig() | file `config/config.ini` not found", e);
+            throw new DaoException("loadConfig() | file `config/config.properties` not found", e);
         } catch (IOException e) {
-            throw new DaoException("loadConfig() | IOException while load `config/config.ini` ", e);
+            throw new DaoException("loadConfig() | IOException while load `config/config.properties` ", e);
         }
         log.trace("loadConfigFromFile() | end");
     }
@@ -57,7 +48,7 @@ public class ConnectionFactory {
     private static void loadDriver(String driver) throws DaoException {
         log.trace("loadDriver() | start");
         try {
-            Class.forName(driver);
+            Class.forName(properties.getProperty("driver"));
         } catch (ClassNotFoundException e) {
             log.fatal("AbstractDAO() | Unable to load driver " + driver, e);
             throw new DaoException("AbstractDAO() | Unable to load driver " + driver, e);

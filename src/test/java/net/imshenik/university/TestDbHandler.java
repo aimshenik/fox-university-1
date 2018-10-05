@@ -6,10 +6,10 @@ import java.sql.Statement;
 import org.apache.log4j.Logger;
 import net.imshenik.university.dao.ConnectionFactory;
 
-public class H2DbTablesCreator {
-    private static final Logger log = Logger.getLogger(H2DbTablesCreator.class.getName());
+public class TestDbHandler {
+    private static final Logger log = Logger.getLogger(TestDbHandler.class.getName());
     
-    private static void createTestTables(Connection connection) {
+    private static void createTables(Connection connection) {
         log.trace("createTestTables() | start");
         String sql = "DROP TABLE classrooms;" + "CREATE TABLE IF NOT EXISTS classrooms("
                 + "id INTEGER auto_increment (1,1)," + "number varchar(10), building varchar(10),"
