@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+
+import java.io.IOException;
 import java.util.List;
 import org.apache.log4j.Logger;
 import org.junit.Test;
@@ -59,6 +61,12 @@ public class ClassroomDaoTest {
     // }
     @Test
     public void classroomCrudTest() throws DaoException {
+    	try {
+			System.out.println("Current DIR is :" + new java.io.File( "." ).getAbsolutePath());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         Classroom firstClassroom = new Classroom("22", "d", 50);
         Classroom secondClassroom = new Classroom("23", "d", 10);
         classroomDaoPostgres.create(firstClassroom);

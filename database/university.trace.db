@@ -407,3 +407,318 @@ org.h2.jdbc.JdbcSQLException: Column "exists" not found [42122-197]
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:760)
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:460)
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:206)
+2018-10-05 20:27:59 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "GROUPS" not found; SQL statement:
+select * from groups where id=? [42102-197]
+2018-10-05 20:27:59 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "GROUPS" not found; SQL statement:
+insert into groups (name) values (?) [42102-197]
+2018-10-05 20:27:59 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "GROUPS" not found; SQL statement:
+select * from groups [42102-197]
+2018-10-05 20:27:59 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "GROUPS" not found; SQL statement:
+insert into groups (name) values (?) [42102-197]
+2018-10-05 20:27:59 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "GROUPS" not found; SQL statement:
+insert into groups (name) values (?) [42102-197]
+2018-10-05 20:27:59 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SCHEDULES" not found; SQL statement:
+select * from schedules where id=? [42102-197]
+2018-10-05 20:28:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "TEACHERS" not found; SQL statement:
+select * from teachers where id=? [42102-197]
+2018-10-05 20:28:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SCHEDULES" not found; SQL statement:
+select * from schedules [42102-197]
+2018-10-05 20:28:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "TEACHERS" not found; SQL statement:
+select * from teachers where id=? [42102-197]
+2018-10-05 20:28:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "TEACHERS" not found; SQL statement:
+select * from teachers where id=? [42102-197]
+2018-10-05 20:28:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "STUDENTS" not found; SQL statement:
+select * from students where id=? [42102-197]
+2018-10-05 20:28:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "STUDENTS" not found; SQL statement:
+insert into students (firstname, lastname, group_id) values (?,?,?) [42102-197]
+2018-10-05 20:28:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "STUDENTS" not found; SQL statement:
+select * from students [42102-197]
+2018-10-05 20:28:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "STUDENTS" not found; SQL statement:
+insert into students (firstname, lastname, group_id) values (?,?,?) [42102-197]
+2018-10-05 20:28:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "STUDENTS" not found; SQL statement:
+insert into students (firstname, lastname, group_id) values (?,?,?) [42102-197]
+2018-10-05 20:28:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SUBJECTS" not found; SQL statement:
+select * from subjects where id=? [42102-197]
+2018-10-05 20:28:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SUBJECTS" not found; SQL statement:
+insert into subjects (name) values (?) [42102-197]
+2018-10-05 20:28:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SUBJECTS" not found; SQL statement:
+select * from subjects [42102-197]
+2018-10-05 20:28:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SUBJECTS" not found; SQL statement:
+insert into subjects (name) values (?) [42102-197]
+2018-10-05 20:28:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SUBJECTS" not found; SQL statement:
+insert into subjects (name) values (?) [42102-197]
+2018-10-05 20:28:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "TEACHERS" not found; SQL statement:
+select * from teachers where id=? [42102-197]
+2018-10-05 20:28:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "TEACHERS" not found; SQL statement:
+insert into teachers (firstname, lastname, passport) values (?,?,?) [42102-197]
+2018-10-05 20:28:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "TEACHERS" not found; SQL statement:
+select * from teachers [42102-197]
+2018-10-05 20:28:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "TEACHERS" not found; SQL statement:
+insert into teachers (firstname, lastname, passport) values (?,?,?) [42102-197]
+2018-10-05 20:28:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "TEACHERS" not found; SQL statement:
+insert into teachers (firstname, lastname, passport) values (?,?,?) [42102-197]
+2018-10-05 20:32:35 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "GROUPS" not found; SQL statement:
+select * from groups where id=? [42102-197]
+2018-10-05 20:32:35 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "GROUPS" not found; SQL statement:
+insert into groups (name) values (?) [42102-197]
+2018-10-05 20:32:35 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "GROUPS" not found; SQL statement:
+select * from groups [42102-197]
+2018-10-05 20:32:35 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "GROUPS" not found; SQL statement:
+insert into groups (name) values (?) [42102-197]
+2018-10-05 20:32:35 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "GROUPS" not found; SQL statement:
+insert into groups (name) values (?) [42102-197]
+2018-10-05 20:32:35 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SCHEDULES" not found; SQL statement:
+select * from schedules where id=? [42102-197]
+2018-10-05 20:32:35 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "TEACHERS" not found; SQL statement:
+select * from teachers where id=? [42102-197]
+2018-10-05 20:32:35 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SCHEDULES" not found; SQL statement:
+select * from schedules [42102-197]
+2018-10-05 20:32:35 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "TEACHERS" not found; SQL statement:
+select * from teachers where id=? [42102-197]
+2018-10-05 20:32:35 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "TEACHERS" not found; SQL statement:
+select * from teachers where id=? [42102-197]
+2018-10-05 20:32:35 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "STUDENTS" not found; SQL statement:
+select * from students where id=? [42102-197]
+2018-10-05 20:32:35 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "STUDENTS" not found; SQL statement:
+insert into students (firstname, lastname, group_id) values (?,?,?) [42102-197]
+2018-10-05 20:32:35 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "STUDENTS" not found; SQL statement:
+select * from students [42102-197]
+2018-10-05 20:32:35 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "STUDENTS" not found; SQL statement:
+insert into students (firstname, lastname, group_id) values (?,?,?) [42102-197]
+2018-10-05 20:32:35 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "STUDENTS" not found; SQL statement:
+insert into students (firstname, lastname, group_id) values (?,?,?) [42102-197]
+2018-10-05 20:32:35 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SUBJECTS" not found; SQL statement:
+select * from subjects where id=? [42102-197]
+2018-10-05 20:32:35 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SUBJECTS" not found; SQL statement:
+insert into subjects (name) values (?) [42102-197]
+2018-10-05 20:32:35 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SUBJECTS" not found; SQL statement:
+select * from subjects [42102-197]
+2018-10-05 20:32:35 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SUBJECTS" not found; SQL statement:
+insert into subjects (name) values (?) [42102-197]
+2018-10-05 20:32:35 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SUBJECTS" not found; SQL statement:
+insert into subjects (name) values (?) [42102-197]
+2018-10-05 20:32:35 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "TEACHERS" not found; SQL statement:
+select * from teachers where id=? [42102-197]
+2018-10-05 20:32:35 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "TEACHERS" not found; SQL statement:
+insert into teachers (firstname, lastname, passport) values (?,?,?) [42102-197]
+2018-10-05 20:32:35 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "TEACHERS" not found; SQL statement:
+select * from teachers [42102-197]
+2018-10-05 20:32:35 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "TEACHERS" not found; SQL statement:
+insert into teachers (firstname, lastname, passport) values (?,?,?) [42102-197]
+2018-10-05 20:32:35 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "TEACHERS" not found; SQL statement:
+insert into teachers (firstname, lastname, passport) values (?,?,?) [42102-197]
+2018-10-07 17:26:17 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "GROUPS" not found; SQL statement:
+select * from groups where id=? [42102-197]
+2018-10-07 17:26:17 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "GROUPS" not found; SQL statement:
+insert into groups (name) values (?) [42102-197]
+2018-10-07 17:26:17 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "GROUPS" not found; SQL statement:
+select * from groups [42102-197]
+2018-10-07 17:26:17 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "GROUPS" not found; SQL statement:
+insert into groups (name) values (?) [42102-197]
+2018-10-07 17:26:17 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "GROUPS" not found; SQL statement:
+insert into groups (name) values (?) [42102-197]
+2018-10-07 17:26:17 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SCHEDULES" not found; SQL statement:
+select * from schedules where id=? [42102-197]
+2018-10-07 17:26:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "TEACHERS" not found; SQL statement:
+select * from teachers where id=? [42102-197]
+2018-10-07 17:26:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SCHEDULES" not found; SQL statement:
+select * from schedules [42102-197]
+2018-10-07 17:26:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "TEACHERS" not found; SQL statement:
+select * from teachers where id=? [42102-197]
+2018-10-07 17:26:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "TEACHERS" not found; SQL statement:
+select * from teachers where id=? [42102-197]
+2018-10-07 17:26:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "STUDENTS" not found; SQL statement:
+select * from students where id=? [42102-197]
+2018-10-07 17:26:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "STUDENTS" not found; SQL statement:
+insert into students (firstname, lastname, group_id) values (?,?,?) [42102-197]
+2018-10-07 17:26:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "STUDENTS" not found; SQL statement:
+select * from students [42102-197]
+2018-10-07 17:26:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "STUDENTS" not found; SQL statement:
+insert into students (firstname, lastname, group_id) values (?,?,?) [42102-197]
+2018-10-07 17:26:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "STUDENTS" not found; SQL statement:
+insert into students (firstname, lastname, group_id) values (?,?,?) [42102-197]
+2018-10-07 17:26:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SUBJECTS" not found; SQL statement:
+select * from subjects where id=? [42102-197]
+2018-10-07 17:26:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SUBJECTS" not found; SQL statement:
+insert into subjects (name) values (?) [42102-197]
+2018-10-07 17:26:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SUBJECTS" not found; SQL statement:
+select * from subjects [42102-197]
+2018-10-07 17:26:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SUBJECTS" not found; SQL statement:
+insert into subjects (name) values (?) [42102-197]
+2018-10-07 17:26:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SUBJECTS" not found; SQL statement:
+insert into subjects (name) values (?) [42102-197]
+2018-10-07 17:26:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "TEACHERS" not found; SQL statement:
+select * from teachers where id=? [42102-197]
+2018-10-07 17:26:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "TEACHERS" not found; SQL statement:
+insert into teachers (firstname, lastname, passport) values (?,?,?) [42102-197]
+2018-10-07 17:26:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "TEACHERS" not found; SQL statement:
+select * from teachers [42102-197]
+2018-10-07 17:26:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "TEACHERS" not found; SQL statement:
+insert into teachers (firstname, lastname, passport) values (?,?,?) [42102-197]
+2018-10-07 17:26:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "TEACHERS" not found; SQL statement:
+insert into teachers (firstname, lastname, passport) values (?,?,?) [42102-197]
+2018-10-07 19:39:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "GROUPS" not found; SQL statement:
+select * from groups where id=? [42102-197]
+2018-10-07 19:39:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "GROUPS" not found; SQL statement:
+insert into groups (name) values (?) [42102-197]
+2018-10-07 19:39:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "GROUPS" not found; SQL statement:
+select * from groups [42102-197]
+2018-10-07 19:39:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "GROUPS" not found; SQL statement:
+insert into groups (name) values (?) [42102-197]
+2018-10-07 19:39:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "GROUPS" not found; SQL statement:
+insert into groups (name) values (?) [42102-197]
+2018-10-07 19:39:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SCHEDULES" not found; SQL statement:
+select * from schedules where id=? [42102-197]
+2018-10-07 19:39:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "TEACHERS" not found; SQL statement:
+select * from teachers where id=? [42102-197]
+2018-10-07 19:39:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SCHEDULES" not found; SQL statement:
+select * from schedules [42102-197]
+2018-10-07 19:39:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "TEACHERS" not found; SQL statement:
+select * from teachers where id=? [42102-197]
+2018-10-07 19:39:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "TEACHERS" not found; SQL statement:
+select * from teachers where id=? [42102-197]
+2018-10-07 19:39:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "STUDENTS" not found; SQL statement:
+select * from students where id=? [42102-197]
+2018-10-07 19:39:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "STUDENTS" not found; SQL statement:
+insert into students (firstname, lastname, group_id) values (?,?,?) [42102-197]
+2018-10-07 19:39:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "STUDENTS" not found; SQL statement:
+select * from students [42102-197]
+2018-10-07 19:39:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "STUDENTS" not found; SQL statement:
+insert into students (firstname, lastname, group_id) values (?,?,?) [42102-197]
+2018-10-07 19:39:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "STUDENTS" not found; SQL statement:
+insert into students (firstname, lastname, group_id) values (?,?,?) [42102-197]
+2018-10-07 19:39:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SUBJECTS" not found; SQL statement:
+select * from subjects where id=? [42102-197]
+2018-10-07 19:39:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SUBJECTS" not found; SQL statement:
+insert into subjects (name) values (?) [42102-197]
+2018-10-07 19:39:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SUBJECTS" not found; SQL statement:
+select * from subjects [42102-197]
+2018-10-07 19:39:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SUBJECTS" not found; SQL statement:
+insert into subjects (name) values (?) [42102-197]
+2018-10-07 19:39:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SUBJECTS" not found; SQL statement:
+insert into subjects (name) values (?) [42102-197]
+2018-10-07 19:39:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "TEACHERS" not found; SQL statement:
+select * from teachers where id=? [42102-197]
+2018-10-07 19:39:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "TEACHERS" not found; SQL statement:
+insert into teachers (firstname, lastname, passport) values (?,?,?) [42102-197]
+2018-10-07 19:39:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "TEACHERS" not found; SQL statement:
+select * from teachers [42102-197]
+2018-10-07 19:39:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "TEACHERS" not found; SQL statement:
+insert into teachers (firstname, lastname, passport) values (?,?,?) [42102-197]
+2018-10-07 19:39:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "TEACHERS" not found; SQL statement:
+insert into teachers (firstname, lastname, passport) values (?,?,?) [42102-197]
+2018-10-07 19:53:43 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "TEACHERS" not found; SQL statement:
+select * from teachers where id=? [42102-197]
+2018-10-07 19:53:43 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "TEACHERS" not found; SQL statement:
+insert into teachers (firstname, lastname, passport) values (?,?,?) [42102-197]
+2018-10-07 19:53:43 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "TEACHERS" not found; SQL statement:
+select * from teachers [42102-197]
+2018-10-07 19:53:43 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "TEACHERS" not found; SQL statement:
+insert into teachers (firstname, lastname, passport) values (?,?,?) [42102-197]
+2018-10-07 19:53:43 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "TEACHERS" not found; SQL statement:
+insert into teachers (firstname, lastname, passport) values (?,?,?) [42102-197]

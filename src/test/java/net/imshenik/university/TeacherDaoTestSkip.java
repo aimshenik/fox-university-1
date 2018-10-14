@@ -9,10 +9,10 @@ import net.imshenik.university.dao.DaoException;
 import net.imshenik.university.dao.TeacherDaoPostgres;
 import net.imshenik.university.domain.Teacher;
 
-public class TeacherDaoTest {
+public class TeacherDaoTestSkip {
     TeacherDaoPostgres teacherDAO = null;
     
-    public TeacherDaoTest() throws DaoException {
+    public TeacherDaoTestSkip() throws DaoException {
      teacherDAO =  new TeacherDaoPostgres();
     }
     

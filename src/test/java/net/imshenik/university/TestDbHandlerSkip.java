@@ -6,8 +6,8 @@ import java.sql.Statement;
 import org.apache.log4j.Logger;
 import net.imshenik.university.dao.ConnectionFactory;
 
-public class TestDbHandler {
-    private static final Logger log = Logger.getLogger(TestDbHandler.class.getName());
+public class TestDbHandlerSkip {
+    private static final Logger log = Logger.getLogger(TestDbHandlerSkip.class.getName());
     
     private static void createTables(Connection connection) {
         log.trace("createTestTables() | start");

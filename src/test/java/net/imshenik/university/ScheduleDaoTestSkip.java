@@ -15,10 +15,10 @@ import net.imshenik.university.dao.SubjectDaoPostgres;
 import net.imshenik.university.dao.TeacherDaoPostgres;
 import net.imshenik.university.domain.Schedule;
 
-public class ScheduleDaoTest {
+public class ScheduleDaoTestSkip {
     ScheduleDaoPostgres scheduleDaoPostgres = null;
     
-    public ScheduleDaoTest() {
+    public ScheduleDaoTestSkip() {
         this.scheduleDaoPostgres = new ScheduleDaoPostgres();
     }
     

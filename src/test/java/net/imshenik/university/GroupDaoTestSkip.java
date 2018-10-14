@@ -9,10 +9,10 @@ import net.imshenik.university.dao.DaoException;
 import net.imshenik.university.dao.GroupDaoPostgres;
 import net.imshenik.university.domain.Group;
 
-public class GroupDaoTest {
+public class GroupDaoTestSkip {
     GroupDaoPostgres groupDaoPostgres = null;
     
-    public GroupDaoTest() throws DaoException {
+    public GroupDaoTestSkip() throws DaoException {
         groupDaoPostgres = new GroupDaoPostgres();
     }
     
