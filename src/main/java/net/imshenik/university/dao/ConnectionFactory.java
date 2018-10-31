@@ -36,10 +36,8 @@ public class ConnectionFactory {
 	private static void loadConfigFromFile() throws DaoException {
 		log.trace("loadConfigFromFile() | start");
 		properties = new Properties();
-		ClassLoader classloader = ConnectionFactory.class.getClassLoader();
 		try (FileInputStream fileInputStream = new FileInputStream(
-				new File(classloader.getResource("config.properties").getFile()))) {
-			log.trace("loadConfigFromFile() | current dir is " + new File(".").getAbsolutePath());
+				new File(ConnectionFactory.class.getClassLoader().getResource("config.properties").getFile()))) {
 			properties.load(fileInputStream);
 		} catch (FileNotFoundException e) {
 			throw new DaoException("loadConfig() | file `config/config.properties` not found", e);
