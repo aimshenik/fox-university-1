@@ -2,26 +2,30 @@ package net.imshenik.university;
 
 import java.io.File;
 import java.io.FileReader;
+import java.sql.Connection;
+import java.sql.Statement;
+import org.junit.Test;
+import net.imshenik.university.dao.ConnectionFactory;
 
 public class H2handler {
-	public static void main(String[] args) {
-		System.out.println("go to H2 DB");
-		try {
-			Class.forName("org.h2.Driver");
-			FileReader fileReader = new FileReader(new File(
-					"C:\\Users\\Andrey\\eclipse-workspace\\Task10DAOLayer\\sql\\tools\\createRoleAndDatabase.sql"));
-			String s = "";
-			int i = 0;
-			while (i != 1) {
-				i = fileReader.read();
-				s += (char) i;
-			}
-			System.out.println(s.length());
-
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-
-		System.out.println("go out of  H2 DB");
-	}
+    @Test
+    public static void main(String[] args) {
+        String sql = "";
+        try (FileReader fileReader = new FileReader(new File(
+                "C:\\Users\\u0173307\\eclipse-workspace\\Task10DAOLayer\\src\\test\\resources\\sql\\h2tablecreation.sql"))) {
+            int i = fileReader.read();
+            while (i != -1) {
+                sql += (char) i;
+                System.out.print((char) i);
+                i = fileReader.read();
+            }
+            Class.forName("org.h2.Driver");
+            try (Connection connection = ConnectionFactory.getConnection();
+                    Statement stmt = connection.createStatement()) {
+                stmt.execute(sql);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 }
