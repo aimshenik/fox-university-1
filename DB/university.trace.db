@@ -1,0 +1,70 @@
+2018-10-31 16:42:58 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "CREATE TABLE IF NOT EXISTS CLASSROOMS
+(
+    ID INTEGER AUTO[*] INCREMENT NOT NULL,
+    NUMBER VARCHAR(10),
+    BUILDING VARCHAR(10),
+    CAPACITY INTEGER NOT NULL,
+    CONSTRAINT CLASSROOM_ID_PKEY PRIMARY KEY (ID)
+)
+ALTER TABLE CLASSROOMS OWNER TO ANDREY; "; expected "(, FOR, UNSIGNED, INVISIBLE, VISIBLE, NOT, NULL, AS, DEFAULT, GENERATED, ON, NOT, NULL, AUTO_INCREMENT, BIGSERIAL, SERIAL, IDENTITY, NULL_TO_DEFAULT, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, PRIMARY, UNIQUE, NOT, NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+CREATE TABLE IF NOT EXISTS classrooms
+(
+    id INTEGER auto increment NOT NULL,
+    number varchar(10),
+    building varchar(10),
+    capacity integer NOT NULL,
+    CONSTRAINT classroom_id_pkey PRIMARY KEY (id)
+)
+ALTER TABLE classrooms OWNER to andrey; [42001-197]
+2018-10-31 16:48:23 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "CLASSROOMS" not found; SQL statement:
+insert into classrooms (number, building, capacity) values (?,?,?) [42102-197]
+2018-10-31 16:49:17 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "CREATE TABLE IF NOT EXISTS CLASSROOMS
+(
+    ID INTEGER AUTO[*] INCREMENT NOT NULL,
+    NUMBER VARCHAR(10),
+    BUILDING VARCHAR(10),
+    CAPACITY INTEGER NOT NULL,
+    CONSTRAINT CLASSROOM_ID_PKEY PRIMARY KEY (ID)
+)
+ALTER TABLE CLASSROOMS OWNER TO ANDREY; "; expected "(, FOR, UNSIGNED, INVISIBLE, VISIBLE, NOT, NULL, AS, DEFAULT, GENERATED, ON, NOT, NULL, AUTO_INCREMENT, BIGSERIAL, SERIAL, IDENTITY, NULL_TO_DEFAULT, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, PRIMARY, UNIQUE, NOT, NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+CREATE TABLE IF NOT EXISTS classrooms
+(
+    id INTEGER auto increment NOT NULL,
+    number varchar(10),
+    building varchar(10),
+    capacity integer NOT NULL,
+    CONSTRAINT classroom_id_pkey PRIMARY KEY (id)
+)
+ALTER TABLE classrooms OWNER to andrey; [42001-197]
+2018-10-31 16:50:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "CREATE TABLE IF NOT EXISTS CLASSROOMS
+(
+    ID INTEGER AUTO_INCREMENT NOT NULL,
+    NUMBER VARCHAR(10),
+    BUILDING VARCHAR(10),
+    CAPACITY INTEGER NOT NULL,
+    CONSTRAINT CLASSROOM_ID_PKEY PRIMARY KEY (ID)
+)
+ALTER[*] TABLE CLASSROOMS OWNER TO ANDREY; "; SQL statement:
+CREATE TABLE IF NOT EXISTS classrooms
+(
+    id INTEGER auto_increment NOT NULL,
+    number varchar(10),
+    building varchar(10),
+    capacity integer NOT NULL,
+    CONSTRAINT classroom_id_pkey PRIMARY KEY (id)
+)
+ALTER TABLE classrooms OWNER to andrey; [42000-197]
+2018-10-31 16:50:51 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "
+ALTER TABLE CLASSROOMS OWNER[*] TO ANDREY; "; expected "., ADD, SET, RENAME, DROP, CHANGE, MODIFY, ALTER"; SQL statement:
+
+ALTER TABLE classrooms OWNER to andrey; [42001-197]
+2018-10-31 16:51:16 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "
+ALTER TABLE CLASSROOMS OWNER[*] SET TO ANDREY; "; expected "., ADD, SET, RENAME, DROP, CHANGE, MODIFY, ALTER"; SQL statement:
+
+ALTER TABLE classrooms OWNER SET to andrey; [42001-197]

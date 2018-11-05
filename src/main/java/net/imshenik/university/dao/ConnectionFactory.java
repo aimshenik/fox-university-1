@@ -9,12 +9,13 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 import org.apache.log4j.Logger;
+import net.imshenik.university.dao.DaoException;
 
 public class ConnectionFactory {
 	private static final Logger log = Logger.getLogger(ConnectionFactory.class.getName());
 	private static Properties properties;
 
-	static Connection getConnection() throws DaoException {
+	public static Connection getConnection() throws DaoException {
 		log.trace("getConnection() | start");
 		if (properties == null) {
 			loadConfigFromFile();
