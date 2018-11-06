@@ -1,3 +1,0 @@
-2018-10-28 16:15:18 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLException: Table "CLASSROOMS" not found; SQL statement:
-insert into classrooms (number, building, capacity) values (?,?,?) [42102-197]
