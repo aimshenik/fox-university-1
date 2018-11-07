@@ -1,13 +1,10 @@
 package net.imshenik.university;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
-import java.io.IOException;
 import java.util.List;
-import org.apache.log4j.Logger;
+
 import org.junit.Test;
 import net.imshenik.university.dao.ClassroomDaoPostgres;
 import net.imshenik.university.dao.DaoException;
@@ -20,9 +17,20 @@ public class ClassroomDaoTest {
 	public void classroomCrudTest() throws DaoException {
 		H2handler.createTable("H2ClasstoomsCreation.sql");
 		Classroom classroom = new Classroom("22", "d", 50);
-		classroomDaoPostgres.create(classroom);
+		// create
+		assertTrue(classroomDaoPostgres.create(classroom).equals(classroom));
+		// findOne
+		assertTrue(classroomDaoPostgres.findOne(classroom.getId()).equals(classroom));
+		// findAll
 		List<Classroom> classrooms = classroomDaoPostgres.findAll();
-		classroomDaoPostgres.findOne(classroom.getId());
+		assertTrue(classrooms.size() > 0);
+		// update
+		classroom.setCapacity(800);
+		classroom.setNumber("23z");
+		classroomDaoPostgres.update(classroom);
+		assertTrue(classroomDaoPostgres.findOne(classroom.getId()).equals(classroom));
+		// delete
 		classroomDaoPostgres.delete(classroom.getId());
+		assertNull(classroomDaoPostgres.findOne(classroom.getId()));
 	}
 }

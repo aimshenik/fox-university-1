@@ -120,6 +120,9 @@ public class ClassroomDaoPostgres implements ClassroomDao {
     }
     
     private boolean doesNotExist(Integer id) throws DaoException {
+    	if (id == null) {
+			return true;
+		}
         boolean notFound = true;
         String sql = "select exists(select 1 from classrooms where id=?)";
         try (Connection connection = ConnectionFactory.getConnection();
