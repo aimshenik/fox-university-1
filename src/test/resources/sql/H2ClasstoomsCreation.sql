@@ -1,4 +1,6 @@
-CREATE TABLE IF NOT EXISTS classrooms
+DROP TABLE CLASSTOOMS;
+
+CREATE TABLE IF NOT EXISTS CLASSROOMS
 (
     id INTEGER auto_increment NOT NULL,
     number varchar(10),
