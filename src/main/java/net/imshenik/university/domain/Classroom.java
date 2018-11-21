@@ -55,28 +55,24 @@ public class Classroom implements Serializable {
     public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
-    
+        
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Classroom classroom = (Classroom) o;
-        if (number != null ? !number.equals(classroom.number) : classroom.number != null) {
-            return false;
-        }
-        return building != null ? building.equals(classroom.building) : classroom.building == null;
-    }
-    
-    @Override
-    public int hashCode() {
-        int result = number != null ? number.hashCode() : 0;
-        result = 31 * result + (building != null ? building.hashCode() : 0);
-        return result;
-    }
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null || getClass() != obj.getClass())
+			return false;
+		Classroom other = (Classroom) obj;
+		return id == other.id;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
     
     @Override
     public String toString() {
