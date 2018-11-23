@@ -20,28 +20,16 @@ import net.imshenik.university.domain.Classroom;
 public class ClassroomDaoPostgresTest {
 	private ClassroomDaoPostgres classroomDaoPostgres = new ClassroomDaoPostgres();
 	private H2handler h2handler = H2handler.getInstance();
+	private final static String tablename = "CLASSROOMS";
 
 	@Test
 	public void classroomCreateTest() throws Exception {
 		Classroom expected = new Classroom("22", "d", 50);
-		String sql = "SELECT COUNT(*) FROM CLASSROOMS;";
-		try (Connection connection = ConnectionFactory.getConnection();
-				PreparedStatement statement = connection.prepareStatement(sql)) {
-			int before, after = 0;
-			try (ResultSet resultSet = statement.executeQuery()) {
-				resultSet.next();
-				before = resultSet.getInt(1);
-			}
-			Classroom actual = classroomDaoPostgres.create(expected);
-			try (ResultSet resultSet = statement.executeQuery()) {
-				resultSet.next();
-				after = resultSet.getInt(1);
-			}
-			int delta = after - before;
-			assertEquals(delta, 1);
-			assertTrue(compare(expected, actual));
-		} catch (SQLException e) {
-		}
+		int before = H2handler.getNumberOfRows(tablename);
+		Classroom actual = classroomDaoPostgres.create(expected);
+		int after = H2handler.getNumberOfRows(tablename);
+		assertEquals(after - before, 1);
+		assertTrue(compare(expected, actual));
 	}
 
 	@Test
@@ -107,24 +95,13 @@ public class ClassroomDaoPostgresTest {
 		}
 	}
 
+	@Before
+	public void initialize() throws Exception {
+		h2handler.initialize();
+	}
+
 	private boolean exist(Integer id) throws DaoException {
-		if (id == null) {
-			return false;
-		}
-		boolean found = false;
-		String sql = "SELECT EXISTS(SELECT 1 FROM CLASSROOMS WHERE ID=?);";
-		try (Connection connection = ConnectionFactory.getConnection();
-				PreparedStatement statement = connection.prepareStatement(sql)) {
-			statement.setInt(1, id);
-			try (ResultSet resultSet = statement.executeQuery()) {
-				resultSet.next();
-				if (resultSet.getBoolean(1) == true) {
-					found = true;
-				}
-			}
-		} catch (SQLException e) {
-		}
-		return found;
+		return H2handler.exist(tablename, id);
 	}
 
 	private boolean compare(Classroom expected, Classroom actual) {
@@ -137,8 +114,4 @@ public class ClassroomDaoPostgresTest {
 		}
 	}
 
-	@Before
-	public void initialize() throws Exception {
-		h2handler.initialize();
-	}
 }
