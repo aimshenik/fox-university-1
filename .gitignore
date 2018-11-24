@@ -5,4 +5,4 @@ target/
 DB/
 bin/
 *.log
-/sql/
+sql/
