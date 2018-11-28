@@ -8,22 +8,24 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.log4j.Logger;
-
 import net.imshenik.university.domain.Subject;
 
 public class SubjectDaoPostgres implements SubjectDao {
     private static final Logger log = Logger.getLogger(SubjectDaoPostgres.class.getName());
+    private static final String TABLENAME = "SUBJECTS";
+    private static final String ID = "ID";
+    private static final String NAME = "NAME";
 
     public List<Subject> findAll() throws DaoException {
         log.trace("findAll() | start");
-        String sql = "select * from subjects";
+        String sql = String.format("SELECT * FROM %s", TABLENAME);
         List<Subject> subjects = new ArrayList<>();
         try (Connection connection = ConnectionFactory.getConnection();
                 PreparedStatement statement = connection.prepareStatement(sql);
                 ResultSet resultSet = statement.executeQuery()) {
             log.trace("findAll() | Getting Subjects from ResultSet...");
             while (resultSet.next()) {
-                subjects.add(new Subject(resultSet.getInt("id"), resultSet.getString("name")));
+                subjects.add(new Subject(resultSet.getInt(ID), resultSet.getString(NAME)));
             }
         } catch (SQLException e) {
             log.error("findAll() | database: interaction failure ", e);
@@ -32,10 +34,10 @@ public class SubjectDaoPostgres implements SubjectDao {
         log.trace("findAll() | end");
         return subjects;
     }
-    
+
     public Subject findOne(Integer id) throws DaoException {
         log.trace("findOne() | start");
-        String sql = "select * from subjects where id=?";
+        String sql = String.format("SELECT * FROM %s WHERE ID=?", TABLENAME);
         Subject subject = null;
         try (Connection connection = ConnectionFactory.getConnection();
                 PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -43,7 +45,7 @@ public class SubjectDaoPostgres implements SubjectDao {
             statement.execute();
             try (ResultSet resultSet = statement.getResultSet()) {
                 if (resultSet.next()) {
-                    subject = new Subject(resultSet.getInt("id"), resultSet.getString("name"));
+                    subject = new Subject(resultSet.getInt(ID), resultSet.getString(NAME));
                 }
             }
         } catch (SQLException e) {
@@ -54,17 +56,17 @@ public class SubjectDaoPostgres implements SubjectDao {
         log.trace("findOne() | end");
         return subject;
     }
-    
+
     public Subject create(Subject subject) throws DaoException {
         log.trace("create() | start");
-        String sql = "insert into subjects (name) values (?)";
+        String sql = String.format("INSERT INTO %s (NAME) VALUES (?)", TABLENAME);
         try (Connection connection = ConnectionFactory.getConnection();
                 PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            statement.setString(1, subject.getName());
+            statement.setString(1, subject.getName() );
             if (statement.executeUpdate() == 1) {
                 try (ResultSet resultSet = statement.getGeneratedKeys()) {
                     if (resultSet.next()) {
-                        subject.setId(resultSet.getInt("Id"));
+                        subject.setId(resultSet.getInt(ID));
                         log.info("create() | Subject was created | " + subject.toString());
                     }
                 }
@@ -76,13 +78,13 @@ public class SubjectDaoPostgres implements SubjectDao {
         log.trace("create() | end");
         return subject;
     }
-    
+
     public void update(Subject subject) throws DaoException {
         log.trace("update() | start");
         if (doesNotExist(subject.getId())) {
             throw new DaoException("update() | Subject with ID =  " + subject.getId() + " does NOT exist!");
         }
-        String sql = "update subjects set name=? where id=?";
+        String sql = String.format("UPDATE %s SET NAME=? WHERE ID=?", TABLENAME);
         try (Connection connection = ConnectionFactory.getConnection();
                 PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, subject.getName());
@@ -95,13 +97,13 @@ public class SubjectDaoPostgres implements SubjectDao {
         }
         log.trace("update() | end");
     }
-    
+
     public void delete(Integer id) throws DaoException {
         log.trace("delete() | start");
         if (doesNotExist(id)) {
             throw new DaoException("delete() | Subject with  ID = " + id + " does NOT exist!");
         }
-        String sql = "delete from subjects as s where s.id = ?";
+        String sql = String.format("DELETE FROM %s WHERE ID = ?", TABLENAME);
         try (Connection connection = ConnectionFactory.getConnection();
                 PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, id);
@@ -113,10 +115,13 @@ public class SubjectDaoPostgres implements SubjectDao {
         }
         log.trace("delete() | end");
     }
-    
+
     private boolean doesNotExist(Integer id) throws DaoException {
+        if (id == null) {
+            return true;
+        }
         boolean notFound = true;
-        String sql = "select exists(select 1 from subjects where id=?)";
+        String sql = String.format("SELECT EXISTS(SELECT 1 FROM %s WHERE ID=?)", TABLENAME);
         try (Connection connection = ConnectionFactory.getConnection();
                 PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, id);
