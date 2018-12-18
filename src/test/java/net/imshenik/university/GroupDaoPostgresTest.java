@@ -12,7 +12,7 @@ import net.imshenik.university.dao.GroupDaoPostgres;
 import net.imshenik.university.dao.DaoException;
 import net.imshenik.university.domain.Group;
 
-public class GroupDaoPostgresTestSkip {
+public class GroupDaoPostgresTest {
     private GroupDaoPostgres groupDaoPostgres = new GroupDaoPostgres();
     private H2handler h2handler = H2handler.getInstance();
     private final static String TABLENAME = "GROUPS";

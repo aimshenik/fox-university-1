@@ -12,7 +12,7 @@ import net.imshenik.university.dao.StudentDaoPostgres;
 import net.imshenik.university.dao.DaoException;
 import net.imshenik.university.domain.Student;
 
-public class StudentDaoPostgresTestSkip {
+public class StudentDaoPostgresTest {
     private StudentDaoPostgres studentDaoPostgres = new StudentDaoPostgres();
     private H2handler h2handler = H2handler.getInstance();
     private static final String TABLENAME = "STUDENTS";
