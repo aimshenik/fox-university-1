@@ -16,11 +16,11 @@ public class ClassroomDaoPostgres implements ClassroomDao {
     private static final String NUMBER = "NUMBER";
     private static final String BUILDING = "BUILDING";
     private static final String CAPACITY = "CAPACITY";
-    
+
     public List<Classroom> findAll() throws DaoException {
         String sql = "SELECT * FROM CLASSROOMS";
         List<Classroom> classrooms = new ArrayList<>();
-        log.debug("Getting all CLASSROOMS");
+        log.trace("Getting all classrooms");
         try (Connection connection = ConnectionFactory.getConnection();
                 PreparedStatement statement = connection.prepareStatement(sql);
                 ResultSet resultSet = statement.executeQuery()) {
@@ -29,13 +29,13 @@ public class ClassroomDaoPostgres implements ClassroomDao {
                         resultSet.getString(BUILDING), resultSet.getInt(CAPACITY)));
             }
         } catch (SQLException e) {
-            log.warn("Database: interaction failure ", e);
+            log.error("Database: interaction failure ", e);
             throw new DaoException("Database: interaction failure", e);
         }
         log.trace(String.format("Returned list of %d classrooms", classrooms.size()));
         return classrooms;
     }
-    
+
     public Classroom findOne(Integer id) throws DaoException {
         String sql = "SELECT * FROM CLASSROOMS WHERE ID=?";
         Classroom classroom = null;
@@ -57,9 +57,9 @@ public class ClassroomDaoPostgres implements ClassroomDao {
         log.trace(classroom == null ? "CLASSROOM was NOT found, returning 'null' " : "CLASSROOM was found");
         return classroom;
     }
-    
+
     public Classroom create(Classroom classroom) throws DaoException {
-    	log.debug(String.format("Inserting %s into database", classroom.toString()));
+        log.debug(String.format("Inserting %s into database", classroom.toString()));
         String sql = "INSERT INTO CLASSROOMS (NUMBER, BUILDING, CAPACITY) VALUES (?,?,?)";
         try (Connection connection = ConnectionFactory.getConnection();
                 PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -80,7 +80,7 @@ public class ClassroomDaoPostgres implements ClassroomDao {
         }
         return classroom;
     }
-    
+
     public void update(Classroom classroom) throws DaoException {
         if (doesNotExist(classroom.getId())) {
             throw new DaoException("Classroom with ID =  " + classroom.getId() + " does NOT exist!");
@@ -100,7 +100,7 @@ public class ClassroomDaoPostgres implements ClassroomDao {
             throw new DaoException("database: interaction failure", e);
         }
     }
-    
+
     public void delete(Integer id) throws DaoException {
         if (doesNotExist(id)) {
             throw new DaoException("Classroom with  ID = " + id + " does NOT exist!");
@@ -117,7 +117,7 @@ public class ClassroomDaoPostgres implements ClassroomDao {
             throw new DaoException("database: interaction failure", e);
         }
     }
-    
+
     private boolean doesNotExist(Integer id) throws DaoException {
         if (id == null) {
             return true;
@@ -138,7 +138,7 @@ public class ClassroomDaoPostgres implements ClassroomDao {
             log.warn("database: interaction failure", e);
             throw new DaoException("database: interaction failure", e);
         }
-        log.trace(notFound?"CLASSROOM not found":"CLASSROOM found");
+        log.trace(notFound ? "CLASSROOM not found" : "CLASSROOM found");
         return notFound;
     }
 }
