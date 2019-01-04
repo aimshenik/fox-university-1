@@ -18,9 +18,9 @@ public class ClassroomDaoPostgres implements ClassroomDao {
     private static final String CAPACITY = "CAPACITY";
 
     public List<Classroom> findAll() throws DaoException {
+        log.trace("Getting all classrooms");
         String sql = "SELECT * FROM CLASSROOMS";
         List<Classroom> classrooms = new ArrayList<>();
-        log.trace("Getting all classrooms");
         try (Connection connection = ConnectionFactory.getConnection();
                 PreparedStatement statement = connection.prepareStatement(sql);
                 ResultSet resultSet = statement.executeQuery()) {
@@ -32,14 +32,14 @@ public class ClassroomDaoPostgres implements ClassroomDao {
             log.error("Database: interaction failure ", e);
             throw new DaoException("Database: interaction failure", e);
         }
-        log.trace(String.format("Returned list of %d classrooms", classrooms.size()));
+        log.debug(String.format("Returned list of %d classrooms", classrooms.size()));
         return classrooms;
     }
 
     public Classroom findOne(Integer id) throws DaoException {
+        log.trace(String.format("Getting classroom with ID = %d", id));
         String sql = "SELECT * FROM CLASSROOMS WHERE ID=?";
         Classroom classroom = null;
-        log.debug(String.format("Getting CLASSROOM with ID = %d", id));
         try (Connection connection = ConnectionFactory.getConnection();
                 PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, id);
@@ -51,15 +51,15 @@ public class ClassroomDaoPostgres implements ClassroomDao {
                 }
             }
         } catch (SQLException e) {
-            log.warn("Database: interaction failure", e);
+            log.error("Database: interaction failure", e);
             throw new DaoException("Database: interaction failure", e);
         }
-        log.trace(classroom == null ? "CLASSROOM was NOT found, returning 'null' " : "CLASSROOM was found");
+        log.trace(classroom == null ? "classroom was NOT found, returning 'null' " : "classroom was found");
         return classroom;
     }
 
     public Classroom create(Classroom classroom) throws DaoException {
-        log.debug(String.format("Inserting %s into database", classroom.toString()));
+        log.trace(String.format("Inserting %s into database", classroom.toString()));
         String sql = "INSERT INTO CLASSROOMS (NUMBER, BUILDING, CAPACITY) VALUES (?,?,?)";
         try (Connection connection = ConnectionFactory.getConnection();
                 PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -75,18 +75,18 @@ public class ClassroomDaoPostgres implements ClassroomDao {
                 }
             }
         } catch (SQLException e) {
-            log.warn("Database: interaction failure", e);
+            log.error("Database: interaction failure", e);
             throw new DaoException("Database: interaction failure", e);
         }
         return classroom;
     }
 
     public void update(Classroom classroom) throws DaoException {
+        log.trace(String.format("Updating classrom %s", classroom.toString()));
         if (doesNotExist(classroom.getId())) {
             throw new DaoException("Classroom with ID =  " + classroom.getId() + " does NOT exist!");
         }
         String sql = "UPDATE CLASSROOMS SET NUMBER=?,BUILDING=?, CAPACITY=? WHERE ID=?";
-        log.debug(String.format("Updating CLASSROM %s", classroom.toString()));
         try (Connection connection = ConnectionFactory.getConnection();
                 PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, classroom.getNumber());
@@ -96,7 +96,7 @@ public class ClassroomDaoPostgres implements ClassroomDao {
             statement.executeUpdate();
             log.info("Classroom with ID =  " + classroom.getId() + " was updated");
         } catch (SQLException e) {
-            log.warn("database: interaction failure", e);
+            log.error("database: interaction failure", e);
             throw new DaoException("database: interaction failure", e);
         }
     }
@@ -106,14 +106,14 @@ public class ClassroomDaoPostgres implements ClassroomDao {
             throw new DaoException("Classroom with  ID = " + id + " does NOT exist!");
         }
         String sql = "DELETE FROM CLASSROOMS AS C WHERE C.ID = ?";
-        log.debug(String.format("Deleting CLASSROOM with ID=%d", id));
+        log.debug(String.format("Deleting classroom with ID=%d", id));
         try (Connection connection = ConnectionFactory.getConnection();
                 PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, id);
             statement.executeUpdate();
             log.info("Classroom with  ID = " + id + " was deleted");
         } catch (SQLException e) {
-            log.warn("database: interaction failure", e);
+            log.error("database: interaction failure", e);
             throw new DaoException("database: interaction failure", e);
         }
     }
@@ -122,7 +122,7 @@ public class ClassroomDaoPostgres implements ClassroomDao {
         if (id == null) {
             return true;
         }
-        log.debug(String.format("Checking existance of CLASSROOM with ID=%d", id));
+        log.debug(String.format("Checking existance of classroom with ID=%d", id));
         boolean notFound = true;
         String sql = "SELECT EXISTS(SELECT 1 FROM CLASSROOMS WHERE ID=?)";
         try (Connection connection = ConnectionFactory.getConnection();
@@ -135,10 +135,10 @@ public class ClassroomDaoPostgres implements ClassroomDao {
                 }
             }
         } catch (SQLException e) {
-            log.warn("database: interaction failure", e);
+            log.error("database: interaction failure", e);
             throw new DaoException("database: interaction failure", e);
         }
-        log.trace(notFound ? "CLASSROOM not found" : "CLASSROOM found");
+        log.trace(notFound ? "classroom not found" : "classroom found");
         return notFound;
     }
 }

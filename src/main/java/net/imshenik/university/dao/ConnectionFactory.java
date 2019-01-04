@@ -49,13 +49,12 @@ public class ConnectionFactory {
     }
 
     private static void loadDriver(String driver) throws DaoException {
-        log.info(String.format("Loading %s driver", driver));
+        log.debug(String.format("Loading %s driver", driver));
         try {
             Class.forName(driver);
         } catch (ClassNotFoundException e) {
             log.error("Unable to load driver " + driver, e);
             throw new DaoException("Unable to load driver " + driver, e);
         }
-        log.info("Driver was loaded");
     }
 }
