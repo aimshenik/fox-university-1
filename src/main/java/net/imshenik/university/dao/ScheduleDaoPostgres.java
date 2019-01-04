@@ -14,7 +14,7 @@ import net.imshenik.university.domain.Schedule;
 
 public class ScheduleDaoPostgres implements ScheduleDao {
     private static final Logger log = Logger.getLogger(ScheduleDaoPostgres.class.getName());
-    
+
     public List<Schedule> findAll() throws DaoException {
         log.trace("findAll() | start");
         String sql = "select * from schedules";
@@ -39,7 +39,7 @@ public class ScheduleDaoPostgres implements ScheduleDao {
         log.trace("findAll() | end");
         return schedules;
     }
-    
+
     public Schedule findOne(Integer id) throws DaoException {
         log.trace("findOne() | start");
         String sql = "select * from schedules where id=?";
@@ -67,7 +67,7 @@ public class ScheduleDaoPostgres implements ScheduleDao {
         log.trace("findOne() | end");
         return schedule;
     }
-    
+
     public Schedule create(Schedule schedule) throws DaoException {
         log.trace("create() | start");
         String sql = "insert into schedules (teacher_id, group_id, classroom_id, subject_id, start_time, end_time) values (?,?,?,?,?,?)";
@@ -94,7 +94,7 @@ public class ScheduleDaoPostgres implements ScheduleDao {
         log.trace("create() | end");
         return schedule;
     }
-    
+
     public void update(Schedule schedule) throws DaoException {
         log.trace("update() | start");
         if (doesNotExist(schedule.getId())) {
@@ -118,7 +118,7 @@ public class ScheduleDaoPostgres implements ScheduleDao {
         }
         log.trace("update() | end");
     }
-    
+
     public void delete(Integer id) throws DaoException {
         log.trace("delete() | start");
         if (doesNotExist(id)) {
@@ -136,7 +136,7 @@ public class ScheduleDaoPostgres implements ScheduleDao {
         }
         log.trace("delete() | end");
     }
-    
+
     private boolean doesNotExist(Integer id) throws DaoException {
         boolean notFound = true;
         String sql = "select exists(select 1 from schedules where id=?)";

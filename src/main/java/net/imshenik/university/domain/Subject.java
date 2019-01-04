@@ -9,6 +9,10 @@ public class Subject implements Serializable {
     public Subject() {
     }
     
+    public Subject(String name) {
+        this.name = name;
+    }
+
     public Subject(int id, String name) {
         this.id = id;
         this.name = name;

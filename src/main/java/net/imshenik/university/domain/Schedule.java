@@ -11,10 +11,20 @@ public class Schedule implements Serializable {
     private Subject subject;
     private LocalDateTime start;
     private LocalDateTime end;
-    
+
     public Schedule() {
     }
-    
+
+    public Schedule(Teacher teacher, Group group, Classroom classroom, Subject subject, LocalDateTime start,
+            LocalDateTime end) {
+        this.teacher = teacher;
+        this.group = group;
+        this.classroom = classroom;
+        this.subject = subject;
+        this.start = start;
+        this.end = end;
+    }
+
     public Schedule(int id, Teacher teacher, Group group, Classroom classroom, Subject subject, LocalDateTime start,
             LocalDateTime end) {
         this.id = id;
@@ -25,63 +35,63 @@ public class Schedule implements Serializable {
         this.start = start;
         this.end = end;
     }
-    
+
     public int getId() {
         return id;
     }
-    
+
     public void setId(int id) {
         this.id = id;
     }
-    
+
     public Teacher getTeacher() {
         return teacher;
     }
-    
+
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
     }
-    
+
     public Group getGroup() {
         return group;
     }
-    
+
     public void setGroup(Group group) {
         this.group = group;
     }
-    
+
     public Classroom getClassroom() {
         return classroom;
     }
-    
+
     public void setClassroom(Classroom classroom) {
         this.classroom = classroom;
     }
-    
+
     public Subject getSubject() {
         return subject;
     }
-    
+
     public void setSubject(Subject subject) {
         this.subject = subject;
     }
-    
+
     public LocalDateTime getStart() {
         return start;
     }
-    
+
     public void setStart(LocalDateTime start) {
         this.start = start;
     }
-    
+
     public LocalDateTime getEnd() {
         return end;
     }
-    
+
     public void setEnd(LocalDateTime end) {
         this.end = end;
     }
-    
+
     @Override
     public boolean equals(Object o) {
         if (this == o)
@@ -101,7 +111,7 @@ public class Schedule implements Serializable {
             return false;
         return end != null ? end.equals(schedule.end) : schedule.end == null;
     }
-    
+
     @Override
     public int hashCode() {
         int result = teacher != null ? teacher.hashCode() : 0;
@@ -112,7 +122,7 @@ public class Schedule implements Serializable {
         result = 31 * result + (end != null ? end.hashCode() : 0);
         return result;
     }
-    
+
     @Override
     public String toString() {
         return "Schedule{" + "id=" + id + ", teacher=" + teacher + ", group=" + group + ", classroom=" + classroom

@@ -13,8 +13,6 @@ import net.imshenik.university.dao.DaoException;
 
 public class H2handler {
     private static H2handler instance;
-    private String sqlCreateTable = "";
-    private String sqlInsertContent = "";
 
     private H2handler() {
     }
@@ -27,14 +25,13 @@ public class H2handler {
     }
 
     public void createTable(String sqlSource) throws Exception {
-        if (sqlCreateTable == "") {
-            try (FileReader fileReader = new FileReader(
-                    new File(H2handler.class.getClassLoader().getResource("sql/" + sqlSource).getFile()))) {
-                int i = fileReader.read();
-                while (i != -1) {
-                    sqlCreateTable += (char) i;
-                    i = fileReader.read();
-                }
+        String sqlCreateTable = "";
+        try (FileReader fileReader = new FileReader(
+                new File(H2handler.class.getClassLoader().getResource("sql/" + sqlSource).getFile()))) {
+            int i = fileReader.read();
+            while (i != -1) {
+                sqlCreateTable += (char) i;
+                i = fileReader.read();
             }
         }
         try (Connection connection = ConnectionFactory.getConnection(); Statement stmt = connection.createStatement()) {
@@ -45,17 +42,16 @@ public class H2handler {
     }
 
     public void insertContent(String sqlSource) {
-        if (sqlInsertContent == "") {
-            try (FileReader fileReader = new FileReader(
-                    new File(H2handler.class.getClassLoader().getResource("sql/" + sqlSource).getFile()))) {
-                int i = fileReader.read();
-                while (i != -1) {
-                    sqlInsertContent += (char) i;
-                    i = fileReader.read();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+        String sqlInsertContent = "";
+        try (FileReader fileReader = new FileReader(
+                new File(H2handler.class.getClassLoader().getResource("sql/" + sqlSource).getFile()))) {
+            int i = fileReader.read();
+            while (i != -1) {
+                sqlInsertContent += (char) i;
+                i = fileReader.read();
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         try (Connection connection = ConnectionFactory.getConnection(); Statement stmt = connection.createStatement()) {
             stmt.executeUpdate(sqlInsertContent);

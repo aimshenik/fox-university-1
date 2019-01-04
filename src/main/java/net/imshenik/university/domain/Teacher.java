@@ -11,6 +11,16 @@ public class Teacher implements Serializable {
     public Teacher() {
     }
     
+    
+    
+    public Teacher(String firstName, String lastName, String passport) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.passport = passport;
+    }
+
+
+
     public Teacher(int id, String firstName, String lastName, String passport) {
         this.id = id;
         this.firstName = firstName;

@@ -22,6 +22,12 @@ public class ClassroomDaoPostgresTest {
     private final static String SQL_CREATE_FILENAME = "H2ClassroomsDropCreate.sql";
     private final static String SQL_INSERT_FILENAME = "H2ClassroomsInsert.sql";
 
+    @Before
+    public void initialize() throws Exception {
+        h2handler.createTable(SQL_CREATE_FILENAME);
+        h2handler.insertContent(SQL_INSERT_FILENAME);
+    }
+
     @Test
     public void classroomCreateTest() throws Exception {
         Classroom expected = new Classroom("22", "d", 50);
@@ -48,8 +54,8 @@ public class ClassroomDaoPostgresTest {
     public void classroomFindAllTest() throws Exception {
         List<Classroom> classrooms = classroomDaoPostgres.findAll();
         assertTrue(classrooms.size() == 5);
-        for (Classroom room : classrooms) {
-            assertTrue(exist(room.getId()));
+        for (Classroom classroom : classrooms) {
+            assertTrue(exist(classroom.getId()));
         }
     }
 
@@ -82,12 +88,6 @@ public class ClassroomDaoPostgresTest {
             classroomDaoPostgres.delete(i);
             assertFalse(exist(i));
         }
-    }
-
-    @Before
-    public void initialize() throws Exception {
-        h2handler.createTable(SQL_CREATE_FILENAME);
-        h2handler.insertContent(SQL_INSERT_FILENAME);
     }
 
     private boolean exist(Integer id) throws DaoException {

@@ -1,0 +1,27 @@
+insert into schedules (teacher_id, group_id, classroom_id, subject_id, start_time, end_time) values (1,1,1,1,'2018-01-09 09:00:00','2018-01-09 10:20:00');
+insert into schedules (teacher_id, group_id, classroom_id, subject_id, start_time, end_time) values (2,2,2,2,'2018-01-09 10:30:00','2018-01-09 11:50:00');
+insert into schedules (teacher_id, group_id, classroom_id, subject_id, start_time, end_time) values (3,3,3,3,'2018-01-09 12:00:00','2018-01-09 13:20:00');
+insert into schedules (teacher_id, group_id, classroom_id, subject_id, start_time, end_time) values (4,4,4,4,'2018-01-09 14:00:00','2018-01-09 15:20:00');
+insert into schedules (teacher_id, group_id, classroom_id, subject_id, start_time, end_time) values (5,5,5,5,'2018-01-09 15:30:00','2018-01-09 16:50:00');
+------
+INSERT INTO GROUPS (NAME) VALUES ('1-D-31');
+INSERT INTO GROUPS (NAME) VALUES ('1-L-32');
+INSERT INTO GROUPS (NAME) VALUES ('2-M-43');
+INSERT INTO GROUPS (NAME) VALUES ('3-F-64');
+INSERT INTO GROUPS (NAME) VALUES ('3-SK-90');
+INSERT INTO CLASSROOMS (NUMBER, BUILDING, CAPACITY) VALUES ('106','23',30);
+INSERT INTO CLASSROOMS (NUMBER, BUILDING, CAPACITY) VALUES ('211','23',50);
+INSERT INTO CLASSROOMS (NUMBER, BUILDING, CAPACITY) VALUES ('321','23',30);
+INSERT INTO CLASSROOMS (NUMBER, BUILDING, CAPACITY) VALUES ('401','24',100);
+INSERT INTO CLASSROOMS (NUMBER, BUILDING, CAPACITY) VALUES ('305','24',30);
+INSERT INTO SUBJECTS (NAME) VALUES ('Heat engineering and heat transfer basics');
+INSERT INTO SUBJECTS (NAME) VALUES ('Metrology, standardization and certification');
+INSERT INTO SUBJECTS (NAME) VALUES ('Safety of vital functions');
+INSERT INTO SUBJECTS (NAME) VALUES ('Basics of construction');
+INSERT INTO SUBJECTS (NAME) VALUES ('Foundry technology');
+INSERT INTO TEACHERS (FIRSTNAME,LASTNAME,PASSPORT) VALUES ('ANDREY FEDOROVICH','SMIKOV','AA-11111');
+INSERT INTO TEACHERS (FIRSTNAME,LASTNAME,PASSPORT) VALUES ('VIKTOR SERGEEVICH','MOISEEV','AA-22222');
+INSERT INTO TEACHERS (FIRSTNAME,LASTNAME,PASSPORT) VALUES ('DMITRY VASILYEVICH','BEREZHNOY','AA-33333');
+INSERT INTO TEACHERS (FIRSTNAME,LASTNAME,PASSPORT) VALUES ('BORIS LEONIDOVICH','BOBRYSHEV','AA-44444');
+INSERT INTO TEACHERS (FIRSTNAME,LASTNAME,PASSPORT) VALUES ('OLGA VALENTINOVNA','TELITSYNA','AA-55555');
+
