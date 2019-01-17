@@ -15,24 +15,24 @@ import net.imshenik.university.dao.StudentDaoPostgres;
 import net.imshenik.university.domain.Group;
 import net.imshenik.university.domain.Student;
 
-@WebServlet("/getGroup")
-public class GetGroupServlet extends HttpServlet {
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+@WebServlet("/group")
+public class GroupServlet extends HttpServlet {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             GroupDaoPostgres groupDaoPostgres = new GroupDaoPostgres();
-            Group group = groupDaoPostgres.findOne(Integer.parseInt(request.getParameter("gr_id")));
+            Group group = groupDaoPostgres.findOne(Integer.parseInt(request.getParameter("groupId")));
             StudentDaoPostgres studentDaoPostgres = new StudentDaoPostgres();
             List<Student> students = null;
             if (group != null) {
                 students = studentDaoPostgres.findAll().stream().filter(s -> s.getGroupId() == group.getId())
                         .collect(Collectors.toList());
             }
-            request.setAttribute("group_obj", group);
+            request.setAttribute("group", group);
             request.setAttribute("students", students);
             RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
             dispatcher.forward(request, response);
         } catch (NumberFormatException | DaoException e) {
-            request.setAttribute("group_obj", null);
+            request.setAttribute("group", null);
             request.setAttribute("students", null);
             RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
             dispatcher.forward(request, response);
@@ -40,7 +40,7 @@ public class GetGroupServlet extends HttpServlet {
         }
     }
     
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
     }
 }
