@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<title>Task 13 - User Interface-1</title>
+<title>Groups</title>
 </head>
 <body>
   <div class="w3-center">
@@ -18,6 +18,34 @@
     <a href="teachers" class="w3-bar-item w3-button">Teachers</a>
     <a href="subjects" class="w3-bar-item w3-button">Subjects</a>
     <a href="schedules" class="w3-bar-item w3-button">Schedules</a>
+  </div>
+  <div class="w3-container">
+    <div class="w3-row">
+      <div class="w3-col m4 l3">
+      <h3>Group list: </h3>
+        <ul>
+          <c:forEach var="g" items="${groups}">
+            <li>
+              <a href="groups?id=${g.getId()}">
+                <c:out value="${g.getName()}" />
+              </a>
+            </li>
+          </c:forEach>
+        </ul>
+      </div>
+      <div class="w3-col m8 l9">
+        <h3>Group ${group.getName()} students:</h3>
+        <ul>
+          <c:forEach var="s" items="${students}">
+            <li>
+                <p>
+                  <c:out value="${s.getFirstName()} ${s.getLastName()}" />
+                </p>
+            </li>
+          </c:forEach>
+        </ul>
+      </div>
+    </div>
   </div>
 </body>
 </html>
