@@ -8,7 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import net.imshenik.university.dao.DaoException;
 import net.imshenik.university.dao.TeacherDaoPostgres;
 import net.imshenik.university.domain.Teacher;
 
@@ -16,13 +15,9 @@ import net.imshenik.university.domain.Teacher;
 public class TeachersServlet extends HttpServlet {
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
             List<Teacher> teachers = new TeacherDaoPostgres().findAll();
             request.setAttribute("teachers", teachers);
             RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/teachers.jsp");
             dispatcher.forward(request, response);
-        } catch (DaoException e) {
-            e.printStackTrace();
-        }
     }
 }
