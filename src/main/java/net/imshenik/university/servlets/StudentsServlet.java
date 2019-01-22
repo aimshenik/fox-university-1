@@ -13,7 +13,7 @@ import net.imshenik.university.domain.Student;
 
 @WebServlet("/students")
 public class StudentsServlet extends HttpServlet {
-    protected void service(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
             List<Student> students = new StudentDaoPostgres().findAll();
             request.setAttribute("students", students);

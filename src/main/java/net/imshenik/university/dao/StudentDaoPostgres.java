@@ -17,7 +17,7 @@ public class StudentDaoPostgres implements StudentDao {
     private static final String FIRSTNAME = "FIRSTNAME";
     private static final String LASTNAME = "LASTNAME";
     private static final String GROUP_ID = "GROUP_ID";
-
+    
     public List<Student> findAll() throws DaoException {
         log.trace("findAll() | start");
         String sql = String.format("SELECT * FROM %s", TABLENAME);
@@ -37,7 +37,27 @@ public class StudentDaoPostgres implements StudentDao {
         log.trace("findAll() | end");
         return students;
     }
-
+    
+    public List<Student> findByGroup(Integer groupId) throws DaoException {
+        log.trace("findByGroup() | start");
+        String sql = String.format("SELECT * FROM %s where group_id=%d", TABLENAME, groupId);
+        List<Student> students = new ArrayList<>();
+        try (Connection connection = ConnectionFactory.getConnection();
+                PreparedStatement statement = connection.prepareStatement(sql);
+                ResultSet resultSet = statement.executeQuery()) {
+            log.trace("findByGroup() | Getting Students from ResultSet...");
+            while (resultSet.next()) {
+                students.add(new Student(resultSet.getInt(ID), resultSet.getString(FIRSTNAME),
+                        resultSet.getString(LASTNAME), resultSet.getInt(GROUP_ID)));
+            }
+        } catch (SQLException e) {
+            log.error("findByGroup() | database: interaction failure ", e);
+            throw new DaoException("findByGroup() | database: interaction failure", e);
+        }
+        log.trace("findByGroup() | end");
+        return students;
+    }
+    
     public Student findOne(Integer id) throws DaoException {
         log.trace("findOne() | start");
         String sql = String.format("SELECT * FROM %s WHERE ID=?", TABLENAME);
@@ -60,13 +80,13 @@ public class StudentDaoPostgres implements StudentDao {
         log.trace("findOne() | end");
         return student;
     }
-
+    
     public Student create(Student Student) throws DaoException {
         log.trace("create() | start");
         String sql = String.format("INSERT INTO %s (FIRSTNAME,LASTNAME,GROUP_ID) VALUES (?,?,?)", TABLENAME);
         try (Connection connection = ConnectionFactory.getConnection();
                 PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            statement.setString(1, Student.getFirstName() );
+            statement.setString(1, Student.getFirstName());
             statement.setString(2, Student.getLastName());
             statement.setInt(3, Student.getGroupId());
             if (statement.executeUpdate() == 1) {
@@ -84,7 +104,7 @@ public class StudentDaoPostgres implements StudentDao {
         log.trace("create() | end");
         return Student;
     }
-
+    
     public void update(Student student) throws DaoException {
         log.trace("update() | start");
         if (doesNotExist(student.getId())) {
@@ -105,7 +125,7 @@ public class StudentDaoPostgres implements StudentDao {
         }
         log.trace("update() | end");
     }
-
+    
     public void delete(Integer id) throws DaoException {
         log.trace("delete() | start");
         if (doesNotExist(id)) {
@@ -123,7 +143,7 @@ public class StudentDaoPostgres implements StudentDao {
         }
         log.trace("delete() | end");
     }
-
+    
     private boolean doesNotExist(Integer id) throws DaoException {
         if (id == null) {
             return true;
