@@ -17,22 +17,28 @@
       <div class="w3-col m4 l3">
         <h3>Group list:</h3>
         <ul>
-          <c:forEach var="g" items="${groups}">
+          <c:forEach var="group" items="${groups}">
             <li>
-              <a href="groups?id=${g.getId()}">
-                <c:out value="${g.getName()}" />
+              <a href="groups?id=${group.getId()}">
+                <c:out value="${group.getName()}" />
               </a>
             </li>
           </c:forEach>
         </ul>
       </div>
       <div class="w3-col m8 l9">
-        <h3>Group ${group.getName()} students:</h3>
+        <c:if test="${not empty group}">
+          <h3>Group ${group.getName()} students:</h3>
+        </c:if>
+        <c:if test="${not empty errorMessage}">
+          <h3 class="w3-red">${errorMessage}</h3>
+          <c:import url="/jsp/error.jsp"></c:import>
+        </c:if>
         <ul>
-          <c:forEach var="s" items="${students}">
+          <c:forEach var="student" items="${students}">
             <li>
               <p>
-                <c:out value="${s.getFirstName()} ${s.getLastName()}" />
+                <c:out value="${student.getFirstName()} ${student.getLastName()}" />
               </p>
             </li>
           </c:forEach>

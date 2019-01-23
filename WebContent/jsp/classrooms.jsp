@@ -17,12 +17,12 @@
       <div class="w3-col m4 l3">
         <h3>Classrooms list:</h3>
         <ul>
-          <c:forEach var="e" items="${classrooms}">
+          <c:forEach var="classroom" items="${classrooms}">
             <li>
               Building :
-              <c:out value="${e.getBuilding()}" />
+              <c:out value="${classroom.getBuilding()}" />
               Number :
-              <c:out value="${e.getNumber()}" />
+              <c:out value="${classroom.getNumber()}" />
             </li>
           </c:forEach>
         </ul>

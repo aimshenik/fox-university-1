@@ -17,9 +17,9 @@
       <div class="w3-col m4 l3">
         <h3>Students list:</h3>
         <ul>
-          <c:forEach var="s" items="${students}">
+          <c:forEach var="student" items="${students}">
             <li>
-              <c:out value="${s.getFirstName()} ${s.getLastName()}" />
+              <c:out value="${student.getFirstName()} ${student.getLastName()}" />
             </li>
           </c:forEach>
         </ul>

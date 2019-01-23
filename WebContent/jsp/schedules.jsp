@@ -17,9 +17,9 @@
       <div class="w3-col m4 l3">
         <h3>Schedules list:</h3>
         <ul>
-          <c:forEach var="t" items="${schedules}">
+          <c:forEach var="schedule" items="${schedules}">
             <li>
-              <c:out value="${t}" />
+              <c:out value="${schedule}" />
             </li>
           </c:forEach>
         </ul>
