@@ -14,17 +14,25 @@ import net.imshenik.university.domain.Group;
 
 @WebServlet("/groups")
 public class GroupsServlet extends HttpServlet {
+    public static final String LIST_GROUP = "jsp/groups.jsp";
+    public static final String INSERT_OR_EDIT_GROUP = "jsp/single_group.jsp";
+    
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Group> groups = new GroupDaoPostgres().findAll();
-        request.setAttribute("groups", groups);
+        String forward = (request.getParameter("action") != null && request.getParameter("action").equals("edit"))
+                ? INSERT_OR_EDIT_GROUP
+                : LIST_GROUP;
+        Integer id = null;
         if (request.getParameter("id") != null) {
-            Integer id = null;
             try {
                 id = Integer.parseInt(request.getParameter("id"));
             } catch (NumberFormatException e) {
                 request.setAttribute("errorMessage", "Incorrect Group ID format");
             }
+        }
+        if (forward.equals(LIST_GROUP)) {
+            List<Group> groups = new GroupDaoPostgres().findAll();
+            request.setAttribute("groups", groups);
             if (id != null) {
                 int primitiveId = id;
                 Group group = null;
@@ -38,7 +46,11 @@ public class GroupsServlet extends HttpServlet {
                     request.setAttribute("students", new StudentDaoPostgres().findByGroup(id));
                 }
             }
+        } else {
+            if (id != null) {
+                request.setAttribute("group", new GroupDaoPostgres().findOne(id));
+            }
         }
-        request.getRequestDispatcher("jsp/groups.jsp").forward(request, response);
+        request.getRequestDispatcher(forward).forward(request, response);
     }
 }

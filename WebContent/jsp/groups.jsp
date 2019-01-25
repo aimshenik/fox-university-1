@@ -8,23 +8,43 @@
 <title>Groups</title>
 </head>
 <body>
-  <div class="w3-center">
-    <h1>University</h1>
-  </div>
   <c:import url="/html/menu.html"></c:import>
   <div class="w3-container">
     <div class="w3-row">
       <div class="w3-col m4 l3">
         <h3>Group list:</h3>
-        <ul>
-          <c:forEach var="group" items="${groups}">
-            <li>
-              <a href="groups?id=${group.getId()}">
-                <c:out value="${group.getName()}" />
-              </a>
-            </li>
-          </c:forEach>
-        </ul>
+        <table class="w3-table w3-centered w3-hoverable w3-bordered">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th colspan="2">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <c:forEach var="group" items="${groups}">
+              <tr>
+                <td>
+                  <c:out value="${group.getId()}" />
+                </td>
+                <td>
+                  <a href="groups?id=${group.getId()}">
+                    <c:out value="${group.getName()}" />
+                  </a>
+                </td>
+                <td>
+                  <a href="groups?action=edit&id=${group.getId()}">Update</a>
+                </td>
+                <td>
+                  <a href="groups?action=delete&id=<c:out value="${group.getId()}"/>">Delete</a>
+                </td>
+              </tr>
+            </c:forEach>
+          </tbody>
+        </table>
+        <p>
+          <a href="groups?action=add">Add Group</a>
+        </p>
       </div>
       <div class="w3-col m8 l9">
         <c:if test="${not empty group}">
