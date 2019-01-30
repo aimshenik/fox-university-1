@@ -16,6 +16,6 @@ public class SubjectsServlet extends HttpServlet {
             throws ServletException, IOException {
             List<Subject> subjects = new SubjectDaoPostgres().findAll();
             request.setAttribute("subjects", subjects);
-            request.getRequestDispatcher("jsp/subjects.jsp").forward(request, response);
+            request.getRequestDispatcher("jsp/all_subjects.jsp").forward(request, response);
     }
 }

@@ -16,6 +16,6 @@ public class ClassroomsServlet extends HttpServlet {
             throws ServletException, IOException {
         List<Classroom> classrooms = new ClassroomDaoPostgres().findAll();
         request.setAttribute("classrooms", classrooms);
-        request.getRequestDispatcher("jsp/classrooms.jsp").forward(request, response);
+        request.getRequestDispatcher("jsp/all_classrooms.jsp").forward(request, response);
     }
 }

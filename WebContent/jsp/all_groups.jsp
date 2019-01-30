@@ -11,9 +11,9 @@
   <c:import url="/html/menu.html"></c:import>
   <div class="w3-container">
     <div class="w3-row">
-      <div class="w3-col m4 l3">
-        <h3>Group list:</h3>
-        <table class="w3-table w3-centered w3-hoverable w3-bordered">
+      <div class="w3-col m4 l3 w3-display-left">
+        <h3>Groups list:</h3>
+        <table class="w3-table w3-centered w3-hoverable w3-bordered w3-card-4">
           <thead>
             <tr>
               <th>ID</th>
@@ -33,20 +33,35 @@
                   </a>
                 </td>
                 <td>
-                  <a href="groups?action=edit&id=${group.getId()}">Update</a>
+                  <form action="groups" method="post">
+                  <input name="action" value="update" hidden="true" />
+                    <input name="id" value="${group.getId()}" hidden="true" />
+                    <button class="w3-btn w3-blue" type="submit">Edit</button>
+                  </form>
                 </td>
                 <td>
-                  <a href="groups?action=delete&id=<c:out value="${group.getId()}"/>">Delete</a>
+                  <form action="groups" method="post">
+                    <input name="action" value="delete" hidden="true" />
+                    <input name="id" value="${group.getId()}" hidden="true" />
+                    <button class="w3-btn w3-red" type="submit" onclick="return window.confirm('Delete group ${group.getName()}?')">Delete</button>
+                  </form>
                 </td>
               </tr>
             </c:forEach>
           </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="4">
+                <form action="groups" method="post">
+                <input name="action" value="create" hidden="true" />
+                  <button class="w3-btn w3-light-green" type="submit">Add Group</button>
+                </form>
+              </td>
+            </tr>
+          </tfoot>
         </table>
-        <p>
-          <a href="groups?action=add">Add Group</a>
-        </p>
       </div>
-      <div class="w3-col m8 l9">
+      <div class="w3-col m8 l9 w3-display-right">
         <c:if test="${not empty group}">
           <h3>Group ${group.getName()} students:</h3>
         </c:if>
@@ -66,5 +81,15 @@
       </div>
     </div>
   </div>
+  <script type="text/javascript">
+			function formSubmit() {
+				if (window
+						.confirm('Delete user?\nWARNING! THIS IS ACTION CANNOT BE UNDONE!')) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+		</script>
 </body>
 </html>

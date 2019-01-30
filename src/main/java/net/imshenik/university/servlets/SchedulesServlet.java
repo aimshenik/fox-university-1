@@ -16,6 +16,6 @@ public class SchedulesServlet extends HttpServlet {
             throws ServletException, IOException {
             List<Schedule> schedules = new ScheduleDaoPostgres().findAll();
             request.setAttribute("schedules", schedules);
-            request.getRequestDispatcher("jsp/schedules.jsp").forward(request, response);
+            request.getRequestDispatcher("jsp/all_schedules.jsp").forward(request, response);
     }
 }
