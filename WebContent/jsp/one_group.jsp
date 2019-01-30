@@ -30,7 +30,7 @@
         <h5>Creating new group</h5>
         <form class="w3-container" method="post" action="groups">
           <label>group name:</label>
-           <input type="text" name="action" value="confirm" hidden="true">
+          <input type="text" name="action" value="confirm" hidden="true">
           <input type="text" name="name" value="" class="w3-input">
           <button class="w3-btn w3-blue" type="submit">Save</button>
         </form>

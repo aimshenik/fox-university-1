@@ -30,17 +30,17 @@
                   <c:out value="${student.getId()}" />
                 </td>
                 <td>
-                    <c:out value="${student.getFirstName()}" />
+                  <c:out value="${student.getFirstName()}" />
                 </td>
                 <td>
-                    <c:out value="${student.getLastName()}" />
+                  <c:out value="${student.getLastName()}" />
                 </td>
                 <td>
-                    <c:out value="${student.getGroupId()}" />
+                  <c:out value="${student.getGroupId()}" />
                 </td>
                 <td>
                   <form action="students" method="post">
-                  <input name="action" value="update" hidden="true" />
+                    <input name="action" value="update" hidden="true" />
                     <input name="id" value="${student.getId()}" hidden="true" />
                     <button class="w3-btn w3-blue" type="submit">Edit</button>
                   </form>
@@ -59,7 +59,7 @@
             <tr>
               <td colspan="6">
                 <form action="students" method="post">
-                <input name="action" value="create" hidden="true" />
+                  <input name="action" value="create" hidden="true" />
                   <button class="w3-btn w3-light-green" type="submit">Add student</button>
                 </form>
               </td>

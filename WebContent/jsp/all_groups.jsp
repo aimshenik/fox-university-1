@@ -34,7 +34,7 @@
                 </td>
                 <td>
                   <form action="groups" method="post">
-                  <input name="action" value="update" hidden="true" />
+                    <input name="action" value="update" hidden="true" />
                     <input name="id" value="${group.getId()}" hidden="true" />
                     <button class="w3-btn w3-blue" type="submit">Edit</button>
                   </form>
@@ -53,7 +53,7 @@
             <tr>
               <td colspan="4">
                 <form action="groups" method="post">
-                <input name="action" value="create" hidden="true" />
+                  <input name="action" value="create" hidden="true" />
                   <button class="w3-btn w3-light-green" type="submit">Add Group</button>
                 </form>
               </td>
