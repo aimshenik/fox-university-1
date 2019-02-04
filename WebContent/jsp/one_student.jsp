@@ -12,34 +12,25 @@
   <div class="w3-row">
     <c:if test="${not empty student}">
       <div class="w3-col m4 l4 w3-display-middle">
-        <h5>
-          Editing
-          <c:out value="${student.getFirstName()} ${student.getLastName()}"></c:out>
-        </h5>
-        <form class="w3-container" method="post" action="students">
-          <input type="text" name="action" value="confirm" hidden="true">
+        <header class="w3-container w3-blue">
+          <h4>
+            Editing
+            <c:out value="${student.getFirstName()} ${student.getLastName()}"></c:out>
+          </h4>
+        </header>
+        <form class="w3-container" method="post" action="student">
+          <input type="text" name="id" value="${student.getId()}" class="w3-hide">
           <label>First name:</label>
           <input type="text" name="firstName" value="${student.getFirstName()}" class="w3-input">
           <label>Last name:</label>
           <input type="text" name="lastName" value="${student.getLastName()}" class="w3-input">
-          <label>Group ID:</label>
-          <input type="text" name="groupId" value="${student.getGroupId()}" class="w3-input">
-          <input type="text" name="id" value="${student.getId()}" hidden="true">
-          <button class="w3-btn w3-blue" type="submit">Save</button>
-        </form>
-      </div>
-    </c:if>
-    <c:if test="${empty student}">
-      <div class="w3-col m4 l4 w3-display-middle">
-        <h5>Creating new student</h5>
-        <form class="w3-container" method="post" action="students">
-          <input type="text" name="action" value="confirm" hidden="true">
-          <label>First name:</label>
-          <input type="text" name="firstName" value="" class="w3-input">
-          <label>Last name:</label>
-          <input type="text" name="lastName" value="" class="w3-input">
-          <label>Group ID:</label>
-          <input type="text" name="groupId" value="" class="w3-input">
+          <label>Group:</label>
+          <select class="w3-select" name="groupId">
+            <option value="${currentGroup.getId()}" selected>${currentGroup.getName()}</option>
+            <c:forEach var="group" items="${groups}">
+              <option value="${group.getId()}">${group.getName()}</option>
+            </c:forEach>
+          </select>
           <button class="w3-btn w3-blue" type="submit">Save</button>
         </form>
       </div>

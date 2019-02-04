@@ -11,9 +11,9 @@
   <c:import url="/html/menu.html"></c:import>
   <div class="w3-container">
     <div class="w3-row">
-      <div class="w3-col m4 l3 w3-display-left">
+      <div class="w3-col m6 l6 w3-display-left">
         <h3>Groups list:</h3>
-        <table class="w3-table w3-centered w3-hoverable w3-bordered w3-card-4">
+        <table class="w3-table-all w3-centered w3-card-4">
           <thead>
             <tr>
               <th>ID</th>
@@ -33,16 +33,14 @@
                   </a>
                 </td>
                 <td>
-                  <form action="groups" method="post">
-                    <input name="action" value="update" hidden="true" />
-                    <input name="id" value="${group.getId()}" hidden="true" />
+                  <form action="group" method="get">
+                    <input name="id" value="${group.getId()}" class="w3-hide" />
                     <button class="w3-btn w3-blue" type="submit">Edit</button>
                   </form>
                 </td>
                 <td>
-                  <form action="groups" method="post">
-                    <input name="action" value="delete" hidden="true" />
-                    <input name="id" value="${group.getId()}" hidden="true" />
+                  <form action="group/delete" method="post">
+                    <input name="id" value="${group.getId()}" class="w3-hide" />
                     <button class="w3-btn w3-red" type="submit" onclick="return window.confirm('Delete group ${group.getName()}?')">Delete</button>
                   </form>
                 </td>
@@ -50,11 +48,18 @@
             </c:forEach>
           </tbody>
           <tfoot>
-            <tr>
+            <tr class='w3-cyan'>
               <td colspan="4">
+                <div class="w3-container w3-cyan">
+                  <h2>Create new group</h2>
+                </div>
                 <form action="groups" method="post">
-                  <input name="action" value="create" hidden="true" />
-                  <button class="w3-btn w3-light-green" type="submit">Add Group</button>
+                  <div class="w3-threequarter">
+                    <input name="name" value="" class="w3-input w3-border" />
+                  </div>
+                  <div class="w3-quarter  ">
+                    <button class="w3-btn w3-cyan" type="submit">Add</button>
+                  </div>
                 </form>
               </td>
             </tr>
@@ -81,15 +86,5 @@
       </div>
     </div>
   </div>
-  <script type="text/javascript">
-			function formSubmit() {
-				if (window
-						.confirm('Delete user?\nWARNING! THIS IS ACTION CANNOT BE UNDONE!')) {
-					return true;
-				} else {
-					return false;
-				}
-			}
-		</script>
 </body>
 </html>

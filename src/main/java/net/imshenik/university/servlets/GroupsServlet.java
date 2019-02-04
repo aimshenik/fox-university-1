@@ -45,28 +45,7 @@ public class GroupsServlet extends HttpServlet {
     }
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getParameter("action");
-        Integer id = request.getParameter("id") != null ? Integer.parseInt(request.getParameter("id")) : null;
-        if (action.equals("update") || action.equals("create")) {
-            if (id != null) {
-                request.setAttribute("group", new GroupDaoPostgres().findOne(id));
-            }
-            request.getRequestDispatcher(INSERT_OR_EDIT_GROUP).forward(request, response);
-        } else if (action.equals("delete")) {
-            new GroupDaoPostgres().delete(id);
-            request.setAttribute("groups", new GroupDaoPostgres().findAll());
-            request.getRequestDispatcher(LIST_GROUP).forward(request, response);
-        } else if (action.equals("confirm")) {
-            Group group = new Group();
-            group.setName(request.getParameter("name"));
-            if (id != null) {
-                group.setId(id);
-                new GroupDaoPostgres().update(group);
-            } else {
-                new GroupDaoPostgres().create(group);
-            }
-            request.setAttribute("groups", new GroupDaoPostgres().findAll());
-            request.getRequestDispatcher(LIST_GROUP).forward(request, response);
-        }
+        new GroupDaoPostgres().create(new Group(request.getParameter("name")));
+        response.sendRedirect(request.getContextPath() + "/groups");
     }
 }
