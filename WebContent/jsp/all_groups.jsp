@@ -11,7 +11,7 @@
   <c:import url="/html/menu.html"></c:import>
   <div class="w3-container">
     <div class="w3-row">
-      <div class="w3-col m6 l6 w3-display-left">
+      <div class="w3-col m4 l4 w3-display-left">
         <h3>Groups list:</h3>
         <table class="w3-table-all w3-centered w3-card-4">
           <thead>
@@ -35,13 +35,13 @@
                 <td>
                   <form action="group" method="get">
                     <input name="id" value="${group.getId()}" class="w3-hide" />
-                    <button class="w3-btn w3-blue" type="submit">Edit</button>
+                    <button class="w3-btn w3-block w3-blue" type="submit">Edit</button>
                   </form>
                 </td>
                 <td>
                   <form action="group/delete" method="post">
                     <input name="id" value="${group.getId()}" class="w3-hide" />
-                    <button class="w3-btn w3-red" type="submit" onclick="return window.confirm('Delete group ${group.getName()}?')">Delete</button>
+                    <button class="w3-btn w3-block w3-red" type="submit" onclick="return window.confirm('Delete group ${group.getName()}?')">Delete</button>
                   </form>
                 </td>
               </tr>
@@ -58,7 +58,7 @@
                     <input name="name" value="" class="w3-input w3-border" />
                   </div>
                   <div class="w3-quarter  ">
-                    <button class="w3-btn w3-cyan" type="submit">Add</button>
+                    <button class="w3-btn w3-block w3-cyan" type="submit">Add</button>
                   </div>
                 </form>
               </td>
@@ -66,13 +66,12 @@
           </tfoot>
         </table>
       </div>
-      <div class="w3-col m8 l9 w3-display-right">
+      <div class="w3-col m6 l6 w3-display-right">
         <c:if test="${not empty group}">
           <h3>Group ${group.getName()} students:</h3>
         </c:if>
         <c:if test="${not empty errorMessage}">
           <h3 class="w3-red">${errorMessage}</h3>
-          <c:import url="/jsp/error.jsp"></c:import>
         </c:if>
         <ul>
           <c:forEach var="student" items="${students}">

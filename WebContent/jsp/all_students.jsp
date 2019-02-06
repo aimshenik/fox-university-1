@@ -41,13 +41,13 @@
                 <td>
                   <form action="student" method="get">
                     <input name="id" value="${student.getId()}" class="w3-hide" />
-                    <button class="w3-btn w3-blue" type="submit">Edit</button>
+                    <button class="w3-btn w3-block w3-blue" type="submit">Edit</button>
                   </form>
                 </td>
                 <td>
                   <form action="student/delete" method="post">
                     <input name="id" value="${student.getId()}" class="w3-hide" />
-                    <button class="w3-btn w3-red" type="submit" onclick="return window.confirm('Delete student ${student.getFirstName()} ${student.getLastName()}?')">Delete</button>
+                    <button class="w3-btn w3-block w3-red" type="submit" onclick="return window.confirm('Delete student ${student.getFirstName()} ${student.getLastName()}?')">Delete</button>
                   </form>
                 </td>
               </tr>
@@ -75,7 +75,7 @@
                     </select>
                   </div>
                   <div class="w3-quarter  ">
-                    <button class="w3-btn w3-cyan" type="submit">Add</button>
+                    <button class="w3-btn w3-block w3-cyan" type="submit">Add</button>
                   </div>
                 </form>
               </td>
