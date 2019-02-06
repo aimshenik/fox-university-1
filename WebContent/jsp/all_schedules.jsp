@@ -8,21 +8,15 @@
 <title>Groups</title>
 </head>
 <body>
-  <div class="w3-center">
-    <h1>University</h1>
-  </div>
   <c:import url="/html/menu.html"></c:import>
   <div class="w3-container">
     <div class="w3-row">
       <div class="w3-col m4 l3">
-        <h3>Classrooms list:</h3>
+        <h3>Schedules list:</h3>
         <ul>
-          <c:forEach var="classroom" items="${classrooms}">
+          <c:forEach var="schedule" items="${schedules}">
             <li>
-              Building :
-              <c:out value="${classroom.getBuilding()}" />
-              Number :
-              <c:out value="${classroom.getNumber()}" />
+              <c:out value="${schedule}" />
             </li>
           </c:forEach>
         </ul>

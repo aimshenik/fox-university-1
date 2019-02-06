@@ -16,6 +16,6 @@ public class TeachersServlet extends HttpServlet {
             throws ServletException, IOException {
             List<Teacher> teachers = new TeacherDaoPostgres().findAll();
             request.setAttribute("teachers", teachers);
-            request.getRequestDispatcher("jsp/teachers.jsp").forward(request, response);
+            request.getRequestDispatcher("jsp/all_teachers.jsp").forward(request, response);
     }
 }

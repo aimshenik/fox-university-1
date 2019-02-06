@@ -8,9 +8,6 @@
 <title>University</title>
 </head>
 <body>
-  <div class="w3-center">
-    <h1>University</h1>
-  </div>
   <c:import url="/html/menu.html"></c:import>
 </body>
 </html>

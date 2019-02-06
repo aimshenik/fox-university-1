@@ -2,8 +2,6 @@ package net.imshenik.university.servlets;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,9 +14,9 @@ import net.imshenik.university.dao.StudentDaoPostgres;
 import net.imshenik.university.domain.Group;
 import net.imshenik.university.domain.Student;
 
-@WebServlet("/students")
-public class StudentsServlet extends HttpServlet {
-    public static final String LIST_STUDENTS = "jsp/all_students.jsp";
+@WebServlet("/student")
+public class StudentServlet extends HttpServlet {
+    private static final String EDIT_JSP = "jsp/one_student.jsp";
     private StudentDao studentDao;
     private GroupDao groupDao;
     
@@ -29,19 +27,20 @@ public class StudentsServlet extends HttpServlet {
     }
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Student> students = studentDao.findAll();
+        Student student = studentDao.findOne(Integer.parseInt(request.getParameter("id")));
         List<Group> groups = groupDao.findAll();
-        Map<Integer, String> groupsMap = groups.stream().collect(Collectors.toMap(Group::getId, Group::getName));
-        request.setAttribute("students", students);
+        Group currentGroup = groupDao.findOne(student.getGroupId());
+        groups.remove(currentGroup);
+        request.setAttribute("student", studentDao.findOne(Integer.parseInt(request.getParameter("id"))));
         request.setAttribute("groups", groups);
-        request.setAttribute("groupsMap", groupsMap);
-        request.getRequestDispatcher(LIST_STUDENTS).forward(request, response);
+        request.setAttribute("currentGroup", currentGroup);
+        request.getRequestDispatcher(EDIT_JSP).forward(request, response);
     }
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Student student = new Student(request.getParameter("firstName"), request.getParameter("lastName"),
-                Integer.parseInt(request.getParameter("groupId")));
-        studentDao.create(student);
+        Student student = new Student(Integer.parseInt(request.getParameter("id")), request.getParameter("firstName"),
+                request.getParameter("lastName"), Integer.parseInt(request.getParameter("groupId")));
+        studentDao.update(student);
         response.sendRedirect(request.getContextPath() + "/students");
     }
 }
