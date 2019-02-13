@@ -20,7 +20,7 @@ public class ConnectionFactory {
             ds = (DataSource) ctx.lookup("java:comp/env/jdbc/universitydb");
             connection = ds.getConnection();
         } catch (NamingException | SQLException e) {
-            throw new DaoException("Unable provide connection to database");
+            throw new DaoException("Unable provide connection to database", e);
         }
         return connection;
     }
