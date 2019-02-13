@@ -16,7 +16,7 @@ public class ClassroomDaoPostgres implements ClassroomDao {
     private static final String NUMBER = "NUMBER";
     private static final String BUILDING = "BUILDING";
     private static final String CAPACITY = "CAPACITY";
-    
+
     public List<Classroom> findAll() throws DaoException {
         log.trace("Getting all classrooms");
         String sql = "SELECT * FROM CLASSROOMS";
@@ -35,7 +35,7 @@ public class ClassroomDaoPostgres implements ClassroomDao {
         log.debug(String.format("Returned list of %d classrooms", classrooms.size()));
         return classrooms;
     }
-    
+
     public Classroom findOne(Integer id) throws DaoException {
         log.trace(String.format("Getting classroom with ID = %d", id));
         String sql = "SELECT * FROM CLASSROOMS WHERE ID=?";
@@ -57,7 +57,7 @@ public class ClassroomDaoPostgres implements ClassroomDao {
         log.trace(classroom == null ? "classroom was NOT found, returning 'null' " : "classroom was found");
         return classroom;
     }
-    
+
     public Classroom create(Classroom classroom) throws DaoException {
         log.trace(String.format("Inserting %s into database", classroom.toString()));
         String sql = "INSERT INTO CLASSROOMS (NUMBER, BUILDING, CAPACITY) VALUES (?,?,?)";
@@ -80,7 +80,7 @@ public class ClassroomDaoPostgres implements ClassroomDao {
         }
         return classroom;
     }
-    
+
     public void update(Classroom classroom) throws DaoException {
         log.trace(String.format("Updating classrom %s", classroom.toString()));
         if (doesNotExist(classroom.getId())) {
@@ -100,7 +100,7 @@ public class ClassroomDaoPostgres implements ClassroomDao {
             throw new DaoException("database: interaction failure", e);
         }
     }
-    
+
     public void delete(Integer id) throws DaoException {
         if (doesNotExist(id)) {
             throw new DaoException("Classroom with  ID = " + id + " does NOT exist!");
@@ -117,7 +117,7 @@ public class ClassroomDaoPostgres implements ClassroomDao {
             throw new DaoException("database: interaction failure", e);
         }
     }
-    
+
     private boolean doesNotExist(Integer id) throws DaoException {
         if (id == null) {
             return true;
