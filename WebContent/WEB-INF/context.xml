@@ -1,0 +1,17 @@
+<Configure id="wac" class="org.eclipse.jetty.webapp.WebAppContext">
+    <New id="universitydb" class="org.eclipse.jetty.plus.jndi.Resource">
+        <Arg>
+            <Ref refid="wac" />
+        </Arg>
+        <Arg>jdbc/universitydb</Arg>
+        <Arg>
+            <New class="org.postgresql.ds.PGSimpleDataSource">
+                <Set name="User">andrey</Set>
+                <Set name="Password">1234321</Set>
+                <Set name="DatabaseName">university</Set>
+                <Set name="ServerName">localhost</Set>
+                <Set name="PortNumber">5432</Set>
+            </New>
+        </Arg>
+    </New>
+</Configure>
