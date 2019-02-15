@@ -2,10 +2,9 @@ package net.imshenik.university.dao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import javax.sql.DataSource;
 import org.apache.log4j.Logger;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class ConnectionFactory {
     private static final Logger log = Logger.getLogger(ConnectionFactory.class.getName());
@@ -20,11 +19,7 @@ public class ConnectionFactory {
     }
 
     private static DataSource lookup() {
-        try {
-            log.trace("Loading Datasource from Context");
-            return (DataSource) new InitialContext().lookup("java:comp/env/jdbc/universitydb");
-        } catch (NamingException e) {
-            throw new DaoException("Unable provide lookup Datasource", e);
-        }
+        log.trace("Loading Datasource from Spring Context");
+        return new ClassPathXmlApplicationContext("spring.xml").getBean("dataSource", javax.sql.DataSource.class);
     }
 }
