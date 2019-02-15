@@ -10,7 +10,7 @@
     <error-page>
         <location>/jsp/error.jsp</location>
     </error-page>
-       <resource-ref>
+    <resource-ref>
         <description>Postgres University Datasource</description>
         <res-ref-name>jdbc/universitydb</res-ref-name>
         <res-type>javax.sql.DataSource</res-type>
